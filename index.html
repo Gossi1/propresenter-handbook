@@ -1,0 +1,2941 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProPresenter & WorshipTools: Operator Handboek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Neutral palette */
+            --base-color-neutral--black: #09090b;
+            --base-color-neutral--white: #fafafa;
+            --base-color-neutral--neutral: #52525b;
+            --base-color-neutral--neutral-dark: #27272a;
+            --base-color-neutral--neutral-darker: #1a1a1c;
+            --base-color-neutral--neutral-darkest: #0e0e10;
+            --base-color-neutral--neutral-light: #a1a1aa;
+            --base-color-neutral--neutral-lighter: #dedee0;
+            --base-color-neutral--neutral-lightest: #f4f4f5;
+            --base-color-neutral--black-glass: #09090bcc;
+            --base-color-neutral--darker-glass: #18181bcc;
+            --base-color-neutral--white-faded: #f9fafb12;
+            --base-color-neutral--black-faded: #09090b12;
+            --base-color-neutral--grey-faded: #494d5040;
+
+            /* ProPresenter brand colors */
+            --base-color-brand--proorange: #ff6c1a;
+            --base-color-brand--proorange-shade: #ffa235;
+            --base-color-brand--scorered: #ff0c03;
+            --base-color-brand--servergreen: #31ce40;
+            --base-color-brand--contentpurple: #a54cff;
+            --base-color-brand--videopink: #d52add;
+            --base-color-brand--procontent-shade: #6d96ff;
+            --base-color-brand--videoplayer-shade: #9f4afe;
+            --base-color-brand--videoserver-shade: #cbd64c;
+            --base-color-brand--dynamic-gradient: linear-gradient(to right, var(--base-color-brand--proorange), var(--base-color-brand--proorange-shade));
+            --base-color-brand--dynamic-accent: var(--base-color-brand--proorange);
+            --base-color-brand--dynamic-accent-shade: var(--base-color-brand--proorange-shade);
+            --base-color-brand--white: #fafafa;
+            --base-color-brand--black: #09090b;
+            --base-color-brand--scoreboard-shade: #ff6d1b;
+
+            /* System colors */
+            --base-color-system--success-green: #11df89;
+            --base-color-system--success-green-light: #ecfdf3;
+            --base-color-system--error-red: #b42318;
+            --base-color-system--error-red-light: #fef3f2;
+
+            /* Semantic tokens */
+            --background-color--background-primary: var(--base-color-neutral--black);
+            --background-color--background-secondary: var(--base-color-neutral--neutral-darker);
+            --background-color--background-tertiary: var(--base-color-neutral--neutral-dark);
+            --background-color--background-alternate: var(--base-color-neutral--white);
+            --background-color--background-success: var(--base-color-system--success-green-light);
+            --background-color--background-error: var(--base-color-system--error-red-light);
+            --text-color--text-primary: var(--base-color-neutral--white);
+            --text-color--text-primary-muted: var(--base-color-neutral--neutral-lighter);
+            --text-color--text-primary-muted-extra: var(--base-color-neutral--neutral-light);
+            --text-color--text-secondary: var(--base-color-neutral--neutral-light);
+            --text-color--text-alternate: var(--base-color-neutral--black);
+            --text-color--text-alternate-muted: var(--base-color-neutral--neutral-dark);
+            --text-color--text-success: var(--base-color-system--success-green);
+            --text-color--text-error: var(--base-color-system--error-red);
+            --border-color--border-primary: var(--base-color-neutral--neutral-darkest);
+            --border-color--border-secondary: var(--base-color-neutral--neutral-lighter);
+            --border-color--border-alternate: var(--base-color-neutral--white);
+            --link-color--link-primary: var(--base-color-neutral--white);
+            --link-color--link-alternate: var(--base-color-neutral--neutral-dark);
+            --link-color--link-secondary: var(--base-color-neutral--neutral-lighter);
+            --border-radius--normal: .5rem;
+            --border-radius--small: .25rem;
+            --letter-spacing--headings: -.02em;
+            --letter-spacing--body: .01em;
+
+            /* Shorthand aliases for convenience */
+            --bg-color: var(--background-color--background-primary);
+            --bg-elev: var(--background-color--background-secondary);
+            --card-bg: var(--base-color-neutral--neutral-dark);
+            --border-color: var(--border-color--border-primary);
+            --text-main: var(--text-color--text-primary);
+            --text-muted: var(--text-color--text-primary-muted);
+            --text-dim: var(--text-color--text-secondary);
+            --accent-red: var(--base-color-brand--scorered);
+            --accent-blue: var(--base-color-brand--procontent-shade);
+            --accent-green: var(--base-color-brand--servergreen);
+            --accent-orange: var(--base-color-brand--proorange);
+            --accent-teal: var(--base-color-brand--videoplayer-shade);
+            --accent-lime: var(--base-color-brand--videoserver-shade);
+            --gradient-hero: var(--base-color-brand--dynamic-gradient);
+            --gradient-warm: linear-gradient(135deg, var(--base-color-brand--proorange), var(--base-color-brand--scorered));
+            --gradient-blue: linear-gradient(135deg, var(--base-color-brand--procontent-shade), var(--base-color-brand--videoplayer-shade));
+            --gradient-green: linear-gradient(135deg, var(--base-color-brand--servergreen), var(--base-color-brand--videoserver-shade));
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-size-adjust: 100%;
+            font-weight: 300;
+            font-size: 1rem;
+            background-image:
+                radial-gradient(circle at 15% 10%, rgba(109, 150, 255, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(255, 108, 26, 0.06), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, h4, strong, .badge, .section-num, .toc-title, .meta-pill, .ui-zone-label,
+        .shortcut-name, .card-title, .layer-name, .layer-position, .layer-key,
+        .output-title, .feature-title, .scenario-title, .quick-ref-title,
+        .highlight-title, .tips-title, .intro-title, .workflow-num, .ref-keys {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3, h4, strong, .section-num {
+            text-transform: uppercase;
+        }
+
+        .badge, .meta-pill, .toc-title, .ui-zone-label {
+            text-transform: uppercase;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            padding: 60px 20px 50px;
+            text-align: center;
+            background:
+                linear-gradient(180deg, rgba(77, 77, 79, 0.98) 0%, rgba(86, 86, 88, 1) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            right: -10%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(109, 150, 255, 0.12), transparent 60%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(109, 150, 255, 0.18);
+            color: var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(109, 150, 255, 0.35);
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: clamp(1.9rem, 5vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .meta-pill {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .meta-pill strong {
+            color: var(--accent-blue);
+            margin-right: 6px;
+        }
+
+        /* ========== ACCESSIBILITY ========== */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 12px;
+            background: var(--accent-blue);
+            color: var(--bg-color);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            z-index: 999;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 12px; }
+
+        a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        .toc-list a:focus-visible {
+            background-color: rgba(109, 150, 255, 0.15);
+            border-left-color: var(--accent-blue);
+        }
+        .demo-toggle:focus-visible {
+            box-shadow: 0 0 0 3px rgba(109, 150, 255, 0.4);
+            outline: none;
+        }
+
+        /* Visually hidden (sr-only) for accessible labels */
+        .sr-only {
+            position: absolute !important;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ========== LAYOUT ========== */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 1280px;
+            margin: 0 auto;
+            gap: 0;
+        }
+
+        @media (min-width: 1024px) {
+            .layout {
+                grid-template-columns: 260px 1fr;
+            }
+        }
+
+        main {
+            padding: 30px 20px 60px;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        /* ========== TABLE OF CONTENTS ========== */
+        .toc {
+            background-color: rgba(62, 62, 65, 0.92);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 20px;
+            position: sticky;
+            top: 0;
+            align-self: start;
+            max-height: 100vh;
+            overflow-y: auto;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .toc {
+                display: block;
+            }
+        }
+
+        .toc-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 4px;
+        }
+
+        .toc-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background-color: rgba(109, 150, 255, 0.10);
+            color: var(--text-main);
+            border-left-color: var(--accent-blue);
+        }
+
+        .toc-list a.active {
+            background-color: rgba(109, 150, 255, 0.15);
+            color: var(--accent-blue);
+            border-left-color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .toc-num {
+            background: var(--bg-elev);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .toc-list a.active .toc-num {
+            background: var(--accent-blue);
+            color: var(--bg-color);
+            border-color: var(--accent-blue);
+        }
+
+        .toc-progress {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar {
+            background-color: var(--bg-elev);
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: var(--gradient-blue);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        /* ========== MOBILE TOC ========== */
+        .mobile-toc {
+            display: block;
+            background-color: var(--bg-elev);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-toc {
+                display: none;
+            }
+        }
+
+        .mobile-toc select {
+            width: 100%;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* ========== SECTIONS ========== */
+        section {
+            margin-bottom: 50px;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-num.n1 { background: linear-gradient(135deg, #6d96ff, #a54cff); }
+        .section-num.n2 { background: linear-gradient(135deg, #31ce40, #cbd64c); }
+        .section-num.n3 { background: linear-gradient(135deg, #ff6c1a, #ff0c03); }
+        .section-num.n4 { background: linear-gradient(135deg, #a54cff, #6d96ff); }
+        .section-num.n5 { background: linear-gradient(135deg, #ff0c03, #ff6c1a); }
+        .section-num.n6 { background: linear-gradient(135deg, #52525b, #6d96ff); }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.3rem, 3vw, 1.7rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+        }
+
+        .section-time {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 500;
+            margin-top: 4px;
+            font-family: monospace;
+        }
+
+        /* ========== CARDS ========== */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: "▸";
+            color: var(--accent-blue);
+            font-size: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card ul, .card ol {
+            color: var(--text-muted);
+            padding-left: 22px;
+            margin-bottom: 14px;
+        }
+
+        .card ul li, .card ol li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .card strong {
+            color: var(--text-main);
+        }
+
+        .card em {
+            color: var(--accent-teal);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ========== LAYER DIAGRAM ========== */
+        .layer-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 20px 0 10px;
+            perspective: 800px;
+        }
+
+        .layer {
+            background-color: var(--bg-elev);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .layer:hover {
+            transform: translateX(8px);
+            border-color: var(--accent-blue);
+        }
+
+        .layer::before {
+            content: "⤴";
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            background-color: var(--bg-color);
+            padding: 0 6px;
+        }
+
+        .layer:first-child::before {
+            content: "▼";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .layer-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .layer-mask .layer-icon { background: linear-gradient(135deg, #ff0c03, #ff6c1a); }
+        .layer-message .layer-icon { background: linear-gradient(135deg, #ff6c1a, #ff0c03); }
+        .layer-prop .layer-icon { background: linear-gradient(135deg, #ff6c1a, #cbd64c); }
+        .layer-announcement .layer-icon { background: linear-gradient(135deg, #cbd64c, #31ce40); }
+        .layer-slide .layer-icon { background: linear-gradient(135deg, #31ce40, #cbd64c); }
+        .layer-bgcolor .layer-icon { background: linear-gradient(135deg, #9f4afe, #6d96ff); }
+        .layer-media .layer-icon { background: linear-gradient(135deg, #6d96ff, #9f4afe); }
+        .layer-video .layer-icon { background: linear-gradient(135deg, #52525b, #6d96ff); }
+        .layer-screencolor .layer-icon { background: linear-gradient(135deg, #9f4afe, #6d96ff); }
+
+        .layer-content {
+            flex: 1;
+        }
+
+        .layer-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .layer-position {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .layer-desc-small {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .layer-key {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ========== UI ZONES ========== */
+        .ui-zones {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 4px;
+            margin-top: 20px;
+            background-color: var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+        }
+
+        .ui-zone {
+            background-color: var(--bg-elev);
+            padding: 20px 14px;
+            text-align: center;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ui-zone-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .ui-zone-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .ui-zone-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .ui-zone-icon {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+
+        /* ========== SCREENSHOT BLOCK ========== */
+        .screenshot-block {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            background: #0b1120;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .screenshot-block img.screenshot-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            user-select: none;
+        }
+
+        /* ========== ZONE CARDS GRID ========== */
+        .zone-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 20px 0 6px;
+        }
+        @media (max-width: 900px) { .zone-cards { grid-template-columns: 1fr; } }
+        .zone-card {
+            background-color: var(--bg-elev);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+        .zone-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        .zone-card img.zone-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
+            background: #0b1120;
+        }
+        .zone-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+        .zone-card-title .num-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-right: 8px;
+            color: var(--bg-color);
+        }
+        .zone-card.zone-1 .num-badge { background: #6d96ff; }
+        .zone-card.zone-2 .num-badge { background: #ff6c1a; }
+        .zone-card.zone-3 .num-badge { background: #9f4afe; }
+        .zone-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+        .screenshot-legend {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* ========== SHORTCUT GRID ========== */
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .shortcut {
+            background-color: var(--bg-elev);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .shortcut:hover {
+            border-color: var(--accent-blue);
+            background-color: rgba(109, 150, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-aside {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+            padding: 0;
+            background: transparent;
+        }
+        .card-aside strong { color: var(--accent-blue); font-weight: 700; }
+
+        .shortcut-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .shortcut-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .shortcut-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        kbd {
+            background-color: var(--bg-color);
+            color: var(--accent-blue);
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            border-bottom-width: 2px;
+            font-size: 0.78rem;
+            min-width: 50px;
+            text-align: center;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .shortcut-key-danger { color: var(--accent-red); }
+        .shortcut-key-warn { color: var(--accent-orange); }
+        .shortcut-key-success { color: var(--accent-green); }
+
+        /* ========== SCENARIO CARDS ========== */
+        .scenario {
+            background-color: var(--bg-elev);
+            border-left: 4px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+        }
+
+        .scenario.calm { border-left-color: var(--accent-green); }
+        .scenario.warning { border-left-color: var(--accent-orange); }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .scenario-icon {
+            font-size: 1.3rem;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        .scenario-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .scenario-solution {
+            background-color: rgba(49, 206, 64, 0.1);
+            border: 1px solid rgba(49, 206, 64, 0.25);
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            color: #a7f3d0;
+        }
+
+        .scenario-solution strong {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .scenario.warning .scenario-solution {
+            background-color: rgba(255, 108, 26, 0.1);
+            border-color: rgba(255, 108, 26, 0.25);
+            color: #fde68a;
+        }
+
+        .scenario.warning .scenario-solution strong {
+            color: var(--accent-orange);
+        }
+
+        /* ========== WORKFLOW STEPS ========== */
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .workflow-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background-color: var(--bg-elev);
+            border-radius: 10px;
+            padding: 16px 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .workflow-step:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+
+        .workflow-num {
+            background: var(--gradient-blue);
+            color: var(--bg-color);
+            font-weight: 800;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .workflow-content h4 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .workflow-content p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ========== HIGHLIGHT BOX ========== */
+        .highlight {
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 16px 0;
+            border: 1px solid;
+        }
+
+        .highlight-info {
+            background: rgba(109, 150, 255, 0.10);
+            border-color: rgba(109, 150, 255, 0.3);
+        }
+
+        .highlight-warn {
+            background: rgba(255, 108, 26, 0.08);
+            border-color: rgba(255, 108, 26, 0.3);
+        }
+
+        .highlight-success {
+            background: rgba(49, 206, 64, 0.08);
+            border-color: rgba(49, 206, 64, 0.3);
+        }
+
+        .highlight-purple {
+            background: rgba(165, 76, 255, 0.08);
+            border-color: rgba(165, 76, 255, 0.3);
+        }
+
+        .highlight-title {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-body {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .highlight-body strong {
+            color: var(--text-main);
+        }
+
+        /* ========== OUTPUT SCREENS ========== */
+        .outputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .output {
+            background-color: var(--bg-elev);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.2s;
+        }
+
+        .output:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .output-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .output.zaal .output-icon { background: linear-gradient(135deg, #6d96ff, #9f4afe); }
+        .output.stream .output-icon { background: linear-gradient(135deg, #ff0c03, #ff6c1a); }
+        .output.stage .output-icon { background: linear-gradient(135deg, #52525b, #6d96ff); }
+
+        .output-title {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .output-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ========== ADVANCED FEATURES ========== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .feature {
+            background: var(--bg-elev);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .feature:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .feature:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ========== INTRO CARD ========== */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 20px;
+            align-items: center;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(109, 150, 255, 0.10), rgba(165, 76, 255, 0.08));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .intro-icon {
+            font-size: 4rem;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .intro-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .intro-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== DEMO BUTTON ========== */
+        .demo-toggle {
+            display: inline-block;
+            background: var(--gradient-blue);
+            color: var(--bg-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.15s;
+        }
+
+        .demo-toggle:hover {
+            transform: scale(1.03);
+        }
+
+        .demo-toggle:active {
+            transform: scale(0.97);
+        }
+
+        .demo-output {
+            margin-top: 16px;
+            padding: 20px;
+            background-color: #000;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 600;
+            transition: all 0.4s ease;
+        }
+
+        .demo-output.has-video {
+            background:
+                radial-gradient(circle at 30% 50%, #38bdf8 0%, transparent 40%),
+                radial-gradient(circle at 70% 50%, #a855f7 0%, transparent 40%),
+                linear-gradient(135deg, #1e3a8a, #6b21a8);
+        }
+
+        .demo-output.has-text {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .demo-output.cleared-slide {
+            padding-top: 0;
+            padding-bottom: 0;
+            font-size: 0;
+        }
+
+        .demo-output.cleared-all {
+            background: #000;
+            font-size: 0;
+        }
+
+        /* ========== QUICK REFERENCE ========== */
+        .quick-ref {
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-elev));
+            border: 2px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 26px;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(109, 150, 255, 0.12);
+        }
+
+        .quick-ref-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .quick-ref-item {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 12px 14px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .quick-ref-item .ref-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .quick-ref-item .ref-keys {
+            font-family: monospace;
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        /* ========== TIPS FOR TRAINER ========== */
+        .tips {
+            background: linear-gradient(135deg, rgba(165, 76, 255, 0.12), rgba(213, 42, 221, 0.08));
+            border: 1px solid rgba(165, 76, 255, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 40px;
+        }
+
+        .tips-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips ol {
+            color: var(--text-muted);
+            padding-left: 24px;
+        }
+
+        .tips ol li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .tips ol li strong {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            background-color: var(--background-color--background-secondary);
+        }
+
+        footer .footer-heart {
+            color: var(--accent-red);
+            margin: 0 4px;
+        }
+
+        /* ========== LANGUAGE SWITCHER ========== */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.10);
+            padding: 3px;
+            border-radius: 8px;
+            position: relative;
+            margin: 0;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-main);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient-blue);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(109, 150, 255, 0.35);
+        }
+
+        .lang-btn.active:hover {
+            color: #fff;
+            transform: none;
+        }
+
+        .lang-btn:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        .lang-switcher-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 5;
+        }
+
+        @media (max-width: 600px) {
+            .lang-switcher-wrapper {
+                justify-content: center;
+                margin-bottom: 12px;
+            }
+        }
+
+        /* ========== RIGHT-TO-LEFT (FARSI) SUPPORT ========== */
+        [dir="rtl"] body {
+            direction: rtl;
+            text-align: right;
+        }
+
+        [dir="rtl"] .card-title::before {
+            content: "◂";
+        }
+
+        [dir="rtl"] .layer:hover {
+            transform: translateX(-8px);
+        }
+
+        [dir="rtl"] .workflow-step:hover {
+            transform: translateX(-4px);
+        }
+
+        [dir="rtl"] .toc-list a {
+            border-left: none;
+            border-right: 3px solid transparent;
+        }
+
+        [dir="rtl"] .toc-list a:hover,
+        [dir="rtl"] .toc-list a.active {
+            border-left: none;
+            border-right-color: var(--accent-blue);
+        }
+
+        [dir="rtl"] .shortcut {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .scenario {
+            border-left: none;
+            border-right: 4px solid var(--accent-red);
+        }
+
+        [dir="rtl"] .scenario.calm { border-right-color: var(--accent-green); }
+        [dir="rtl"] .scenario.warning { border-right-color: var(--accent-orange); }
+
+        [dir="rtl"] .section-header {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .workflow-step {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .quick-ref-item {
+            border-left: none;
+            border-right: 3px solid var(--accent-blue);
+        }
+
+        [dir="rtl"] .meta-row {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .outputs {
+            direction: rtl;
+        }
+
+        /* ========== PRINT ========== */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body {
+                background: #09090b;
+                color: #fafafa;
+                background-image: none;
+            }
+            header {
+                background: linear-gradient(180deg, rgba(77, 77, 79, 0.98) 0%, rgba(86, 86, 88, 1) 100%);
+                padding: 30px 20px 25px;
+                border-bottom: 1px solid #0e0e10;
+            }
+            header::before {
+                background: radial-gradient(ellipse at center, rgba(109, 150, 255, 0.12), transparent 60%);
+            }
+            h1 {
+                background: linear-gradient(to right, #ff6c1a, #ffa235);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                color: #ff6c1a;
+            }
+            .section-num, .workflow-num {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+            .section-num.n1 { background: linear-gradient(135deg, #6d96ff, #a54cff) !important; }
+            .section-num.n2 { background: linear-gradient(135deg, #31ce40, #cbd64c) !important; }
+            .section-num.n3 { background: linear-gradient(135deg, #ff6c1a, #ff0c03) !important; }
+            .section-num.n4 { background: linear-gradient(135deg, #a54cff, #6d96ff) !important; }
+            .section-num.n5 { background: linear-gradient(135deg, #ff0c03, #ff6c1a) !important; }
+            .section-num.n6 { background: linear-gradient(135deg, #52525b, #6d96ff) !important; }
+            .toc, .mobile-toc, .demo-toggle, .demo-output, .lang-switcher-wrapper {
+                display: none !important;
+            }
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            main {
+                padding: 10px;
+                max-width: 100%;
+            }
+            .card {
+                background: #27272a !important;
+                border: 1px solid #0e0e10;
+                color: #dedee0;
+                page-break-inside: avoid;
+                box-shadow: none;
+                break-inside: avoid;
+            }
+            .card-title {
+                color: #fafafa !important;
+            }
+            .card p, .card li, .card div:not(.card-title) {
+                color: #dedee0 !important;
+            }
+            .card strong {
+                color: #fafafa !important;
+            }
+            .card em {
+                color: #9f4afe !important;
+            }
+            .section-title h2, .workflow-content h4, .layer-name,
+            .output-title, .feature-title, .scenario-title, .quick-ref-title,
+            .intro-title, .tips-title {
+                color: #fafafa !important;
+            }
+            .layer, .shortcut, .output, .feature, .scenario, .workflow-step, .ui-zone,
+            .highlight, .quick-ref-item {
+                background: #1a1a1c !important;
+                border: 1px solid #27272a;
+                color: #dedee0 !important;
+                break-inside: avoid;
+            }
+            .layer:hover { transform: none; }
+            .workflow-step:hover { transform: none; }
+            .highlight {
+                break-inside: avoid;
+            }
+            .highlight-title {
+                color: #fafafa !important;
+            }
+            .highlight-body {
+                color: #dedee0 !important;
+            }
+            kbd {
+                background: #09090b !important;
+                color: #6d96ff !important;
+                border: 1px solid #27272a;
+                border-bottom-width: 2px;
+            }
+            .section-time { color: #a1a1aa !important; }
+            .layer, .output, .scenario, .quick-ref-item, .highlight,
+            .card, .workflow-step, .feature, .shortcut {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            .intro-grid {
+                background: linear-gradient(135deg, rgba(109, 150, 255, 0.10), rgba(165, 76, 255, 0.08)) !important;
+                border: 1px solid #27272a;
+            }
+            .tips {
+                background: linear-gradient(135deg, rgba(165, 76, 255, 0.12), rgba(213, 42, 221, 0.08)) !important;
+                border: 1px solid rgba(165, 76, 255, 0.3);
+            }
+            .quick-ref {
+                background: linear-gradient(135deg, #27272a, #1a1a1c) !important;
+                border: 2px solid #6d96ff;
+                box-shadow: none;
+            }
+            .screenshot-block {
+                border: 1px solid #27272a;
+                background: #0b1120;
+            }
+            .screenshot-block img { opacity: 0.9; }
+            .zone-card {
+                background: #1a1a1c !important;
+                border: 1px solid #27272a;
+            }
+            .zone-card-title { color: #fafafa !important; }
+            .zone-card-desc { color: #dedee0 !important; }
+            footer {
+                background: #1a1a1c !important;
+                border-top: 1px solid #0e0e10;
+                color: #a1a1aa;
+            }
+            a { color: #6d96ff !important; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#mainContent">➡ Spring naar inhoud</a>
+
+
+<!-- ========== HEADER ========== -->
+<header>
+    <div class="badge" data-i18n="header.badge">📖 Volledig Handboek</div>
+    <h1 data-i18n="header.title">ProPresenter</h1>
+    <p class="subtitle" data-i18n="header.subtitle">Het Complete Operator Handboek voor Vrijwilligers</p>
+    <div class="meta-row">
+        <div class="meta-pill" data-i18n="header.target"><strong>👥 Doelgroep</strong>Beginners</div>
+        <div class="meta-pill" data-i18n="header.format"><strong>📖 Vorm</strong>Zelfstudiemateriaal</div>
+        <div class="meta-pill" data-i18n="header.lang"><strong>🇳🇱 Taal</strong>Nederlands</div>
+    </div>
+
+    <div class="lang-switcher-wrapper">
+        <div class="lang-switcher" role="radiogroup" aria-label="Taal / Language">
+            <button class="lang-btn active" data-lang="nl" role="radio" aria-checked="true" aria-label="Nederlands">🇳🇱 NL</button>
+            <button class="lang-btn" data-lang="en" role="radio" aria-checked="false" aria-label="English">🇬🇧 EN</button>
+            <button class="lang-btn" data-lang="fa" role="radio" aria-checked="false" aria-label="فارسی">🇮🇷 FA</button>
+        </div>
+    </div>
+</header>
+
+<!-- ========== MOBILE TOC ========== -->
+<nav class="mobile-toc" aria-label="Inhoudsopgave">
+    <label for="mobileTOC" class="sr-only">Sectie kiezen</label>
+    <select id="mobileTOC" onchange="window.location.href = this.value">            <option value="#intro" data-i18n="mobile.toc.start">📍 Start hier</option>
+        <option value="#sectie-1" data-i18n="mobile.toc.s1">1. Intro &amp; Het Lagen-Concept</option>
+        <option value="#sectie-2" data-i18n="mobile.toc.s2">2. Schermen &amp; De ProPresenter UI</option>
+        <option value="#sectie-3" data-i18n="mobile.toc.s3">3. WorshipTools Planning Integratie</option>
+        <option value="#sectie-4" data-i18n="mobile.toc.s4">4. Een Setlist Bouwen &amp; Bewerken</option>
+        <option value="#sectie-5" data-i18n="mobile.toc.s5">5. Live de Dienst Draaien</option>
+        <option value="#sectie-6" data-i18n="mobile.toc.s6">6. Geavanceerd: Externe Controle</option>
+
+    </select>
+</nav>
+
+<div class="layout" id="mainContent">
+
+    <!-- ========== DESKTOP TOC ========== -->
+    <aside class="toc" aria-label="Inhoudsopgave">
+        <div class="toc-title">Inhoudsopgave</div>
+        <ul class="toc-list" id="tocList">                    <li><a href="#intro" class="active"><span class="toc-num">★</span><span data-i18n="toc.intro">Start hier</span></a></li>
+            <li><a href="#sectie-1"><span class="toc-num">1</span><span data-i18n="toc.section1">Intro &amp; Lagen</span></a></li>                    <li><a href="#sectie-2"><span class="toc-num">2</span><span data-i18n="toc.section2">Schermen &amp; UI</span></a></li>
+            <li><a href="#sectie-3"><span class="toc-num">3</span><span data-i18n="toc.section3">WorshipTools</span></a></li>
+            <li><a href="#sectie-4"><span class="toc-num">4</span><span data-i18n="toc.section4">Setlist Bouwen</span></a></li>
+            <li><a href="#sectie-5"><span class="toc-num">5</span><span data-i18n="toc.section5">Live Besturing</span></a></li>
+            <li><a href="#sectie-6"><span class="toc-num">6</span><span data-i18n="toc.section6">Geavanceerd: Externe Controle &amp; Automatisering</span></a></li>
+
+        </ul>
+        <div class="toc-progress">
+            <div class="progress-label" data-i18n="toc.progress">Voortgang</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main aria-label="Handleiding inhoud" data-i18n="main.aria" data-i18n-attr="aria-label">
+
+        <!-- ========== INTRO ========== -->
+        <section id="intro">
+            <div class="intro-grid">                        <span class="intro-icon" role="img" aria-label="ProPresenter media presentation">🎬</span>
+                <div>
+                    <div class="intro-title" data-i18n="intro.welcome">Welkom, Operator!</div>
+                    <div class="intro-desc" data-i18n="intro.desc">
+                        Dit handboek neemt je stap voor stap mee door ProPresenter: van de basislagen tot live-gebeurtenissen. 
+                        Werk de pagina in volgorde door — je kunt altijd terugkeren via de inhoudsopgave.
+                        Alles wat je hier leert, gebruik je straks elke week in de dienst.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== READING GUIDE ========== -->
+            <div class="card">
+                <div class="card-title" data-i18n="intro.overview.title">Wat je gaat leren (overzicht)</div>
+                <p data-i18n="intro.overview.p1">ProPresenter gebruik je straks elke week. Dit handboek is opgedeeld in 6 blokken die je in volgorde kunt doorwerken — je bepaalt zelf het tempo. Alles is opgedeeld in 6 duidelijke blokken die je in volgorde kunt doorwerken.</p>
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="workflow-num">1</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="intro.workflow1.title">Intro &amp; Het Lagen-Concept</h4>
+                            <p data-i18n="intro.workflow1.desc">Het mentale model van "glazen platen" waar alles op rust</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">2</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="intro.workflow2.title">Schermen &amp; De ProPresenter UI</h4>
+                            <p data-i18n="intro.workflow2.desc">Waar het beeld heengaat en hoe je door het programma navigeert</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">3</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="intro.workflow3.title">WorshipTools Planning Integratie</h4>
+                            <p data-i18n="intro.workflow3.desc">De "Source of Truth" voor de zondag</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">4</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="intro.workflow4.title">Setlist Bouwen &amp; Bewerken</h4>
+                            <p data-i18n="intro.workflow4.desc">Liederen importeren, splitsen en stylen</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">5</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="intro.workflow5.title">Besturing: Live de dienst draaien</h4>
+                            <p data-i18n="intro.workflow5.desc">Shortcuts en rust bewaren bij fouten</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">6</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="intro.workflow6.title">Achter de Schermen (De Magie)</h4>
+                            <p data-i18n="intro.workflow6.desc">Hoge overvlieger: Looks, Macros &amp; Stream Deck</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTIE 1 ========== -->
+        <section id="sectie-1">
+            <div class="section-header">
+                <div class="section-num n1">1</div>
+                <div class="section-title">
+                    <h2 data-i18n="s1.title">Intro &amp; Het Lagen-Concept</h2>
+                    <div class="section-time" data-i18n="s1.time">⏱️ 00:00 – 00:15</div>
+                </div>
+            </div>
+
+            <!-- Wat is ProPresenter -->
+            <div class="card">
+                <div class="card-title" data-i18n="s1.whatis.title">Wat is ProPresenter?</div>
+                <p data-i18n="s1.whatis.p1">
+                    ProPresenter is <strong>niet</strong> net als PowerPoint. Het is een <strong>krachtige multi-screen media-engine</strong>,
+                    speciaal gebouwd voor kerken om video, audio en live-teksten naadloos te combineren tijdens een dienst.
+                </p>
+                <p data-i18n="s1.whatis.p2">
+                    In plaats van één presentatie die van slide naar slide gaat, denk je in <em>lagen</em> die je onafhankelijk van elkaar kunt aan- en uitzetten.
+                    Dat geeft je de flexibiliteit om ter plekke te reageren op wat er in de dienst gebeurt.
+                </p>
+            </div>
+
+            <!-- Lagen concept -->
+            <div class="card">
+    <div class="card-title" data-i18n="s1.layers.title">Het Lagen-Concept ("De Glazen Platen")</div>
+    <p data-i18n="s1.layers.p1">
+        ProPresenter werkt als een stapel <em>doorzichtige glazen platen</em> die op elkaar liggen.
+        Wat bovenop ligt, dekt de onderliggende laag af. Door een laag te wissen,
+        blijft de rest eronder gewoon zichtbaar. Welke lagen je per scherm ziet, bepaal je in het <em>Looks window</em> (<strong>Screens → Edit Looks</strong>).
+        Audio zit hier <strong>niet</strong> bij — audio is een aparte uitgang, geen visuele laag.
+    </p>
+
+    <div class="layer-diagram">
+        <!-- 1. Mask Layer -->
+        <div class="layer layer-mask">
+            <div class="layer-color-box" style="background: repeating-conic-gradient(#666 0% 25%, #ccc 0% 50%) 50% / 12px 12px; border: 1px dashed #fff; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer1.pos">Toplaag · Boven alles</div>
+                <div class="layer-name" data-i18n="s1.layer1.name">Masks</div>
+                <div class="layer-desc-small" data-i18n="s1.layer1.desc">Maskeert delen van de presentatie of maakt transparante gebieden. Denk aan een "vorm" die over alles heen ligt.</div>
+            </div>
+            <div class="layer-key" aria-label="Bovenop">⬆</div>
+        </div>
+
+        <!-- 2. Messages -->
+        <div class="layer layer-message">
+            <div class="layer-color-box" style="background-color: #dd4542; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer2.pos">Vaste output-laag</div>
+                <div class="layer-name" data-i18n="s1.layer2.name">Messages</div>
+                <div class="layer-desc-small" data-i18n="s1.layer2.desc">Snel een stukje tekst of een timer naar het scherm sturen — los van de slides.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+
+        <!-- 3. Props -->
+        <div class="layer layer-prop">
+            <div class="layer-color-box" style="background-color: #ec9824; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer3.pos">Vaste output-laag</div>
+                <div class="layer-name" data-i18n="s1.layer3.name">Props</div>
+                <div class="layer-desc-small" data-i18n="s1.layer3.desc">Logo's, "bugs" in de hoek, kinderdienst-meldingen, noodoverlays. Alles wat je "over" de slides heen plakt.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+
+        <!-- 4. Announcements -->
+        <div class="layer layer-announcement">
+            <div class="layer-color-box" style="background-color: #f7d752; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer4.pos">Vaste output-laag</div>
+                <div class="layer-name" data-i18n="s1.layer4.name">Announcements</div>
+                <div class="layer-desc-small" data-i18n="s1.layer4.desc">Mededelingen of een tweede presentatie die je naar een tweede scherm stuurt — onafhankelijk van de hoofdpresentatie.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+
+        <!-- 5. Slide Layer -->
+        <div class="layer layer-slide">
+            <div class="layer-color-box" style="background-color: #94d655; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer5.pos">Vaste output-laag</div>
+                <div class="layer-name" data-i18n="s1.layer5.name">Slide</div>
+                <div class="layer-desc-small" data-i18n="s1.layer5.desc">De tekst-elementen, slide objects en achtergrondkleuren (Slide / Presentation Background Color) van de presentatie.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+
+        <!-- 6. Media Layer -->
+        <div class="layer layer-media">
+            <div class="layer-color-box" style="background-color: #5daac2; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer6.pos">Vaste output-laag</div>
+                <div class="layer-name" data-i18n="s1.layer6.name">Media</div>
+                <div class="layer-desc-small" data-i18n="s1.layer6.desc">Afbeeldingen en video's: vanuit de Media Bin of als Media Action in een presentatie.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+
+        <!-- 7. Video Input Layer -->
+        <div class="layer layer-video">
+            <div class="layer-color-box" style="background-color: #c775ec; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer7.pos">Vaste output-laag · Pro / camera-setup</div>
+                <div class="layer-name" data-i18n="s1.layer7.name">Video Input</div>
+                <div class="layer-desc-small" data-i18n="s1.layer7.desc">Live video inputs — bijv. een aangesloten camera via SDI/NDI. Vooral relevant bij setups met externe camera-bediening.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+
+        <!-- 8. Screen Color -->
+        <div class="layer layer-screencolor">
+            <div class="layer-color-box" style="background-color: #fafafa; border: 1px solid #ccc; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
+            <div class="layer-content">
+                <div class="layer-position" data-i18n="s1.layer8.pos">Bodemlaag · Altijd aanwezig</div>
+                <div class="layer-name" data-i18n="s1.layer8.name">Screen Color</div>
+                <div class="layer-desc-small" data-i18n="s1.layer8.desc">De basis-kleur van het scherm, ingesteld per Audience Screen in Screens → Configure Screens. Dit is wat overblijft na een Clear All.</div>
+            </div>
+            <div class="layer-key">—</div>
+        </div>
+    </div>
+
+    <div class="highlight highlight-info">
+        <div class="highlight-title" data-i18n="s1.rule.title">🧠 De belangrijkste regel</div>
+        <div class="highlight-body" data-i18n="s1.rule.body">
+            De bovenste laag wint altijd. Een <strong>prop</strong> blijft zichtbaar, ook als er een nieuwe slide opkomt.
+            Een <strong>Media-laag</strong> blijft draaien, ook als je de tekst weghaalt met <strong>Clear Slide</strong>.
+            Met <strong>Clear All</strong> val je terug op alleen de Screen Color — meestal zwart.
+        </div>
+    </div>
+
+    <div class="highlight highlight-warn">
+        <div class="highlight-title" data-i18n="s1.note.title">⚠️ Let op sinds ProPresenter 7.11</div>
+        <div class="highlight-body" data-i18n="s1.note.body">
+            Vanaf versie 7.11 staat de <strong>Background Color</strong> <em>boven</em> de Media Layer in plaats van eronder.
+            Als je media-achtergrond niet zichtbaar is, schakel dan eerst de Slide- of Presentation Background Color uit
+            (rechtsonder in de Show View → "Ignore Background Colors", of onder <strong>Preferences → Screens</strong>).
+            Of maak van die media een <em>Foreground</em> actie of een <em>Slide Object</em>.
+        </div>
+    </div>
+</div>
+
+        </section>
+
+        <!-- ========== SECTIE 2 ========== -->
+        <section id="sectie-2">
+            <div class="section-header">
+                <div class="section-num n2">2</div>
+                <div class="section-title">
+                    <h2 data-i18n="s2.title">Schermen &amp; De ProPresenter UI</h2>
+                    <div class="section-time" data-i18n="s2.time">⏱️ 00:15 – 00:30</div>
+                </div>
+            </div>
+
+            <!-- UI Zones -->
+            <div class="card">
+                <div class="card-title" data-i18n="s2.zones.title">De 3 Zones van de ProPresenter UI</div>
+                <p data-i18n="s2.zones.p1">Het scherm van ProPresenter is opgedeeld in drie hoofdgebieden. Leer ze herkennen — dan weet je altijd waar je moet klikken.</p>
+
+                <div class="ui-zones">
+                    <div class="ui-zone">
+                        <div class="ui-zone-icon">📚</div>
+                        <div class="ui-zone-label" data-i18n="s2.zone1.label">Zone 1 · Links</div>
+                        <div class="ui-zone-title" data-i18n="s2.zone1.title">Bibliotheken, Playlists &amp; Media</div>
+                        <div class="ui-zone-desc" data-i18n="s2.zone1.desc">Hier organiseer je de complete structuur en achtergronden</div>
+                    </div>
+                    <div class="ui-zone" style="background: rgba(109, 150, 255, 0.06);">
+                        <div class="ui-zone-icon">🎞</div>
+                        <div class="ui-zone-label" data-i18n="s2.zone2.label">Zone 2 · Midden</div>
+                        <div class="ui-zone-title" data-i18n="s2.zone2.title">Actief Slide Grid &amp; Werkvlak</div>
+                        <div class="ui-zone-desc" data-i18n="s2.zone2.desc">De slides van het geselecteerde lied of de presentatie</div>
+                    </div>
+                    <div class="ui-zone">
+                        <div class="ui-zone-icon">⚙️</div>
+                        <div class="ui-zone-label" data-i18n="s2.zone3.label">Zone 3 · Rechts</div>
+                        <div class="ui-zone-title" data-i18n="s2.zone3.title">Live Status &amp; Macro's</div>
+                        <div class="ui-zone-desc" data-i18n="s2.zone3.desc">Controle over actieve uitgangen en service-automatisering</div>
+                    </div>
+                </div>
+
+                <div class="highlight highlight-info" style="margin-top: 18px;">
+                    <div class="highlight-title" data-i18n="s2.golden.title">⚙️ De Gulden Regel</div>
+                    <div class="highlight-body" data-i18n="s2.golden.body">
+                        Een goede operator kijkt niet alleen naar het hoofdscherm, maar controleert continu de schermen en actieve status-indicatoren.
+                        <strong>Wat in de zaal goed staat, kan op de livestream onleesbaar zijn of de muzikanten in de war brengen.</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SCREENSHOT ========== -->
+            <div class="card">
+                <div class="card-title" data-i18n="s2.screenshot.title">🎯 De ProPresenter UI in het echt (herken je scherm)</div>
+                <p data-i18n="s2.screenshot.p1">
+                    Dit is een echte ProPresenter-sessie van onze kerk. Hieronder zie je het scherm
+                    zoals het er straks bij jou ook uitziet — <strong>dezelfde knoppen op dezelfde plekken</strong>.
+                    De drie zones die je net leerde, worden hieronder in tekst uitgelegd.
+                </p>
+
+                <div class="screenshot-block">
+                    <img src="screen.png" alt="Screenshot van ProPresenter in gebruik bij onze kerk: links de playlists op datum en de media-bieb, in het midden het werkvlak, rechts de live status en het macro-paneel" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="screenshot-legend" style="margin-top: 18px;"><strong data-i18n="s2.screenshot.legend">En hieronder elke zone uitgelicht in close-up, met de juiste uitleg:</strong></div>
+
+                <div class="zone-cards">
+                    <div class="zone-card zone-1">
+                        <img src="Zone/zone1.jpg" alt="Close-up van Zone 1: de linkerzijbalk met Playlists per datum en Media bieb" class="zone-img" loading="lazy">
+                        <div class="zone-card-title" data-i18n="s2.zonecard1.title"><span class="num-badge">1</span>🔵 Playlists &amp; Media Bieb</div>
+                        <div class="zone-card-desc" data-i18n="s2.zonecard1.desc">De linkerkolom. <strong>Bovenaan</strong> zie je de afspeellijsten geordend per datum (bijv. <em>05-07-2026</em>) met alle losse elementen van de dienst (Liederen, Preek, Mededelingen). <strong>Onderaan</strong> vind je de Media-afspeellijst waar alle video-achtergronden en graphics klaarstaan om onder de tekst te gooien.</div>
+                    </div>
+
+                    <div class="zone-card zone-2">
+                        <img src="Zone/zone2.jpg" alt="Close-up van Zone 2: het centrale vlak met het slide grid" class="zone-img" loading="lazy">
+                        <div class="zone-card-title" data-i18n="s2.zonecard2.title"><span class="num-badge">2</span>🟡 Slide Grid &amp; Live Output</div>
+                        <div class="zone-card-desc" data-i18n="s2.zonecard2.desc">Het grote centrale vlak. <strong>Bovenaan</strong> zie je de actieve preview van de geselecteerde sheet; <strong>onderaan</strong> vind je het volledige overzicht van alle losse slides van het geselecteerde lied of de presentatie, klaar om op te klikken.</div>
+                    </div>
+
+                    <div class="zone-card zone-3">
+                        <img src="Zone/zone3.jpg" alt="Close-up van Zone 3: de rechterkolom met Live Status en Macro playlist" class="zone-img" loading="lazy">
+                        <div class="zone-card-title" data-i18n="s2.zonecard3.title"><span class="num-badge">3</span>🟣 Live Status &amp; Macro's</div>
+                        <div class="zone-card-desc" data-i18n="s2.zonecard3.desc">De rechterkolom. <strong>Bovenaan</strong> zie je de statuslampjes van de actieve schermen (Audience/Stage) en volumemeters. <strong>Onderaan</strong> zie je onze Macro-afspeellijst (<em>"Zondag"</em>). Hiermee activeer je met één klik de juiste achtergrondinstellingen en schermlay-outs voor specifieke momenten (zoals <em>Welkom, Praise &amp; Worship</em> of <em>Preek</em>).</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;"><em data-i18n="s2.toolbar.intro">Zoom eens in op de <strong style="color: #6d96ff;">Toolbar</strong> helemaal bovenaan:</em></p>
+                <div class="screenshot-block" style="max-width: 880px; margin-left: auto; margin-right: auto;">
+                    <img src="Zone/Topbar.jpg" alt="Close-up van de ProPresenter-Toolbar bovenaan het scherm: van links naar rechts de Search/Text/Theme-knoppen, de modus-tabs Show/Edit/Reflow/Bible, de snelkoppelingen ProContent/Media/Welkom, de groene Audience- en Stage-statuslampjes, en helemaal rechts het audio-clear muzieknoot-icoontje" class="screenshot-img" loading="lazy">
+                </div>
+                <p style="margin-top: 20px;"><strong data-i18n="s2.toolbar.title">Bovenaan in de <span style="color: #6d96ff;">Toolbar</span> zie je verder van links naar rechts:</strong></p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li data-i18n="s2.toolbar.li1">🔍 <strong>Search, Text en Theme</strong> — Om razendsnel content of liederen op te zoeken en de visuele stijl aan te passen.</li>
+                    <li data-i18n="s2.toolbar.li2">🖥️ <strong>Modi-knoppen (Show, Edit, Reflow, Bible)</strong> — Hiermee schakel je tussen het live-scherm (Show), de grafische editor (Edit), de tekst-editor (Reflow) en de Bijbelmodule.</li>
+                    <li data-i18n="s2.toolbar.li3">🎨 <strong>Snelkoppelingen (ProContent, Media, Looks)</strong> — Directe toegang tot de media-bibliotheken en specifieke looks instellingen.</li>
+                    <li data-i18n="s2.toolbar.li4">🟢 <strong>Audience &amp; Stage Status</strong> — De groene indicatoren die aangeven dat de zaalschermen en het podiumscherm live en actief verbonden zijn.</li>
+                </ul>
+            </div>
+
+            <!-- Outputs -->
+            <div class="card">
+                <div class="card-title" data-i18n="s2.outputs.title">De Schermen die we Uitsturen (Outputs)</div>
+                <p data-i18n="s2.outputs.p1">
+                    ProPresenter stuurt <strong>drie verschillende beelden</strong> tegelijk uit — één voor elke doelgroep in en rondom de kerk.
+                </p>
+
+                <div class="outputs">
+                    <div class="output zaal">
+                        <div class="output-icon">🏛️</div>
+                        <div class="output-title" data-i18n="s2.outputs.audience.title">Zaal (Audience)</div>
+                        <div class="output-desc" data-i18n="s2.outputs.audience.desc">
+                            Volledige tekst inclusief de actieve video-achtergrond voor de gemeente.
+                            Dit is wat de mensen in de kerkzaal op het grote scherm zien.
+                        </div>
+                    </div>
+
+                    <div class="output stream">
+                        <div class="output-icon">📡</div>
+                        <div class="output-title" data-i18n="s2.outputs.stream.title">Livestream</div>
+                        <div class="output-desc" data-i18n="s2.outputs.stream.desc">
+                            <strong>Lower-thirds</strong> (tekst strak onderin gecentreerd) over een transparante/alpha laag, 
+                            zodat de videobeelden van de camera's in de zaal erachter vallen. Voor de online kijkers.
+                        </div>
+                    </div>
+
+                    <div class="output stage">
+                        <div class="output-icon">🎤</div>
+                        <div class="output-title" data-i18n="s2.outputs.stage.title">Podiumscherm (Stage Display)</div>
+                        <div class="output-desc" data-i18n="s2.outputs.stage.desc">
+                            Wat de <strong>band en spreker</strong> zien op hun back-monitor. Hoge contrast-letters, 
+                            huidige slide, volgende slide, een klok en eventuele timers om strak op schema te blijven.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTIE 3 ========== -->
+        <section id="sectie-3">
+            <div class="section-header">
+                <div class="section-num n3">3</div>
+                <div class="section-title">
+                    <h2 data-i18n="s3.title">WorshipTools Planning</h2>
+                    <div class="section-time" data-i18n="s3.time">⏱️ 00:30 – 00:40</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title" data-i18n="s3.source.title">Onze "Source of Truth": WorshipTools Planning</div>
+                <p data-i18n="s3.source.p1">
+                    <strong>Alles wat we in ProPresenter qua liederen klaarzetten, is gebaseerd op dít schema.</strong>
+                    Hier vind je de exacte selectie van de liederen voor de dienst en zie je welke rollen er aan het team zijn toegewezen.
+                </p>
+                <p data-i18n="s3.source.p2">
+                    We importeren <strong>niet</strong> rechtstreeks vanuit WorshipTools naar ProPresenter.
+                    In plaats daarvan bekijk je de geplande songs in WT Planning en <em>zoek of bouw je deze handmatig op</em> in je ProPresenter playlist.
+                    ProPresenter doet dit namelijk niet zelf; jij als operator zorgt voor de juiste vertaalslag.
+                </p>
+
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="workflow-num">1</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s3.workflow1.title">Open WorshipTools Planning</h4>
+                            <p data-i18n="s3.workflow1.desc">Open dit in een browsertabblad of via de app op je telefoon om het overzicht bij de hand te hebben.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">2</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s3.workflow2.title">Selecteer de juiste datum</h4>
+                            <p data-i18n="s3.workflow2.desc">Kies de specifieke zondag die je gaat voorbereiden om de definitieve songlijst van die dienst te bekijken.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">3</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s3.workflow3.title">Loop de liederen door</h4>
+                            <p data-i18n="s3.workflow3.desc">Neem de lijst met songs door en controleer welke specifieke nummers er gezongen gaan worden tijdens de dienst.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">4</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s3.workflow4.title">Zoek gericht met D-, O- of K-nummers</h4>
+                            <p data-i18n="s3.workflow4.desc">Maak gebruik van de <strong>D-, O- en K-nummers</strong> in WorshipTools om liederen snel en foutloos terug te vinden in onze bibliotheek. Zijn er meerdere liederen met exact dezelfde naam? Gebruik dan het <strong>CCLI-nummer</strong> als controle; dit nummer is uniek en specifiek aan één vastgesteld lied toegewezen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight highlight-success">
+                    <div class="highlight-title" data-i18n="s3.why.title">✅ Waarom is dit zo belangrijk?</div>
+                    <div class="highlight-body" data-i18n="s3.why.body">
+                        WorshipTools is de actuele lijst. Als er last-minute iets verandert in de planning, dan kan het zijn dat het daar het eerst wordt bijgewerkt. Controleer dus altijd WorshipTools voordat je de setlist opbouwt.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTIE 4 ========== -->
+        <section id="sectie-4">
+            <div class="section-header">
+                <div class="section-num n4">4</div>
+                <div class="section-title">
+                    <h2 data-i18n="s4.title">Een Setlist Bouwen &amp; Bewerken</h2>
+                    <div class="section-time" data-i18n="s4.time">⏱️ 00:40 – 01:05</div>
+                </div>
+            </div>
+
+            <!-- Playlist -->
+            <div class="card">
+                <div class="card-title" data-i18n="s4.step1.title">Stap 1: Maak een nieuwe Playlist</div>
+                <p data-i18n="s4.step1.p1">
+                    Een playlist is jouw "script" voor de dienst. <strong>Wij werken altijd met templates</strong> zodat
+                    elk dienst-onderdeel meteen op de juiste plek staat — zo hoef je niet elke keer secties en standaard-onderdelen
+                    opnieuw aan te maken. Alles in de playlist wordt <strong>in volgorde</strong> afgespeeld.
+                </p>
+
+                <p style="margin-top: 20px;"><em data-i18n="s4.step1.zoom">Zoom eens in op het <strong style="color: #6d96ff;">+ menuutje</strong> bovenaan de Playlists-kolom en de template-lijst die je te zien krijgt:</em></p>
+                <div class="screenshot-block" style="max-width: 880px;">
+                    <img src="template.png" alt="Screenshot van het + menu in de Playlists-zijbalk van ProPresenter met de subkeuze 'New Playlist from Template' uitgevouwen, en de template-lijst met de opties AvondmaalDienst, Delighted Youth, DoopDienst, Senioren en ZondagDienst" class="screenshot-img" loading="lazy">
+                </div>
+
+                <ol>
+                    <li>Klik in de linkerzijbalk op <strong>Playlists</strong> en zorg dat je de juiste maandmap open hebt staan (bijvoorbeeld onder <em>Juli</em>).</li>
+                    <li>Klik op het <strong>+</strong>-icoon bovenaan de Playlists-kolom en ga in het menu naar <strong>"New Playlist from Template"</strong>.</li>
+                    <li>Selecteer het template dat hoort bij de dienst die je voorbereidt uit de lijst (zoals <em>"ZondagDienst"</em>, <em>"AvondmaalDienst"</em> of <em>"Delighted Youth"</em>). ProPresenter maakt automatisch een nieuwe playlist aan <strong>met de juiste kopstukken er al in</strong> (zoals <em>Welkom</em>, <em>Praise &amp; Worship</em>, <em>Mededelingen</em>, <em>Preek</em>).</li>
+                    <li>De template-naam is nu de tijdelijke naam van je playlist. <strong>Hernoem deze direct</strong> naar de datum van de dienst in het formaat <em>dd-mm-yyyy</em> (bijv. <em>"05-07-2026"</em>). Klik op de naam, type de juiste datum en druk op <kbd>Enter</kbd>.</li>
+                    <li>Omdat ProPresenter playlists niet automatisch op datum sorteert, <strong>sleep je de playlist handmatig</strong> naar de juiste maandmap onder het actieve jaar om het overzicht strak te houden.</li>
+                </ol>
+
+                <div class="highlight highlight-info">
+                <div class="highlight-title" data-i18n="s4.step1.why.title">💡 Waarom deze volgorde en naam?</div>
+                <div class="highlight-body" data-i18n="s4.step1.why.body">
+                    Door een template te kiezen hoef je niet elke week opnieuw de standaard-onderdelen van een dienst aan te maken.
+                    De <strong>datum als naam</strong> (<em>dd-mm-yyyy</em>) in combinatie met de handmatige indeling in de maandmappen zorgt ervoor dat het archief overzichtelijk blijft en we snel terug kunnen zoeken.
+                </div>
+                </div>
+            </div>
+
+            <!-- Songs toevoegen -->
+            <div class="card">
+                <div class="card-title" data-i18n="s4.step2.title">Stap 2: Liederen Zoeken &amp; Toevoegen</div>
+                <p data-i18n="s4.step2.p1">
+                    Welk lied je ook toevoegt: <strong>plaats het altijd onder de juiste sectie-kop van je template</strong>
+                    (bijvoorbeeld onder <em>Openingslied</em>, <em>Praise &amp; Worship</em> of <em>Eindlied</em>).
+                    Sleep het lied dus niet willekeurig ergens naartoe, maar positioneer het strak onder de juiste header.
+                </p>
+
+                <!-- Twee wegen grid (Bieb vs SongSelect) -->
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-title" data-i18n="s4.feature1.title">Lied staat in de bibliotheek</div>
+                        <div class="feature-desc">
+                            <span data-i18n="s4.feature1.desc">Als je zoekt op het D-, O- of K-nummer en het lied verschijnt direct met het ProPresenter-icoon, sleep je het zo je playlist in. Dit is de standaard route.</span>
+                            <ol style="margin-bottom: 20px; padding-left: 20px;">
+                                <li>
+                                    Klik linksboven in de Toolbar op de grote 🔍 <strong>Search</strong> knop.
+                                    <div class="screenshot-block" style="max-width: 640px; margin: 10px 0 0 18px;">
+                                        <img src="Zone/top_search.png" alt="Screenshot van de Search-knop in de ProPresenter Toolbar waarmee je liederen kunt opzoeken" class="screenshot-img" loading="lazy">
+                                    </div>
+                                </li>
+                                <li>
+                                    Er opent een zoekvenster. Zorg ervoor dat het <strong>blauwe ProPresenter-logo</strong> onder de zoekbalk is geselecteerd. Hierdoor zoek je lokaal in onze eigen bibliotheek.
+                                    <div class="screenshot-block" style="max-width: 640px; margin: 10px 0 0 18px;">
+                                        <img src="Zone/source_selection.png" alt="Screenshot van het zoekvenster waarin het blauwe ProPresenter-logo is gehighlight om in de eigen bibliotheek te zoeken" class="screenshot-img" loading="lazy">
+                                    </div>
+                                </li>
+                                <li>
+                                    Typ in de zoekbalk het specifieke <strong>D-, O- of K-nummer</strong> in dat je vanuit WorshipTools Planning hebt doorgekregen (bijvoorbeeld <em>D003</em>). Dit is de snelste en meest foutloze manier om het juiste lied te vinden.
+                                </li>
+                                <li>
+                                    Pak het gevonden lied op en <strong>sleep het direct naar de setlist</strong>. Laat de muis los onder de gewenste sectie-kop om het nummer definitief toe te voegen.
+                                    <div class="screenshot-block" style="max-width: 640px; margin: 10px 0 0 18px;">
+                                        <img src="Zone/setlist.png" alt="Screenshot van een lied dat naar de setlist wordt gesleept en onder de juiste sectie-kop wordt geplaatst" class="screenshot-img" loading="lazy">
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🌐</div>
+                        <div class="feature-title" data-i18n="s4.feature2.title">Lied ontbreekt? Gebruik CCLI &amp; Importeer</div>
+                        <div class="feature-desc">
+                            <span data-i18n="s4.feature2.desc">Kun je het lied niet lokaal vinden? Schakel in het zoekvenster over naar het <strong>SongSelect-icoon</strong> (naast het blauwe logo).</span>
+                            <div class="screenshot-block" style="max-width: 640px; margin: 10px 0 0 0;">
+                                <img src="Zone/songselect.png" alt="Screenshot van het zoekvenster met het SongSelect-icoon geselecteerd om in de CCLI-bibliotheek te zoeken" class="screenshot-img" loading="lazy">
+                            </div>
+                            Volg daarna deze stappen:
+                            <ol style="margin-top: 5px; padding-left: 15px; text-align: left;">
+                                <li>
+                                    Voer het unieke <strong>CCLI-nummer</strong> uit WorshipTools in om exact de juiste tekstversie op te zoeken.
+                                </li>
+                                <li>
+                                    Klik op het juiste lied in de zoekresultaten en klik vervolgens op de knop <strong>Import</strong>.
+                                    <div class="screenshot-block" style="max-width: 640px; margin: 10px 0 0 0;">
+                                        <img src="Zone/import1.png" alt="Screenshot van de Import-knop in het zoekvenster nadat je het juiste lied hebt geselecteerd" class="screenshot-img" loading="lazy">
+                                    </div>
+                                </li>
+                                <li>
+                                    Er verschijnt een nieuw pop-up venster. Zorg er hier voor dat de <em>Library</em> ingesteld staat op <strong>Songs</strong> en dat bij <em>Playlist</em> je <strong>huidige playlist</strong> geselecteerd staat.
+                                    <div class="screenshot-block" style="max-width: 640px; margin: 10px 0 0 0;">
+                                        <img src="Zone/import 2.png" alt="Screenshot van het import-pop-up venster waar je de Library op Songs en de Playlist op de huidige setlist instelt" class="screenshot-img" loading="lazy">
+                                    </div>
+                                </li>
+                                <li>
+                                    Klik tot slot onderaan het venster nogmaals op <strong>Import</strong> om het lied definitief aan je setlist toe te voegen.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reflow -->
+            <div class="card">
+                <div class="card-title" data-i18n="s4.step3.title">Stap 3: Lied Bewerken met de Reflow Editor</div>
+                <p data-i18n="s4.step3.p1">
+                    Het is verleidelijk om in de grafische editor te gaan prutsen — <strong>doe dat niet</strong>.
+                    Om de lay-out en structuur van liederen aan te passen, maken we gebruik van de <em>Reflow Editor</em>. Dit werkt veel sneller en behoudt onze vaste opmaak.
+                </p>
+
+                <!-- Reflow Editor screenshot -->
+                <div class="screenshot-block" style="max-width: 640px; margin: 20px 0;">
+                    <img src="Zone/Reflow_editor.png" alt="Screenshot die laat zien waar de Reflow Editor-knop zich bevindt in de ProPresenter Toolbar" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="feature-icon">📏</div>
+                        <div class="feature-title" data-i18n="s4.reflow.rule.title">De 2-Regel Richtlijn</div>
+                        <div class="feature-desc" data-i18n="s4.reflow.rule.desc">
+                            Bij het indelen van de tekst streven we er altijd naar om <strong>exact 2 regels per slide</strong> te tonen. Nooit meer. Af en toe is 1 regel ook toegestaan, mits dit qua zinsopbouw of timing beter uitkomt.
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">↵</div>
+                        <div class="feature-title" data-i18n="s4.reflow.split.title">Regels &amp; Slides splitsen</div>
+                        <div class="feature-desc" data-i18n="s4.reflow.split.desc">
+                            Wil je tekst op een volgende regel plaatsen? Druk op <kbd>Enter</kbd>. <br>
+                            Wil je tekst verplaatsen naar een compleet nieuwe slide? Druk op <kbd>Ctrl + Enter</kbd>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screenshots: Enter vs Ctrl+Enter -->
+                <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px;">
+                    <div style="flex: 1; min-width: 260px;">
+                        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;" data-i18n="s4.reflow.enter.label"><strong style="color: var(--accent-teal);">⏎ Enter</strong> — tekst naar volgende regel</div>
+                        <div class="screenshot-block" style="margin: 0;">
+                            <img src="Zone/volgende_regel.png" alt="Screenshot die toont wat er gebeurt als je op Enter drukt: de tekst gaat naar de volgende regel binnen dezelfde slide" class="screenshot-img" loading="lazy">
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 260px;">
+                        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;" data-i18n="s4.reflow.ctrl.label"><strong style="color: var(--accent-orange);">⌨ Ctrl + Enter</strong> — tekst naar nieuwe slide</div>
+                        <div class="screenshot-block" style="margin: 0;">
+                            <img src="Zone/volgende_slide.png" alt="Screenshot die toont wat er gebeurt als je op Ctrl+Enter drukt: de tekst verplaatst naar een compleet nieuwe slide" class="screenshot-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-muted);">
+                    <em data-i18n="s4.reflow.example.label">Hieronder zie je in het werkvlak hoe een correct bewerkt lied met de juiste regelverdeling eruit hoort te zien:</em>
+                </p>
+
+                <div class="screenshot-block" style="max-width: 880px;">
+                    <img src="Zone/aangepaste_layout.png" alt="Screenshot van een correct bewerkt lied in het werkvlak met de juiste 2-regelige regelverdeling per slide" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="highlight highlight-warn" style="margin-top: 15px;">
+                    <div class="highlight-title" data-i18n="s4.reflow.warning.title">⚠️ Wanneer wel de gewone editor?</div>
+                    <div class="highlight-body" data-i18n="s4.reflow.warning.body">
+                        Alleen als je <strong>bewust visuele aanpassingen</strong> wilt doen aan objecten, transitions of specifieke achtergrond-afbeeldingen. Voor pure tekstuele lay-out en splitsingen: blijf altijd in de Reflow Editor.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Templates -->
+            <div class="card">
+                <div class="card-title" data-i18n="s4.step4.title">Stap 4: Mededelingen Up-to-Date Houden</div>
+                <p data-i18n="s4.step4.p1">De mededelingen-presentatie is een dynamisch onderdeel van de dienst. Het is cruciaal dat deze <strong>elke week kritisch wordt nagelopen</strong> om te voorkomen dat er verouderde of foutieve informatie op de schermen verschijnt.</p>
+
+                <div class="screenshot-block" style="max-width: 880px;">
+                    <img src="Zone/mededelingen.png" alt="Screenshot van de mededelingen-presentatie in ProPresenter met de actieve sheets voor de dienst" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="outputs" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                    <div class="output stage">
+                        <div class="output-icon">🔄</div>
+                        <div class="output-title" data-i18n="s4.step4.check.title">Wekelijkse Controle</div>
+                        <div class="output-desc" data-i18n="s4.step4.check.desc">
+                            Loop alle actieve sheets wekelijks langs. Als een standaard evenement of vaste activiteit in die specifieke week een keer <strong>niet doorgaat</strong>, haal je de betreffende slide voor die dienst uit de presentatie.
+                        </div>
+                    </div>
+                    <div class="output stream">
+                        <div class="output-icon">➕</div>
+                        <div class="output-title" data-i18n="s4.step4.new.title">Nieuwe Mededelingen</div>
+                        <div class="output-desc" data-i18n="s4.step4.new.desc">
+                            Zijn er nieuwe aankondigingen, flyers of dia's aangeleverd? Deze kun je eenvoudig vanuit je bestanden rechtstreeks <strong>in de actieve mededelingen-presentatie slepen</strong> om ze aan de rotatie toe te voegen.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTIE 5 ========== -->
+        <section id="sectie-5">
+            <div class="section-header">
+                <div class="section-num n5">5</div>
+                <div class="section-title">
+                    <h2 data-i18n="s5.title">Besturing: Live de Dienst Draaien</h2>
+                    <div class="section-time" data-i18n="s5.time">⏱️ 01:05 – 01:20</div>
+                </div>
+            </div>
+
+            <!-- Intro -->
+            <div class="card">
+                <div class="card-title" data-i18n="s5.overview.title">Overzicht — Muis &amp; Toetsenbord</div>
+                <p data-i18n="s5.overview.p1">
+                    Het live aansturen van een dienst draait om <strong>rust en overzicht</strong>. ProPresenter geeft je twee manieren om door de dienst heen te lopen: met de <strong>muis</strong> (voor het grove werk en navigatie) en met het <strong>toetsenbord</strong> (voor de strakke timing tijdens de liederen).
+                </p>
+            </div>
+
+            <!-- Besturing met de muis -->
+            <div class="card">
+                <div class="card-title" data-i18n="s5.mouse.title">🖱️ Besturing met de Muis</div>
+                <p data-i18n="s5.mouse.p1">
+                    De muis is je belangrijkste tool om door de structuur van de dienst te navigeren. Het scherm is opgedeeld tussen je <strong>Playlist</strong> (de planning van de dienst aan de linkerkant) en het <strong>Slide-overzicht</strong> (de dia's van het geselecteerde item in het midden).
+                </p>
+
+                <ul>
+                    <li data-i18n="s5.mouse.li1"><strong>Wisselen tussen items:</strong> In de linkerbalk (je Playlist) zie je het verloop van de dienst (bijv. <em>Welkom → Lied 1 → Mededelingen → Preek</em>). Klik op een item in deze lijst om alle bijbehorende slides in het centrale scherm te laden.</li>
+                    <li data-i18n="s5.mouse.li2"><strong>Scrollen door slides:</strong> Gebruik het scrollwiel van je muis in het centrale slide-overzicht om door de slides van een specifiek lied of de preek te bladeren. Zo kun je alvast vooruitkijken wat er aan zit te komen.</li>
+                </ul>
+
+                <!-- Video: kiezen en door een presentatie heen gaan -->
+                <div class="screenshot-block" style="max-width: 880px; margin-left: auto; margin-right: auto;">
+                    <video controls playsinline style="display: block; width: 100%; height: auto; border-radius: 8px; background: #000;" preload="none">
+                        <source src="Zone/choose_presentation.mp4" type="video/mp4">
+                        Je browser ondersteunt geen video. <a href="Zone/choose_presentation.mp4" style="color: #6d96ff;">Download de video</a> om te zien hoe je door een presentatie heen navigeert.
+                    </video>
+                </div>
+
+                <div class="highlight highlight-warn">
+                    <div class="highlight-title" data-i18n="s5.mouse.warning.title">⚠️ Belangrijk: Elke klik is LIVE!</div>
+                    <div class="highlight-body" data-i18n="s5.mouse.warning.body">
+                        Zodra je met de muis op een slide klikt in het centrale overzicht, wordt deze <strong>direct naar de schermen en de livestream gestuurd</strong>. Let dus goed op waar je klikt. Wil je alleen door de tekst bladeren zonder dat de zaal het ziet? Gebruik dan puur het scrollwiel en klik de slides niet aan.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Besturing met het toetsenbord -->
+            <div class="card">
+                <div class="card-title" data-i18n="s5.keyboard.title">⌨️ Besturing met het Toetsenbord</div>
+                <p data-i18n="s5.keyboard.p1">
+                    Als een lied eenmaal is gestart, kun je de muis loslaten. Het toetsenbord werkt <strong>sneller, nauwkeuriger</strong> en voorkomt dat je per ongeluk op een verkeerde slide klikt. Leer jezelf direct deze basistoetsen aan:
+                </p>
+
+                <div class="card-title" style="font-size: 0.95rem; margin-top: 16px; color: var(--accent-teal);" data-i18n="s5.keyboard.nav">Navigatie</div>
+                <div class="shortcut-grid">
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.shortcut.next.name">Volgende slide / actie</div>
+                            <div class="shortcut-desc" data-i18n="s5.shortcut.next.desc">Je meest gebruikte toets — spring vloeiend naar de volgende dia</div>
+                        </div>
+                        <kbd>Spatiebalk</kbd>
+                    </div>
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.shortcut.nextalt.name">Volgende slide (alternatief)</div>
+                            <div class="shortcut-desc" data-i18n="s5.shortcut.nextalt.desc">Doet hetzelfde als de spatiebalk; handig als je hand op de pijltoetsen rust</div>
+                        </div>
+                        <kbd>→</kbd>
+                    </div>
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.shortcut.prev.name">Vorige slide</div>
+                            <div class="shortcut-desc" data-i18n="s5.shortcut.prev.desc">Spring één slide terug — ideaal als de band onverwacht een zin herhaalt</div>
+                        </div>
+                        <kbd>←</kbd>
+                    </div>
+                </div>
+
+                <div class="card-title" style="font-size: 0.95rem; margin-top: 22px; color: var(--accent-teal);" data-i18n="s5.hotkeys.title">Direct springen naar groepen (Hot Keys)</div>
+                <p style="margin-bottom: 10px;" data-i18n="s5.hotkeys.intro">
+                    Als de band afwijkt van de vaste volgorde, kun je met letters op je toetsenbord direct naar het juiste gedeelte van het lied springen:
+                </p>
+                <div class="shortcut-grid">
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.hotkey.a.name">Verse 1 / Couplet 1</div>
+                            <div class="shortcut-desc" data-i18n="s5.hotkey.a.desc">Springt direct naar de eerste dia van Couplet 1</div>
+                        </div>
+                        <kbd>A</kbd>
+                    </div>
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.hotkey.s.name">Verse 2 / Couplet 2</div>
+                            <div class="shortcut-desc" data-i18n="s5.hotkey.s.desc">Springt direct naar de eerste dia van Couplet 2</div>
+                        </div>
+                        <kbd>S</kbd>
+                    </div>
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.hotkey.c.name">Chorus / Refrein</div>
+                            <div class="shortcut-desc" data-i18n="s5.hotkey.c.desc">Springt direct naar het Refrein</div>
+                        </div>
+                        <kbd>C</kbd>
+                    </div>
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.hotkey.b.name">Bridge</div>
+                            <div class="shortcut-desc" data-i18n="s5.hotkey.b.desc">Springt direct naar de Bridge</div>
+                        </div>
+                        <kbd>B</kbd>
+                    </div>
+                    <div class="shortcut">
+                        <div class="shortcut-info">
+                            <div class="shortcut-name" data-i18n="s5.hotkey.i.name">Intro / Inleiding</div>
+                            <div class="shortcut-desc" data-i18n="s5.hotkey.i.desc">Springt terug naar de start/introductie van het lied</div>
+                        </div>
+                        <kbd>I</kbd>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Handige Pro-Tips -->
+            <div class="card">
+                <div class="card-title" data-i18n="s5.tips.title">💡 Handige Pro-Tips voor Live Besturing</div>
+
+                <div class="scenario calm">
+                    <div class="scenario-header">
+                        <span class="scenario-icon">⏱️</span>
+                        <div class="scenario-title" data-i18n="s5.tip1.title">Schakel op tijd</div>
+                    </div>
+                    <div class="scenario-text" data-i18n="s5.tip1.text">
+                        Probeer altijd net een fractie <strong>vóórdat</strong> de gemeente de volgende zin gaat zingen al te switchen (ongeveer op de laatste lettergreep van de huidige slide). Dit geeft de zaal en de kijkers thuis tijd om de nieuwe tekst te lezen.
+                    </div>
+                </div>
+
+                <div class="screenshot-block" style="max-width: 640px;">
+                    <video controls playsinline style="display: block; width: 100%; height: auto; border-radius: 0; background: #000;" preload="none">
+                        <source src="Zone/voorbeeld_lied_besturen.mp4" type="video/mp4">
+                        Je browser ondersteunt geen video. <a href="Zone/voorbeeld_lied_besturen.mp4" style="color: #6d96ff;">Download de video</a> om te zien hoe je een lied live bestuurt.
+                    </video>
+                </div>
+
+                <div class="scenario calm">
+                    <div class="scenario-header">
+                        <span class="scenario-icon">🤚</span>
+                        <div class="scenario-title" data-i18n="s5.tip2.title">Houd je hand stand-by</div>
+                    </div>
+                    <div class="scenario-text" data-i18n="s5.tip2.text">
+                        Leg tijdens de zangbegeleiding je hand <strong>ontspannen op de spatiebalk</strong> of de pijltoetsen. Dit voorkomt dat je op het laatste moment naar je toetsenbord moet zoeken en te laat schakelt.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTIE 6 ========== -->
+        <section id="sectie-6">
+            <div class="section-header">
+                <div class="section-num n6">6</div>
+                <div class="section-title">
+                    <h2 data-i18n="s6.title">Geavanceerd: Externe Controle &amp; De Magie</h2>
+                    <div class="section-time" data-i18n="s6.time">⏱️ 01:20 – 01:30</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><img src="Zone/macroKey_Light.png" alt="Macro-key in ProPresenter" style="display: inline-block; width: 32px; height: 32px; object-fit: contain; vertical-align: middle; margin-right: 4px;"> <span data-i18n="s6.macros.title">Wat zijn Macros en hoe gebruiken wij ze?</span></div>
+                <p data-i18n="s6.macros.p1">
+                    In ProPresenter bepalen <strong>Macros</strong> hoe de schermen in de zaal en op de livestream eruitzien. 
+                    Soms zie je in tutorials dat macros aan specifieke slides worden gekoppeld, maar <strong>dat vermijden wij</strong>. 
+                    Macros blijven bij ons altijd in hun eigen balk (<em>M-balk</em> aan de rechterkant).
+                </p>
+                <p data-i18n="s6.macros.p2">
+                    Het is jouw taak om handmatig door de dienst heen de juiste macro aan te klikken op het juiste moment.
+                </p>
+
+                <div class="screenshot-block" style="max-width: 880px; margin-left: auto; margin-right: auto;">
+                    <img src="Zone/macro.png" alt="Screenshot van de M-balk met macros in ProPresenter: Startup, Welkom, Praise & Worship, Mededelingen, Preek, Bijbel en Einde-dienst" class="screenshot-img" loading="lazy">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title" data-i18n="s6.macrooverview.title">Overzicht van de Macros</div>
+                <p data-i18n="s6.macrooverview.intro">Hieronder vind je de macros die je in de rechterbalk ziet staan en wanneer je ze activeert:</p>
+
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="workflow-num">1</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro1.title">Startup</h4>
+                            <p data-i18n="s6.macro1.when"><strong>Wanneer:</strong> Start automatisch zodra ProPresenter opstart.</p>
+                            <p data-i18n="s6.macro1.func"><strong>Functie:</strong> Zet de basisinstellingen op de achtergrond direct goed. Hier hoef je live tijdens de dienst niets mee te doen.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-num">2</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro2.title">Welkom</h4>
+                            <p data-i18n="s6.macro2.when"><strong>Wanneer:</strong> Moet <strong>minimaal een kwartier (15 minuten) voor aanvang van de dienst</strong> handmatig worden aangezet.</p>
+                            <p data-i18n="s6.macro2.func"><strong>Functie:</strong> Zorgt ervoor dat de beelden en signalen alvast correct naar derden (zoals de livestream/videomixer) worden verzonden voordat we live gaan.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-num">3</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro3.title">Praise &amp; Worship</h4>
+                            <p data-i18n="s6.macro3.when"><strong>Wanneer:</strong> Activeer deze zodra de zangdienst begint en er liederen worden gezongen.</p>
+                            <p data-i18n="s6.macro3.func"><strong>Functie:</strong> Schakelt de juiste achtergronden en tekstlay-outs in voor de aanbidding.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-num">4</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro4.title">Mededelingen</h4>
+                            <p data-i18n="s6.macro4.when"><strong>Wanneer:</strong> Schakel hiernaar over op het moment dat de mededelingen op het scherm worden getoond.</p>
+                            <p data-i18n="s6.macro4.func"><strong>Functie:</strong> Formatteert de schermen specifiek voor de mededelingenslides.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-num">5</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro5.title">Preek</h4>
+                            <p data-i18n="s6.macro5.desc"><strong>Wanneer:</strong> Gebruik deze bij de start van de preek voor het tonen van de presentatie (PowerPoint of slides van de spreker).</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-num">6</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro6.title">Bijbel</h4>
+                            <p data-i18n="s6.macro6.when"><strong>Wanneer:</strong> Is er geen presentatie, maar worden er wel live Bijbelteksten opgezocht en getoond? Gebruik dan deze macro.</p>
+                            <p data-i18n="s6.macro6.func"><strong>Functie:</strong> Toont de losse Bijbelteksten in een beter, geoptimaliseerd format op de schermen.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-num">7</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s6.macro7.title">Einde-dienst</h4>
+                            <p data-i18n="s6.macro7.when"><strong>Wanneer:</strong> Klik hierop direct nadat de dienst is afgelopen.</p>
+                            <p data-i18n="s6.macro7.func"><strong>Functie:</strong> Sluit de live-lay-outs af en zorgt ervoor dat de mededelingen direct weer in een automatische loop (lus) gaan draaien voor de mensen in de zaal en de livestream.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Looks -->
+            <div class="card">
+                <div class="card-title"><img src="Zone/lookTriggerKey_Light.png" alt="Look-trigger key in ProPresenter" style="display: inline-block; width: 32px; height: 32px; object-fit: contain; vertical-align: middle; margin-right: 4px;"> <span data-i18n="s6.looks.title">Looks — Wat je per scherm ziet</span></div>
+                <p data-i18n="s6.looks.p1">
+                    Een <strong>Look</strong> bepaalt dat scherm A (bijv. Zaal) wél een achtergrond krijgt,
+                    maar scherm B (Livestream) niet. Zo zien verschillende outputs er anders uit —
+                    <strong>vanuit dezelfde slide</strong>.
+                </p>
+                <p data-i18n="s6.looks.p2">
+                    In het Looks-venster (<strong>Screens → Edit Looks</strong>) kies je per scherm welke lagen
+                    zichtbaar zijn. Zo kun je bijvoorbeeld de tekst wél naar de zaal sturen,
+                    maar naar de livestream een alpha-kanaal (lower-thirds) zonder achtergrond.
+                </p>
+
+                <div class="highlight highlight-info">
+                    <div class="highlight-title" data-i18n="s6.looks.highlight.title">💡 Hoe herken je een Look in actie?</div>
+                    <div class="highlight-body" data-i18n="s6.looks.highlight.body">
+                        Als je een macro activeert (bijv. <em>Praise &amp; Worship</em>), schakelt die op de achtergrond
+                        automatisch de juiste Look in — en daarmee de juiste scherm-layout voor dat moment.
+                        <strong>Jij hoeft alleen de macro aan te klikken; de Look regelt de rest.</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stream Deck -->
+            <div class="card">
+                <div class="card-title" data-i18n="s6.streamdeck.title">🎛️ Externe Controle — Stream Deck &amp; Companion</div>
+                <p data-i18n="s6.streamdeck.p1">
+                    ProPresenter kan ook <strong>op afstand</strong> worden aangestuurd. Dit is handig als de
+                    operator niet achter de computer staat, maar bijvoorbeeld bij de band of bij de camera staat.
+                </p>
+
+                <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                    <div class="feature">
+                        <div class="feature-icon" style="display: flex; gap: 6px; padding: 4px; background: transparent; border-radius: 8px; width: auto; height: auto;">
+                            <img src="Zone/elgato_stream_deck.webp" alt="Elgato Stream Deck logo" style="height: 32px; width: auto; object-fit: contain;">
+                            <img src="Zone/bitfocus-companion.png" alt="Bitfocus Companion logo" style="height: 32px; width: auto; object-fit: contain;">
+                        </div>
+                        <div class="feature-title" data-i18n="s6.streamdeck.feature.title">Stream Deck met Companion</div>
+                        <div class="feature-desc" data-i18n="s6.streamdeck.feature.desc">
+                            Fysieke knoppen die je zelf kunt programmeren met <em>Companion</em>-software.
+                            Eén knop = één actie: een slide vooruit, een macro starten, een timer resetten.
+                            Het werkt via het netwerk — geen extra kabels nodig.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="screenshot-block" style="max-width: 640px; margin-left: auto; margin-right: auto;">
+                    <img src="Zone/streamdeck.png" alt="Screenshot van een Stream Deck met Companion-configuratie voor ProPresenter-bediening" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="highlight highlight-purple" style="margin-top: 16px;">
+                    <div class="highlight-title" data-i18n="s6.forget.title">🚫 Wat je hier niet hoeft te onthouden</div>
+                    <div class="highlight-body" data-i18n="s6.forget.body">
+                        Je hoeft niet te weten <em>hoe</em> je een Stream Deck profiel bouwt of een Remote App
+                        configureert. Het is voldoende als je weet <strong>dat</strong> het mogelijk is —
+                        en dat je het kunt herkennen als je het ziet.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== QUICK REFERENCE ========== -->
+
+
+    </main>
+</div>
+
+<footer>
+    <p data-i18n="footer.line1">
+        ProPresenter &amp; WorshipTools Workshop · Operator Handboek
+    </p>
+    <p style="margin-top: 6px; font-size: 0.75rem;" data-i18n="footer.line2">
+        Samengesteld voor vrijwilligers. Met <span class="footer-heart">♥</span> gemaakt voor de kerk.
+    </p>
+</footer>
+
+<script>
+/**
+ * ProPresenter Operator Handbook — Translations (NL ↔ EN ↔ FA)
+ * This file contains all translatable text for the handbook.
+ */
+const i18n = {
+    // ── Header ──
+    "header.badge":       { nl: "📖 Volledig Handboek",                  en: "📖 Complete Handbook",                  fa: "📖 کتابچه راهنمای کامل" },
+    "header.title":       { nl: "ProPresenter",                          en: "ProPresenter",                          fa: "ProPresenter" },
+    "header.subtitle":    { nl: "Het Complete Operator Handboek voor Vrijwilligers", en: "The Complete Operator Handbook for Volunteers", fa: "کتابچه راهنمای کامل اپراتور برای داوطلبان" },
+    "header.target":      { nl: "<strong>👥 Doelgroep</strong>Beginners",                 en: "<strong>👥 Audience</strong>Beginners",                 fa: "<strong>👥 مخاطب</strong>مبتدی" },
+    "header.format":      { nl: "<strong>📖 Vorm</strong>Zelfstudiemateriaal",            en: "<strong>📖 Format</strong>Self-study Material",            fa: "<strong>📖 فرمت</strong>مطالب خودآموز" },
+    "header.lang":        { nl: "<strong>🇳🇱 Taal</strong>Nederlands",                    en: "<strong>🇬🇧 Language</strong>English",                    fa: "<strong>🇮🇷 زبان</strong>فارسی" },
+    // ── Mobile TOC ──
+    "mobile.toc.start":   { nl: "📍 Start hier",                        en: "📍 Start here",                        fa: "📍 از اینجا شروع کنید" },
+    "mobile.toc.s1":      { nl: "1. Intro & Het Lagen-Concept",         en: "1. Intro & The Layer Concept",         fa: "۱. مقدمه و مفهوم لایه‌ها" },
+    "mobile.toc.s2":      { nl: "2. Schermen & De ProPresenter UI",     en: "2. Screens & The ProPresenter UI",     fa: "۲. صفحه‌ها و رابط کاربری ProPresenter" },
+    "mobile.toc.s3":      { nl: "3. WorshipTools Planning Integratie",  en: "3. WorshipTools Planning Integration",  fa: "۳. یکپارچه‌سازی برنامه‌ریزی WorshipTools" },
+    "mobile.toc.s4":      { nl: "4. Een Setlist Bouwen & Bewerken",     en: "4. Building & Editing a Setlist",     fa: "۴. ساخت و ویرایش یک Setlist" },
+    "mobile.toc.s5":      { nl: "5. Live de Dienst Draaien",            en: "5. Running the Service Live",            fa: "۵. اجرای زنده مراسم" },
+    "mobile.toc.s6":      { nl: "6. Geavanceerd: Externe Controle",     en: "6. Advanced: External Control",     fa: "۶. پیشرفته: کنترل خارجی" },
+    // ── Desktop TOC ──
+    "toc.intro":          { nl: "Start hier",                            en: "Start here",                            fa: "از اینجا شروع کنید" },
+    "toc.section1":       { nl: "Intro & Lagen",                        en: "Intro & Layers",                        fa: "مقدمه و لایه‌ها" },
+    "toc.section2":       { nl: "Schermen & UI",                        en: "Screens & UI",                        fa: "صفحه‌ها و رابط کاربری" },
+    "toc.section3":       { nl: "WorshipTools",                         en: "WorshipTools",                         fa: "WorshipTools" },
+    "toc.section4":       { nl: "Setlist Bouwen",                       en: "Building a Setlist",                       fa: "ساخت Setlist" },
+    "toc.section5":       { nl: "Live Besturing",                       en: "Live Control",                       fa: "کنترل زنده" },
+    "toc.section6":       { nl: "Geavanceerd: Externe Controle & Automatisering", en: "Advanced: External Control & Automation",       fa: "پیشرفته: کنترل خارجی و خودکارسازی" },
+    "toc.progress":       { nl: "Voortgang",                            en: "Progress",                            fa: "پیشرفت" },
+    // ── Main aria ──
+    "main.aria":          { nl: "Handleiding inhoud",                   en: "Manual content",                   fa: "محتوای کتابچه راهنما" },
+    // ── Intro ──
+    "intro.welcome":      { nl: "Welkom, Operator!",                    en: "Welcome, Operator!",                    fa: "خوش آمدید، اپراتور!" },
+    "intro.desc":         { nl: "Dit handboek neemt je stap voor stap mee door ProPresenter: van de basislagen tot live-gebeurtenissen. Werk de pagina in volgorde door — je kunt altijd terugkeren via de inhoudsopgave. Alles wat je hier leert, gebruik je straks elke week in de dienst.", en: "This guide walks you through ProPresenter step by step: from the basic layers to live events. Work through the page in order — you can always return via the table of contents. Everything you learn here, you'll use every week during the service.", fa: "این راهنما شما را گام به گام در ProPresenter راهنمایی می‌کند: از لایه‌های پایه تا رویدادهای زنده. صفحه را به ترتیب مطالعه کنید — همیشه می‌توانید از طریق فهرست مطالب بازگردید. تمام آنچه در اینجا می‌آموزید، هر هفته در مراسم استفاده خواهید کرد." },
+    "intro.overview.title": { nl: "Wat je gaat leren (overzicht)",      en: "What You'll Learn (Overview)",      fa: "آنچه خواهید آموخت (مرور کلی)" },
+    "intro.overview.p1":  { nl: "ProPresenter gebruik je straks elke week. Dit handboek is opgedeeld in 6 blokken die je in volgorde kunt doorwerken — je bepaalt zelf het tempo. Alles is opgedeeld in 6 duidelijke blokken die je in volgorde kunt doorwerken.", en: "You'll use ProPresenter every week. This handbook is divided into 6 blocks you can work through in order — at your own pace. Everything is split into 6 clear blocks you can complete sequentially.", fa: "شما هر هفته از ProPresenter استفاده خواهید کرد. این کتابچه به ۶ بخش تقسیم شده است که می‌توانید به ترتیب مطالعه کنید — با سرعت دلخواه خود. همه چیز به ۶ بخش مشخص تقسیم شده که می‌توانید پشت سر هم تکمیل کنید." },
+    "intro.workflow1.title": { nl: "Intro & Het Lagen-Concept",     en: "Intro & The Layer Concept",     fa: "مقدمه و مفهوم لایه‌ها" },
+    "intro.workflow1.desc":  { nl: "Het mentale model van \"glazen platen\" waar alles op rust", en: "The mental model of \"glass plates\" everything rests on", fa: "مدل ذهنی \"صفحه‌های شیشه‌ای\" که همه چیز بر آن استوار است" },
+    "intro.workflow2.title": { nl: "Schermen & De ProPresenter UI", en: "Screens & The ProPresenter UI", fa: "صفحه‌ها و رابط کاربری ProPresenter" },
+    "intro.workflow2.desc":  { nl: "Waar het beeld heengaat en hoe je door het programma navigeert", en: "Where the image goes and how to navigate the program", fa: "تصویر به کجا می‌رود و چگونه در برنامه پیمایش کنید" },
+    "intro.workflow3.title": { nl: "WorshipTools Planning Integratie",  en: "WorshipTools Planning Integration",  fa: "یکپارچه‌سازی برنامه‌ریزی WorshipTools" },
+    "intro.workflow3.desc":  { nl: "De \"Source of Truth\" voor de zondag", en: "The \"Source of Truth\" for Sunday", fa: "\"منبع حقیقت\" برای یکشنبه" },
+    "intro.workflow4.title": { nl: "Setlist Bouwen & Bewerken",     en: "Building & Editing a Setlist",     fa: "ساخت و ویرایش Setlist" },
+    "intro.workflow4.desc":  { nl: "Liederen importeren, splitsen en stylen", en: "Importing, splitting, and styling songs", fa: "وارد کردن، تقسیم و استایل‌دهی سرودها" },
+    "intro.workflow5.title": { nl: "Besturing: Live de dienst draaien", en: "Control: Running the Service Live", fa: "کنترل: اجرای زنده مراسم" },
+    "intro.workflow5.desc":  { nl: "Shortcuts en rust bewaren bij fouten", en: "Shortcuts and staying calm through mistakes", fa: "میانبرها و حفظ آرامش در هنگام اشتباهات" },
+    "intro.workflow6.title": { nl: "Achter de Schermen (De Magie)",     en: "Behind the Screens (The Magic)",     fa: "پشت صفحه‌ها (جادو)" },
+    "intro.workflow6.desc":  { nl: "Hoge overvlieger: Looks, Macros & Stream Deck", en: "High-level overview: Looks, Macros & Stream Deck", fa: "نمای کلی سطح بالا: نماها، ماکروها و Stream Deck" },
+    // ── Section 1 ──
+    "s1.title":           { nl: "Intro & Het Lagen-Concept",        en: "Intro & The Layer Concept",        fa: "مقدمه و مفهوم لایه‌ها" },
+    "s1.time":            { nl: "⏱️ 00:00 – 00:15",                    en: "⏱️ 00:00 – 00:15",                    fa: "⏱️ ۰۰:۰۰ – ۰۰:۱۵" },
+    "s1.whatis.title":    { nl: "Wat is ProPresenter?",                en: "What is ProPresenter?",                fa: "ProPresenter چیست؟" },
+    "s1.whatis.p1":       { nl: "ProPresenter is <strong>niet</strong> net als PowerPoint. Het is een <strong>krachtige multi-screen media-engine</strong>, speciaal gebouwd voor kerken om video, audio en live-teksten naadloos te combineren tijdens een dienst.", en: "ProPresenter is <strong>not</strong> like PowerPoint. It is a <strong>powerful multi-screen media engine</strong>, built specifically for churches to seamlessly combine video, audio, and live text during a service.", fa: "ProPresenter <strong>مثل</strong> PowerPoint نیست. این یک <strong>موتور رسانه‌ای قدرتمند چندصفحه‌ای</strong> است که مخصوص کلیساها ساخته شده تا ویدیو، صدا و متن زنده را به طور یکپارچه در طول مراسم ترکیب کند." },
+    "s1.whatis.p2":       { nl: "In plaats van één presentatie die van slide naar slide gaat, denk je in <em>lagen</em> die je onafhankelijk van elkaar kunt aan- en uitzetten. Dat geeft je de flexibiliteit om ter plekke te reageren op wat er in de dienst gebeurt.", en: "Instead of a single presentation going from slide to slide, you think in <em>layers</em> that you can turn on and off independently. This gives you the flexibility to respond on the spot to what's happening during the service.", fa: "به جای یک ارائه که از اسلایدی به اسلاید دیگر می‌رود، شما در قالب <em>لایه‌هایی</em> فکر می‌کنید که می‌توانید مستقل از هم روشن و خاموش کنید. این به شما انعطاف‌پذیری می‌دهد تا در لحظه به آنچه در مراسم اتفاق می‌افتد واکنش نشان دهید." },
+    "s1.layers.title":    { nl: "Het Lagen-Concept (\"De Glazen Platen\")", en: "The Layer Concept (\"The Glass Plates\")", fa: "مفهوم لایه‌ها (\"صفحه‌های شیشه‌ای\")" },
+    "s1.layers.p1":       { nl: "ProPresenter werkt als een stapel <em>doorzichtige glazen platen</em> die op elkaar liggen. Wat bovenop ligt, dekt de onderliggende laag af. Door een laag te wissen, blijft de rest eronder gewoon zichtbaar. Welke lagen je per scherm ziet, bepaal je in het <em>Looks window</em> (<strong>Screens → Edit Looks</strong>). Audio zit hier <strong>niet</strong> bij — audio is een aparte uitgang, geen visuele laag.", en: "ProPresenter works like a stack of <em>transparent glass plates</em> on top of each other. Whatever is on top covers the layer below. By clearing a layer, everything underneath stays visible. Which layers you see per screen is determined in the <em>Looks window</em> (<strong>Screens → Edit Looks</strong>). Audio is <strong>not</strong> part of this — audio is a separate output, not a visual layer.", fa: "ProPresenter مانند دسته‌ای از <em>صفحه‌های شیشه‌ای شفاف</em> کار می‌کند که روی هم قرار گرفته‌اند. آنچه در بالا است، لایه زیرین را می‌پوشاند. با پاک کردن یک لایه، همه چیز زیر آن قابل مشاهده می‌ماند. اینکه کدام لایه‌ها را در هر صفحه می‌بینید، در <em>پنجره Looks</em> تعیین می‌شود (<strong>Screens → Edit Looks</strong>). صدا <strong>بخشی</strong> از این نیست — صدا یک خروجی جداگانه است، نه یک لایه تصویری." },
+    "s1.layer1.pos":      { nl: "Toplaag · Boven alles",               en: "Top Layer · Above everything",               fa: "لایه بالایی · بالای همه چیز" },
+    "s1.layer1.name":     { nl: "Masks",                               en: "Masks",                               fa: "ماسک‌ها" },
+    "s1.layer1.desc":     { nl: "Maskeert delen van de presentatie of maakt transparante gebieden. Denk aan een \"vorm\" die over alles heen ligt.", en: "Masks parts of the presentation or creates transparent areas. Think of a \"shape\" that covers everything.", fa: "بخش‌هایی از ارائه را ماسک می‌کند یا نواحی شفاف ایجاد می‌کند. مانند یک \"شکل\" که روی همه چیز قرار دارد." },
+    "s1.layer2.pos":      { nl: "Vaste output-laag",                   en: "Fixed output layer",                   fa: "لایه خروجی ثابت" },
+    "s1.layer2.name":     { nl: "Messages",                            en: "Messages",                            fa: "پیام‌ها" },
+    "s1.layer2.desc":     { nl: "Snel een stukje tekst of een timer naar het scherm sturen — los van de slides.", en: "Quickly send text or a timer to the screen — independent of the slides.", fa: "ارسال سریع متن یا تایمر به صفحه — مستقل از اسلایدها." },
+    "s1.layer3.pos":      { nl: "Vaste output-laag",                   en: "Fixed output layer",                   fa: "لایه خروجی ثابت" },
+    "s1.layer3.name":     { nl: "Props",                               en: "Props",                               fa: "Props" },
+    "s1.layer3.desc":     { nl: "Logo's, \"bugs\" in de hoek, kinderdienst-meldingen, noodoverlays. Alles wat je \"over\" de slides heen plakt.", en: "Logos, corner bugs, children's ministry notices, emergency overlays. Anything you paste \"over\" the slides.", fa: "لوگوها، نشان‌های گوشه، اطلاعیه‌های کودکان، روکش‌های اضطراری. هر چیزی که روی اسلایدها می‌چسبانید." },
+    "s1.layer4.pos":      { nl: "Vaste output-laag",                   en: "Fixed output layer",                   fa: "لایه خروجی ثابت" },
+    "s1.layer4.name":     { nl: "Announcements",                       en: "Announcements",                       fa: "اعلان‌ها" },
+    "s1.layer4.desc":     { nl: "Mededelingen of een tweede presentatie die je naar een tweede scherm stuurt — onafhankelijk van de hoofdpresentatie.", en: "Announcements or a second presentation sent to a second screen — independent of the main presentation.", fa: "اعلان‌ها یا یک ارائه دوم که به صفحه دوم فرستاده می‌شود — مستقل از ارائه اصلی." },
+    "s1.layer5.pos":      { nl: "Vaste output-laag",                   en: "Fixed output layer",                   fa: "لایه خروجی ثابت" },
+    "s1.layer5.name":     { nl: "Slide",                               en: "Slide",                               fa: "اسلاید" },
+    "s1.layer5.desc":     { nl: "De tekst-elementen, slide objects en achtergrondkleuren (Slide / Presentation Background Color) van de presentatie.", en: "The text elements, slide objects, and background colors (Slide / Presentation Background Color) of the presentation.", fa: "عناصر متنی، اشیاء اسلاید و رنگ‌های پس‌زمینه (Slide / Presentation Background Color) ارائه." },
+    "s1.layer6.pos":      { nl: "Vaste output-laag",                   en: "Fixed output layer",                   fa: "لایه خروجی ثابت" },
+    "s1.layer6.name":     { nl: "Media",                               en: "Media",                               fa: "رسانه" },
+    "s1.layer6.desc":     { nl: "Afbeeldingen en video's: vanuit de Media Bin of als Media Action in een presentatie.", en: "Images and videos: from the Media Bin or as a Media Action in a presentation.", fa: "تصاویر و ویدیوها: از Media Bin یا به عنوان Media Action در یک ارائه." },
+    "s1.layer7.pos":      { nl: "Vaste output-laag · Pro / camera-setup", en: "Fixed output layer · Pro / camera setup", fa: "لایه خروجی ثابت · Pro / راه‌اندازی دوربین" },
+    "s1.layer7.name":     { nl: "Video Input",                         en: "Video Input",                         fa: "ورودی ویدیو" },
+    "s1.layer7.desc":     { nl: "Live video inputs — bijv. een aangesloten camera via SDI/NDI. Vooral relevant bij setups met externe camera-bediening.", en: "Live video inputs — e.g., a connected camera via SDI/NDI. Especially relevant for setups with external camera control.", fa: "ورودی‌های ویدیوی زنده — مثلاً دوربین متصل از طریق SDI/NDI. به ویژه برای راه‌اندازی‌هایی با کنترل دوربین خارجی مهم است." },
+    "s1.layer8.pos":      { nl: "Bodemlaag · Altijd aanwezig",         en: "Bottom layer · Always present",         fa: "لایه پایینی · همیشه حاضر" },
+    "s1.layer8.name":     { nl: "Screen Color",                        en: "Screen Color",                        fa: "رنگ صفحه" },
+    "s1.layer8.desc":     { nl: "De basis-kleur van het scherm, ingesteld per Audience Screen in Screens → Configure Screens. Dit is wat overblijft na een Clear All.", en: "The base color of the screen, set per Audience Screen in Screens → Configure Screens. This is what remains after a Clear All.", fa: "رنگ پایه صفحه، تنظیم شده برای هر Audience Screen در Screens → Configure Screens. این همان چیزی است که پس از Clear All باقی می‌ماند." },
+    "s1.rule.title":      { nl: "🧠 De belangrijkste regel",            en: "🧠 The Most Important Rule",            fa: "🧠 مهمترین قانون" },
+    "s1.rule.body":       { nl: "De bovenste laag wint altijd. Een <strong>prop</strong> blijft zichtbaar, ook als er een nieuwe slide opkomt. Een <strong>Media-laag</strong> blijft draaien, ook als je de tekst weghaalt met <strong>Clear Slide</strong>. Met <strong>Clear All</strong> val je terug op alleen de Screen Color — meestal zwart.", en: "The top layer always wins. A <strong>prop</strong> stays visible even when a new slide appears. A <strong>Media layer</strong> keeps playing even if you remove the text with <strong>Clear Slide</strong>. With <strong>Clear All</strong> you fall back to just the Screen Color — usually black.", fa: "لایه بالایی همیشه برنده است. یک <strong>prop</strong> حتی با ظهور اسلاید جدید قابل مشاهده می‌ماند. یک <strong>لایه رسانه</strong> حتی اگر متن را با <strong>Clear Slide</strong> حذف کنید به پخش ادامه می‌دهد. با <strong>Clear All</strong> فقط به Screen Color برمی‌گردید — معمولاً سیاه." },
+    "s1.note.title":      { nl: "⚠️ Let op sinds ProPresenter 7.11",    en: "⚠️ Note since ProPresenter 7.11",    fa: "⚠️ نکته از ProPresenter ۷.۱۱" },
+    "s1.note.body":       { nl: "Vanaf versie 7.11 staat de <strong>Background Color</strong> <em>boven</em> de Media Layer in plaats van eronder. Als je media-achtergrond niet zichtbaar is, schakel dan eerst de Slide- of Presentation Background Color uit (rechtsonder in de Show View → \"Ignore Background Colors\", of onder <strong>Preferences → Screens</strong>). Of maak van die media een <em>Foreground</em> actie of een <em>Slide Object</em>.", en: "Since version 7.11, the <strong>Background Color</strong> sits <em>above</em> the Media Layer instead of below. If your media background isn't visible, first disable the Slide or Presentation Background Color (bottom right in the Show View → \"Ignore Background Colors\", or under <strong>Preferences → Screens</strong>). Or turn that media into a <em>Foreground</em> action or a <em>Slide Object</em>.", fa: "از نسخه ۷.۱۱، <strong>Background Color</strong> <em>بالای</em> Media Layer قرار دارد به جای زیر آن. اگر پس‌زمینه رسانه شما قابل مشاهده نیست، ابتدا Slide یا Presentation Background Color را غیرفعال کنید (پایین سمت راست در Show View → \"Ignore Background Colors\"، یا زیر <strong>Preferences → Screens</strong>). یا آن رسانه را به یک action <em>Foreground</em> یا <em>Slide Object</em> تبدیل کنید." },
+    // ── Section 2 ──
+    "s2.title":           { nl: "Schermen & De ProPresenter UI",    en: "Screens & The ProPresenter UI",    fa: "صفحه‌ها و رابط کاربری ProPresenter" },
+    "s2.time":            { nl: "⏱️ 00:15 – 00:30",                    en: "⏱️ 00:15 – 00:30",                    fa: "⏱️ ۰۰:۱۵ – ۰۰:۳۰" },
+    "s2.zones.title":     { nl: "De 3 Zones van de ProPresenter UI",   en: "The 3 Zones of the ProPresenter UI",   fa: "۳ ناحیه از رابط کاربری ProPresenter" },
+    "s2.zones.p1":        { nl: "Het scherm van ProPresenter is opgedeeld in drie hoofdgebieden. Leer ze herkennen — dan weet je altijd waar je moet klikken.", en: "The ProPresenter screen is divided into three main areas. Learn to recognize them — then you'll always know where to click.", fa: "صفحه ProPresenter به سه ناحیه اصلی تقسیم شده است. یاد بگیرید آنها را تشخیص دهید — آنگاه همیشه خواهید دانست کجا کلیک کنید." },
+    "s2.zone1.label":     { nl: "Zone 1 · Links",                      en: "Zone 1 · Left",                      fa: "ناحیه ۱ · چپ" },
+    "s2.zone1.title":     { nl: "Bibliotheken, Playlists & Media",  en: "Libraries, Playlists & Media",  fa: "کتابخانه‌ها، لیست‌های پخش و رسانه" },
+    "s2.zone1.desc":      { nl: "Hier organiseer je de complete structuur en achtergronden", en: "Here you organize the complete structure and backgrounds", fa: "در اینجا ساختار کامل و پس‌زمینه‌ها را سازماندهی می‌کنید" },
+    "s2.zone2.label":     { nl: "Zone 2 · Midden",                     en: "Zone 2 · Center",                     fa: "ناحیه ۲ · مرکز" },
+    "s2.zone2.title":     { nl: "Actief Slide Grid & Werkvlak",    en: "Active Slide Grid & Work Area",    fa: "شبکه اسلاید فعال و محل کار" },
+    "s2.zone2.desc":      { nl: "De slides van het geselecteerde lied of de presentatie", en: "The slides of the selected song or presentation", fa: "اسلایدهای سرود یا ارائه انتخاب شده" },
+    "s2.zone3.label":     { nl: "Zone 3 · Rechts",                     en: "Zone 3 · Right",                     fa: "ناحیه ۳ · راست" },
+    "s2.zone3.title":     { nl: "Live Status & Macro's",            en: "Live Status & Macros",            fa: "وضعیت زنده و ماکروها" },
+    "s2.zone3.desc":      { nl: "Controle over actieve uitgangen en service-automatisering", en: "Control over active outputs and service automation", fa: "کنترل خروجی‌های فعال و خودکارسازی مراسم" },
+    "s2.golden.title":    { nl: "⚙️ De Gulden Regel",                   en: "⚙️ The Golden Rule",                   fa: "⚙️ قانون طلایی" },
+    "s2.golden.body":     { nl: "Een goede operator kijkt niet alleen naar het hoofdscherm, maar controleert continu de schermen en actieve status-indicatoren. <strong>Wat in de zaal goed staat, kan op de livestream onleesbaar zijn of de muzikanten in de war brengen.</strong>", en: "A good operator doesn't just watch the main screen but continuously checks the screens and active status indicators. <strong>What looks good in the auditorium may be unreadable on the livestream or confuse the musicians.</strong>", fa: "یک اپراتور خوب فقط صفحه اصلی را تماشا نمی‌کند، بلکه مدام صفحه‌ها و نشانگرهای وضعیت فعال را بررسی می‌کند. <strong>آنچه در سالن خوب به نظر می‌رسد ممکن است در پخش زنده ناخوانا باشد یا نوازندگان را سردرگم کند.</strong>" },
+    "s2.screenshot.title": { nl: "🎯 De ProPresenter UI in het echt (herken je scherm)", en: "🎯 The ProPresenter UI in Real Life (Recognize Your Screen)", fa: "🎯 رابط کاربری ProPresenter در زندگی واقعی (صفحه خود را بشناسید)" },
+    "s2.screenshot.p1":   { nl: "Dit is een echte ProPresenter-sessie van onze kerk. Hieronder zie je het scherm zoals het er straks bij jou ook uitziet — <strong>dezelfde knoppen op dezelfde plekken</strong>. De drie zones die je net leerde, worden hieronder in tekst uitgelegd.", en: "This is a real ProPresenter session from our church. Below you'll see the screen just as it will look on yours — <strong>the same buttons in the same places</strong>. The three zones you just learned about are explained in text below.", fa: "این یک جلسه واقعی ProPresenter از کلیسای ماست. در زیر صفحه را همانطور که روی سیستم شما نیز خواهد بود می‌بینید — <strong>همان دکمه‌ها در همان مکان‌ها</strong>. سه ناحیه‌ای که به تازگی یاد گرفتید در زیر توضیح داده شده‌اند." },
+    "s2.screenshot.legend": { nl: "En hieronder elke zone uitgelicht in close-up, met de juiste uitleg:", en: "And below, each zone highlighted in close-up with the correct explanation:", fa: "و در زیر، هر ناحیه به صورت نزدیک با توضیح صحیح برجسته شده است:" },
+    "s2.zonecard1.title": { nl: "<span class=\"num-badge\">1</span>🔵 Playlists & Media Bieb", en: "<span class=\"num-badge\">1</span>🔵 Playlists & Media Library", fa: "<span class=\"num-badge\">۱</span>🔵 لیست‌های پخش و کتابخانه رسانه" },
+    "s2.zonecard1.desc":  { nl: "De linkerkolom. <strong>Bovenaan</strong> zie je de afspeellijsten geordend per datum (bijv. <em>05-07-2026</em>) met alle losse elementen van de dienst (Liederen, Preek, Mededelingen). <strong>Onderaan</strong> vind je de Media-afspeellijst waar alle video-achtergronden en graphics klaarstaan om onder de tekst te gooien.", en: "The left column. <strong>At the top</strong> you see playlists sorted by date (e.g., <em>05-07-2026</em>) with all the separate service elements (Songs, Sermon, Announcements). <strong>At the bottom</strong> you find the Media playlist where all video backgrounds and graphics are ready to drop under the text.", fa: "ستون چپ. <strong>در بالا</strong> لیست‌های پخش را بر اساس تاریخ مرتب شده می‌بینید (مثلاً <em>۰۵-۰۷-۲۰۲۶</em>) با تمام عناصر مجزای مراسم (سرودها، موعظه، اعلان‌ها). <strong>در پایین</strong> لیست پخش رسانه را پیدا می‌کنید که در آن همه پس‌زمینه‌های ویدیویی و گرافیک‌ها آماده قرار گرفتن زیر متن هستند." },
+    "s2.zonecard2.title": { nl: "<span class=\"num-badge\">2</span>🟡 Slide Grid & Live Output", en: "<span class=\"num-badge\">2</span>🟡 Slide Grid & Live Output", fa: "<span class=\"num-badge\">۲</span>🟡 شبکه اسلاید و خروجی زنده" },
+    "s2.zonecard2.desc":  { nl: "Het grote centrale vlak. <strong>Bovenaan</strong> zie je de actieve preview van de geselecteerde sheet; <strong>onderaan</strong> vind je het volledige overzicht van alle losse slides van het geselecteerde lied of de presentatie, klaar om op te klikken.", en: "The large central area. <strong>At the top</strong> you see the live preview of the selected sheet; <strong>at the bottom</strong> you find the complete overview of all individual slides of the selected song or presentation, ready to click.", fa: "ناحیه مرکزی بزرگ. <strong>در بالا</strong> پیش‌نمایش زنده برگه انتخاب شده را می‌بینید؛ <strong>در پایین</strong> نمای کامل همه اسلایدهای مجزای سرود یا ارائه انتخاب شده را پیدا می‌کنید، آماده برای کلیک." },
+    "s2.zonecard3.title": { nl: "<span class=\"num-badge\">3</span>🟣 Live Status & Macro's", en: "<span class=\"num-badge\">3</span>🟣 Live Status & Macros", fa: "<span class=\"num-badge\">۳</span>🟣 وضعیت زنده و ماکروها" },
+    "s2.zonecard3.desc":  { nl: "De rechterkolom. <strong>Bovenaan</strong> zie je de statuslampjes van de actieve schermen (Audience/Stage) en volumemeters. <strong>Onderaan</strong> zie je onze Macro-afspeellijst (<em>\"Zondag\"</em>). Hiermee activeer je met één klik de juiste achtergrondinstellingen en schermlay-outs voor specifieke momenten (zoals <em>Welkom, Praise & Worship</em> of <em>Preek</em>).", en: "The right column. <strong>At the top</strong> you see the status indicators of the active screens (Audience/Stage) and volume meters. <strong>At the bottom</strong> you see our Macro playlist (<em>\"Sunday\"</em>). With one click you activate the right background settings and screen layouts for specific moments (like <em>Welcome, Praise & Worship</em> or <em>Sermon</em>).", fa: "ستون راست. <strong>در بالا</strong> نشانگرهای وضعیت صفحه‌های فعال (Audience/Stage) و حجم‌سنج‌ها را می‌بینید. <strong>در پایین</strong> لیست پخش ماکرو ما (<em>\"یکشنبه\"</em>) را می‌بینید. با یک کلیک تنظیمات پس‌زمینه و چیدمان صفحه مناسب برای لحظات خاص را فعال می‌کنید (مانند <em>Welcome, Praise & Worship</em> یا <em>Sermon</em>)." },
+    "s2.toolbar.intro":   { nl: "Zoom eens in op de <strong style=\"color: #0061af;\">Toolbar</strong> helemaal bovenaan:", en: "Zoom in on the <strong style=\"color: #0061af;\">Toolbar</strong> at the very top:", fa: "روی <strong style=\"color: #0061af;\">نوار ابزار</strong> در بالای صفحه بزرگنمایی کنید:" },
+    "s2.toolbar.title":   { nl: "Bovenaan in de <span style=\"color: #0061af;\">Toolbar</span> zie je verder van links naar rechts:", en: "At the top of the <span style=\"color: #0061af;\">Toolbar</span> from left to right:", fa: "در بالای <span style=\"color: #0061af;\">نوار ابزار</span> از راست به چپ می‌بینید:" },
+    "s2.toolbar.li1":     { nl: "🔍 <strong>Search, Text en Theme</strong> — Om razendsnel content of liederen op te zoeken en de visuele stijl aan te passen.", en: "🔍 <strong>Search, Text, and Theme</strong> — To quickly search content or songs and adjust the visual style.", fa: "🔍 <strong>Search, Text, and Theme</strong> — برای جستجوی سریع محتوا یا سرودها و تنظیم سبک بصری." },
+    "s2.toolbar.li2":     { nl: "🖥️ <strong>Modi-knoppen (Show, Edit, Reflow, Bible)</strong> — Hiermee schakel je tussen het live-scherm (Show), de grafische editor (Edit), de tekst-editor (Reflow) en de Bijbelmodule.", en: "🖥️ <strong>Mode buttons (Show, Edit, Reflow, Bible)</strong> — Switch between the live screen (Show), the graphical editor (Edit), the text editor (Reflow), and the Bible module.", fa: "🖥️ <strong>دکمه‌های حالت (Show, Edit, Reflow, Bible)</strong> — بین صفحه زنده (Show)، ویرایشگر گرافیکی (Edit)، ویرایشگر متن (Reflow) و ماژول کتاب مقدس جابجا شوید." },
+    "s2.toolbar.li3":     { nl: "🎨 <strong>Snelkoppelingen (ProContent, Media, Looks)</strong> — Directe toegang tot de media-bibliotheken en specifieke looks instellingen.", en: "🎨 <strong>Shortcuts (ProContent, Media, Looks)</strong> — Direct access to media libraries and specific look settings.", fa: "🎨 <strong>میانبرها (ProContent, Media, Looks)</strong> — دسترسی مستقیم به کتابخانه‌های رسانه و تنظیمات نما." },
+    "s2.toolbar.li4":     { nl: "🟢 <strong>Audience & Stage Status</strong> — De groene indicatoren die aangeven dat de zaalschermen en het podiumscherm live en actief verbonden zijn.", en: "🟢 <strong>Audience & Stage Status</strong> — The green indicators showing that the auditorium screens and stage display are live and actively connected.", fa: "🟢 <strong>Audience & Stage Status</strong> — نشانگرهای سبز که نشان می‌دهند صفحه‌های سالن و صحنه زنده و فعالانه متصل هستند." },
+    "s2.outputs.title":   { nl: "De Schermen die we Uitsturen (Outputs)", en: "The Screens We Output (Outputs)", fa: "صفحه‌هایی که خروجی می‌دهیم (Outputs)" },
+    "s2.outputs.p1":      { nl: "ProPresenter stuurt <strong>drie verschillende beelden</strong> tegelijk uit — één voor elke doelgroep in en rondom de kerk.", en: "ProPresenter sends <strong>three different images</strong> simultaneously — one for each audience in and around the church.", fa: "ProPresenter <strong>سه تصویر مختلف</strong> را همزمان می‌فرستد — یکی برای هر مخاطب درون و اطراف کلیسا." },
+    "s2.outputs.audience.title": { nl: "Zaal (Audience)", en: "Audience", fa: "سالن" },
+    "s2.outputs.audience.desc":  { nl: "Volledige tekst inclusief de actieve video-achtergrond voor de gemeente. Dit is wat de mensen in de kerkzaal op het grote scherm zien.", en: "Full text including the active video background for the congregation. This is what people in the sanctuary see on the big screen.", fa: "متن کامل به همراه پس‌زمینه ویدیوی فعال برای جماعت. این همان چیزی است که مردم در سالن کلیسا روی صفحه بزرگ می‌بینند." },
+    "s2.outputs.stream.title":   { nl: "Livestream", en: "Livestream", fa: "پخش زنده" },
+    "s2.outputs.stream.desc":    { nl: "<strong>Lower-thirds</strong> (tekst strak onderin gecentreerd) over een transparante/alpha laag, zodat de videobeelden van de camera's in de zaal erachter vallen. Voor de online kijkers.", en: "<strong>Lower-thirds</strong> (text centered at the bottom) over a transparent/alpha layer, so the camera video from the auditorium shows behind it. For online viewers.", fa: "<strong>Lower-thirds</strong> (متن متمرکز در پایین) روی یک لایه شفاف/alpha، به طوری که ویدیوی دوربین از سالن در پشت آن نشان داده شود. برای بینندگان آنلاین." },
+    "s2.outputs.stage.title":    { nl: "Podiumscherm (Stage Display)", en: "Stage Display", fa: "نمایش صحنه" },
+    "s2.outputs.stage.desc":     { nl: "Wat de <strong>band en spreker</strong> zien op hun back-monitor. Hoge contrast-letters, huidige slide, volgende slide, een klok en eventuele timers om strak op schema te blijven.", en: "What the <strong>band and speaker</strong> see on their back monitor. High contrast lettering, current slide, next slide, a clock, and any timers to stay on schedule.", fa: "آنچه <strong>گروه و سخنران</strong> روی مانیتور پشتی خود می‌بینند. حروف با کنتراست بالا، اسلاید فعلی، اسلاید بعدی، ساعت و هرگونه تایمر برای ماندن در برنامه." },
+    // ── Section 3 ──
+    "s3.title":           { nl: "WorshipTools Planning",                en: "WorshipTools Planning",                fa: "برنامه‌ریزی WorshipTools" },
+    "s3.time":            { nl: "⏱️ 00:30 – 00:40",                    en: "⏱️ 00:30 – 00:40",                    fa: "⏱️ ۰۰:۳۰ – ۰۰:۴۰" },
+    "s3.source.title":    { nl: "Onze \"Source of Truth\": WorshipTools Planning", en: "Our \"Source of Truth\": WorshipTools Planning", fa: "\"منبع حقیقت\" ما: برنامه‌ریزی WorshipTools" },
+    "s3.source.p1":       { nl: "<strong>Alles wat we in ProPresenter qua liederen klaarzetten, is gebaseerd op dít schema.</strong> Hier vind je de exacte selectie van de liederen voor de dienst en zie je welke rollen er aan het team zijn toegewezen.", en: "<strong>Everything we set up in ProPresenter for songs is based on this schedule.</strong> Here you'll find the exact song selection for the service and see which roles have been assigned to the team.", fa: "<strong>همه چیزهایی که در ProPresenter برای سرودها تنظیم می‌کنیم بر اساس این برنامه است.</strong> در اینجا انتخاب دقیق سرودهای مراسم را پیدا می‌کنید و می‌بینید چه نقش‌هایی به تیم اختصاص داده شده است." },
+    "s3.source.p2":       { nl: "We importeren <strong>niet</strong> rechtstreeks vanuit WorshipTools naar ProPresenter. In plaats daarvan bekijk je de geplande songs in WT Planning en <em>zoek of bouw je deze handmatig op</em> in je ProPresenter playlist. ProPresenter doet dit namelijk niet zelf; jij als operator zorgt voor de juiste vertaalslag.", en: "We do <strong>not</strong> import directly from WorshipTools into ProPresenter. Instead, you look at the planned songs in WT Planning and <em>manually find or build them</em> in your ProPresenter playlist. ProPresenter does not do this automatically — you as the operator ensure the correct translation.", fa: "ما <strong>به طور مستقیم</strong> از WorshipTools به ProPresenter وارد نمی‌کنیم. در عوض، شما به سرودهای برنامه‌ریزی شده در WT Planning نگاه می‌کنید و <em>آنها را به صورت دستی پیدا یا می‌سازید</em> در لیست پخش ProPresenter خود. ProPresenter این کار را به طور خودکار انجام نمی‌دهد — شما به عنوان اپراتور ترجمه صحیح را تضمین می‌کنید." },
+    "s3.workflow1.title": { nl: "Open WorshipTools Planning",          en: "Open WorshipTools Planning",          fa: "باز کردن برنامه‌ریزی WorshipTools" },
+    "s3.workflow1.desc":  { nl: "Open dit in een browsertabblad of via de app op je telefoon om het overzicht bij de hand te hebben.", en: "Open this in a browser tab or via the app on your phone to have the overview at hand.", fa: "این را در یک برگه مرورگر یا از طریق برنامه روی تلفن خود باز کنید تا نمای کلی را در دسترس داشته باشید." },
+    "s3.workflow2.title": { nl: "Selecteer de juiste datum",           en: "Select the correct date",           fa: "تاریخ صحیح را انتخاب کنید" },
+    "s3.workflow2.desc":  { nl: "Kies de specifieke zondag die je gaat voorbereiden om de definitieve songlijst van die dienst te bekijken.", en: "Choose the specific Sunday you're preparing to see the final song list for that service.", fa: "یکشنبه خاصی را که برای آن آماده می‌شوید انتخاب کنید تا لیست نهایی سرودهای آن مراسم را ببینید." },
+    "s3.workflow3.title": { nl: "Loop de liederen door",               en: "Review the songs",               fa: "مرور سرودها" },
+    "s3.workflow3.desc":  { nl: "Neem de lijst met songs door en controleer welke specifieke nummers er gezongen gaan worden tijdens de dienst.", en: "Go through the song list and check which specific songs will be sung during the service.", fa: "لیست سرودها را مرور کنید و بررسی کنید کدام سرودهای خاص در طول مراسم خوانده خواهند شد." },
+    "s3.workflow4.title": { nl: "Zoek gericht met D-, O- of K-nummers", en: "Search specifically using D-, O-, or K-numbers", fa: "جستجوی هدفمند با شماره‌های D، O یا K" },
+    "s3.workflow4.desc":  { nl: "Maak gebruik van de <strong>D-, O- en K-nummers</strong> in WorshipTools om liederen snel en foutloos terug te vinden in onze bibliotheek. Zijn er meerdere liederen met exact dezelfde naam? Gebruik dan het <strong>CCLI-nummer</strong> als controle; dit nummer is uniek en specifiek aan één vastgesteld lied toegewezen.", en: "Use the <strong>D-, O-, and K-numbers</strong> in WorshipTools to quickly and accurately find songs in our library. Are there multiple songs with the exact same name? Use the <strong>CCLI number</strong> as validation; this number is unique and assigned to one specific established song.", fa: "از <strong>شماره‌های D، O و K</strong> در WorshipTools استفاده کنید تا سرودها را سریع و بدون خطا در کتابخانه ما پیدا کنید. چندین سرود با دقیقاً همان نام وجود دارد؟ از <strong>شماره CCLI</strong> به عنوان تأیید استفاده کنید؛ این شماره منحصربه‌فرد است و به یک سرود خاص اختصاص دارد." },
+    "s3.why.title":       { nl: "✅ Waarom is dit zo belangrijk?",      en: "✅ Why Is This So Important?",      fa: "✅ چرا این اینقدر مهم است؟" },
+    "s3.why.body":        { nl: "WorshipTools is de actuele lijst. Als er last-minute iets verandert in de planning, dan kan het zijn dat het daar het eerst wordt bijgewerkt. Controleer dus altijd WorshipTools voordat je de setlist opbouwt.", en: "WorshipTools is the current list. If something changes last minute in the schedule, it will likely be updated there first. So always check WorshipTools before building your setlist.", fa: "WorshipTools لیست جاری است. اگر چیزی در آخرین لحظه در برنامه تغییر کند، احتمالاً آنجا اول به‌روزرسانی می‌شود. بنابراین همیشه قبل از ساختن setlist خود WorshipTools را بررسی کنید." },
+    // ── Section 4 ──
+    "s4.title":           { nl: "Een Setlist Bouwen & Bewerken",    en: "Building & Editing a Setlist",    fa: "ساخت و ویرایش Setlist" },
+    "s4.time":            { nl: "⏱️ 00:40 – 01:05",                    en: "⏱️ 00:40 – 01:05",                    fa: "⏱️ ۰۰:۴۰ – ۰۱:۰۵" },
+    "s4.step1.title":     { nl: "Stap 1: Maak een nieuwe Playlist",    en: "Step 1: Create a New Playlist",    fa: "مرحله ۱: ایجاد یک لیست پخش جدید" },
+    "s4.step1.p1":        { nl: "Een playlist is jouw \"script\" voor de dienst. <strong>Wij werken altijd met templates</strong> zodat elk dienst-onderdeel meteen op de juiste plek staat — zo hoef je niet elke keer secties en standaard-onderdelen opnieuw aan te maken. Alles in de playlist wordt <strong>in volgorde</strong> afgespeeld.", en: "A playlist is your \"script\" for the service. <strong>We always work with templates</strong> so every service part is immediately in the right place — you don't have to recreate sections and standard items every time. Everything in the playlist plays <strong>in order</strong>.", fa: "لیست پخش \"فیلمنامه\" شما برای مراسم است. <strong>ما همیشه با قالب‌ها کار می‌کنیم</strong> تا هر بخش مراسم بلافاصله در جای درست باشد — مجبور نیستید هر بار بخش‌ها و آیتم‌های استاندارد را دوباره ایجاد کنید. همه چیز در لیست پخش <strong>به ترتیب</strong> پخش می‌شود." },
+    "s4.step1.zoom":      { nl: "Zoom eens in op het <strong style=\"color: #0061af;\">+ menuutje</strong> bovenaan de Playlists-kolom en de template-lijst die je te zien krijgt:", en: "Zoom in on the <strong style=\"color: #0061af;\">+ menu</strong> at the top of the Playlists column and the template list that appears:", fa: "روی <strong style=\"color: #0061af;\">منوی +</strong> در بالای ستون لیست‌های پخش و لیست قالب‌هایی که ظاهر می‌شود بزرگنمایی کنید:" },
+    "s4.step1.why.title": { nl: "💡 Waarom deze volgorde en naam?",     en: "💡 Why This Order and Name?",     fa: "💡 چرا این ترتیب و نام؟" },
+    "s4.step1.why.body":  { nl: "Door een template te kiezen hoef je niet elke week opnieuw de standaard-onderdelen van een dienst aan te maken. De <strong>datum als naam</strong> (<em>dd-mm-yyyy</em>) in combinatie met de handmatige indeling in de maandmappen zorgt ervoor dat het archief overzichtelijk blijft en we snel terug kunnen zoeken.", en: "By choosing a template you don't have to recreate the standard service parts every week. Using the <strong>date as the name</strong> (<em>dd-mm-yyyy</em>) combined with manual organization in month folders keeps the archive tidy and allows quick searching.", fa: "با انتخاب یک قالب مجبور نیستید هر هفته بخش‌های استاندارد مراسم را دوباره ایجاد کنید. استفاده از <strong>تاریخ به عنوان نام</strong> (<em>dd-mm-yyyy</em>) همراه با سازماندهی دستی در پوشه‌های ماهانه، بایگانی را مرتب نگه می‌دارد و جستجوی سریع را امکان‌پذیر می‌کند." },
+    "s4.step2.title":     { nl: "Stap 2: Liederen Zoeken & Toevoegen", en: "Step 2: Searching & Adding Songs", fa: "مرحله ۲: جستجو و افزودن سرودها" },
+    "s4.step2.p1":        { nl: "Welk lied je ook toevoegt: <strong>plaats het altijd onder de juiste sectie-kop van je template</strong> (bijvoorbeeld onder <em>Openingslied</em>, <em>Praise & Worship</em> of <em>Eindlied</em>). Sleep het lied dus niet willekeurig ergens naartoe, maar positioneer het strak onder de juiste header.", en: "Whichever song you add: <strong>always place it under the correct section header of your template</strong> (for example under <em>Opening Song</em>, <em>Praise & Worship</em> or <em>Closing Song</em>). Don't just drag the song anywhere, but position it neatly under the right header.", fa: "هر سرودی که اضافه می‌کنید: <strong>همیشه آن را زیر عنوان بخش صحیح قالب خود قرار دهید</strong> (مثلاً زیر <em>سرود شروع</em>, <em>Praise & Worship</em> یا <em>سرود پایان</em>). سرود را هر جایی نکشید، بلکه آن را مرتب زیر عنوان درست قرار دهید." },
+    "s4.feature1.title":  { nl: "Lied staat in de bibliotheek",         en: "Song is in the library",         fa: "سرود در کتابخانه موجود است" },
+    "s4.feature1.desc":   { nl: "Als je zoekt op het D-, O- of K-nummer en het lied verschijnt direct met het ProPresenter-icoon, sleep je het zo je playlist in. Dit is de standaard route.", en: "If you search by D-, O- or K-number and the song appears directly with the ProPresenter icon, just drag it into your playlist. This is the standard route.", fa: "اگر با شماره D، O یا K جستجو کنید و سرود مستقیماً با آیکون ProPresenter ظاهر شود، آن را به لیست پخش خود بکشید. این مسیر استاندارد است." },
+    "s4.feature2.title":  { nl: "Lied ontbreekt? Gebruik CCLI & Importeer", en: "Song missing? Use CCLI & Import", fa: "سرود موجود نیست؟ از CCLI و Import استفاده کنید" },
+    "s4.feature2.desc":   { nl: "Kun je het lied niet lokaal vinden? Schakel in het zoekvenster over naar het <strong>SongSelect-icoon</strong> (naast het blauwe logo).", en: "Can't find the song locally? Switch to the <strong>SongSelect icon</strong> in the search window (next to the blue logo).", fa: "نمی‌توانید سرود را به صورت محلی پیدا کنید؟ در پنجره جستجو به <strong>آیکون SongSelect</strong> (کنار لوگوی آبی) تغییر دهید." },
+    "s4.step3.title":     { nl: "Stap 3: Lied Bewerken met de Reflow Editor", en: "Step 3: Edit Songs with the Reflow Editor", fa: "مرحله ۳: ویرایش سرودها با Reflow Editor" },
+    "s4.step3.p1":        { nl: "Het is verleidelijk om in de grafische editor te gaan prutsen — <strong>doe dat niet</strong>. Om de lay-out en structuur van liederen aan te passen, maken we gebruik van de <em>Reflow Editor</em>. Dit werkt veel sneller en behoudt onze vaste opmaak.", en: "It's tempting to tinker in the graphical editor — <strong>don't do it</strong>. To adjust the layout and structure of songs, we use the <em>Reflow Editor</em>. This is much faster and preserves our fixed formatting.", fa: "وسوسه‌انگیز است که در ویرایشگر گرافیکی دستکاری کنید — <strong>این کار را نکنید</strong>. برای تنظیم چیدمان و ساختار سرودها، از <em>Reflow Editor</em> استفاده می‌کنیم. این بسیار سریع‌تر است و قالب‌بندی ثابت ما را حفظ می‌کند." },
+    "s4.reflow.rule.title":   { nl: "De 2-Regel Richtlijn",             en: "The 2-Line Guideline",             fa: "دستورالعمل ۲ خط" },
+    "s4.reflow.rule.desc":   { nl: "Bij het indelen van de tekst streven we er altijd naar om <strong>exact 2 regels per slide</strong> te tonen. Nooit meer. Af en toe is 1 regel ook toegestaan, mits dit qua zinsopbouw of timing beter uitkomt.", en: "When arranging text, we always aim to show <strong>exactly 2 lines per slide</strong>. No more than that. Occasionally 1 line is also acceptable if it works better for sentence structure or timing.", fa: "هنگام تنظیم متن، ما همیشه تلاش می‌کنیم <strong>دقیقاً ۲ خط در هر اسلاید</strong> نشان دهیم. بیشتر از آن نه. گاهی اوقات ۱ خط نیز قابل قبول است اگر برای ساختار جمله یا زمان‌بندی بهتر باشد." },
+    "s4.reflow.split.title":  { nl: "Regels & Slides splitsen",     en: "Splitting Lines & Slides",     fa: "تقسیم خطوط و اسلایدها" },
+    "s4.reflow.split.desc":  { nl: "Wil je tekst op een volgende regel plaatsen? Druk op <kbd>Enter</kbd>. <br> Wil je tekst verplaatsen naar een compleet nieuwe slide? Druk op <kbd>Ctrl + Enter</kbd>.", en: "Want to put text on the next line? Press <kbd>Enter</kbd>. <br> Want to move text to a completely new slide? Press <kbd>Ctrl + Enter</kbd>.", fa: "می‌خواهید متن را در خط بعدی قرار دهید؟ <kbd>Enter</kbd> را فشار دهید. <br> می‌خواهید متن را به یک اسلاید کاملاً جدید منتقل کنید؟ <kbd>Ctrl + Enter</kbd> را فشار دهید." },
+    "s4.reflow.enter.label": { nl: "<strong style=\"color: var(--accent-teal);\">⏎ Enter</strong> — tekst naar volgende regel", en: "<strong style=\"color: var(--accent-teal);\">⏎ Enter</strong> — text to next line", fa: "<strong style=\"color: var(--accent-teal);\">⏎ Enter</strong> — متن به خط بعدی" },
+    "s4.reflow.ctrl.label":  { nl: "<strong style=\"color: var(--accent-orange);\">⌨ Ctrl + Enter</strong> — tekst naar nieuwe slide", en: "<strong style=\"color: var(--accent-orange);\">⌨ Ctrl + Enter</strong> — text to new slide", fa: "<strong style=\"color: var(--accent-orange);\">⌨ Ctrl + Enter</strong> — متن به اسلاید جدید" },
+    "s4.reflow.example.label": { nl: "Hieronder zie je in het werkvlak hoe een correct bewerkt lied met de juiste regelverdeling eruit hoort te zien:", en: "Below you can see in the work area what a correctly edited song with proper line distribution should look like:", fa: "در زیر در محیط کار می‌بینید که یک سرود درست ویرایش شده با توزیع خط مناسب چگونه باید باشد:" },
+    "s4.reflow.warning.title": { nl: "⚠️ Wanneer wel de gewone editor?", en: "⚠️ When to Use the Regular Editor", fa: "⚠️ چه زمانی از ویرایشگر معمولی استفاده کنیم؟" },
+    "s4.reflow.warning.body": { nl: "Alleen als je <strong>bewust visuele aanpassingen</strong> wilt doen aan objecten, transitions of specifieke achtergrond-afbeeldingen. Voor pure tekstuele lay-out en splitsingen: blijf altijd in de Reflow Editor.", en: "Only when you want to make <strong>deliberate visual changes</strong> to objects, transitions, or specific background images. For pure textual layout and splitting: always stay in the Reflow Editor.", fa: "فقط زمانی که می‌خواهید <strong>تغییرات بصری عمدی</strong> در اشیاء، transitions یا تصاویر پس‌زمینه خاص ایجاد کنید. برای چیدمان و تقسیم‌بندی صرفاً متنی: همیشه در Reflow Editor بمانید." },
+    "s4.step4.title":      { nl: "Stap 4: Mededelingen Up-to-Date Houden", en: "Step 4: Keeping Announcements Up to Date", fa: "مرحله ۴: به‌روز نگه داشتن اعلان‌ها" },
+    "s4.step4.p1":         { nl: "De mededelingen-presentatie is een dynamisch onderdeel van de dienst. Het is cruciaal dat deze <strong>elke week kritisch wordt nagelopen</strong> om te voorkomen dat er verouderde of foutieve informatie op de schermen verschijnt.", en: "The announcements presentation is a dynamic part of the service. It's crucial that this is <strong>carefully reviewed every week</strong> to prevent outdated or incorrect information from appearing on the screens.", fa: "ارائه اعلان‌ها بخش پویایی از مراسم است. بسیار مهم است که این <strong>هر هفته با دقت بررسی شود</strong> تا از ظاهر شدن اطلاعات قدیمی یا نادرست روی صفحه‌ها جلوگیری شود." },
+    "s4.step4.check.title": { nl: "Wekelijkse Controle",               en: "Weekly Check",               fa: "بررسی هفتگی" },
+    "s4.step4.check.desc":  { nl: "Loop alle actieve sheets wekelijks langs. Als een standaard evenement of vaste activiteit in die specifieke week een keer <strong>niet doorgaat</strong>, haal je de betreffende slide voor die dienst uit de presentatie.", en: "Go through all active slides weekly. If a regular event or fixed activity <strong>is canceled</strong> that particular week, remove the relevant slide from the presentation for that service.", fa: "همه برگه‌های فعال را هفتگی مرور کنید. اگر یک رویداد معمولی یا فعالیت ثابت در آن هفته خاص <strong>لغو شده است</strong>، اسلاید مربوطه را برای آن مراسم از ارائه حذف کنید." },
+    "s4.step4.new.title":   { nl: "Nieuwe Mededelingen",               en: "New Announcements",               fa: "اعلان‌های جدید" },
+    "s4.step4.new.desc":    { nl: "Zijn er nieuwe aankondigingen, flyers of dia's aangeleverd? Deze kun je eenvoudig vanuit je bestanden rechtstreeks <strong>in de actieve mededelingen-presentatie slepen</strong> om ze aan de rotatie toe te voegen.", en: "Have new announcements, flyers, or slides been submitted? You can simply drag them from your files directly <strong>into the active announcements presentation</strong> to add them to the rotation.", fa: "اعلان‌ها، بروشورها یا اسلایدهای جدیدی ارائه شده است؟ می‌توانید آنها را به سادگی از فایل‌های خود مستقیماً <strong>به ارائه اعلان‌های فعال بکشید</strong> تا به چرخه اضافه شوند." },
+    // ── Section 5 ──
+    "s5.title":           { nl: "Besturing: Live de Dienst Draaien",    en: "Control: Running the Service Live",    fa: "کنترل: اجرای زنده مراسم" },
+    "s5.time":            { nl: "⏱️ 01:05 – 01:20",                    en: "⏱️ 01:05 – 01:20",                    fa: "⏱️ ۰۱:۰۵ – ۰۱:۲۰" },
+    "s5.overview.title":  { nl: "Overzicht — Muis & Toetsenbord",  en: "Overview — Mouse & Keyboard",  fa: "مرور کلی — ماوس و صفحه‌کلید" },
+    "s5.overview.p1":     { nl: "Het live aansturen van een dienst draait om <strong>rust en overzicht</strong>. ProPresenter geeft je twee manieren om door de dienst heen te lopen: met de <strong>muis</strong> (voor het grove werk en navigatie) en met het <strong>toetsenbord</strong> (voor de strakke timing tijdens de liederen).", en: "Running a service live is all about <strong>calm and clarity</strong>. ProPresenter gives you two ways to navigate the service: with the <strong>mouse</strong> (for coarse work and navigation) and with the <strong>keyboard</strong> (for precise timing during songs).", fa: "اجرای زنده مراسم همه چیز درباره <strong>آرامش و وضوح</strong> است. ProPresenter دو راه برای پیمایش در مراسم به شما می‌دهد: با <strong>ماوس</strong> (برای کارهای درشت و پیمایش) و با <strong>صفحه‌کلید</strong> (برای زمان‌بندی دقیق در طول سرودها)." },
+    "s5.mouse.title":     { nl: "🖱️ Besturing met de Muis",            en: "🖱️ Mouse Control",            fa: "🖱️ کنترل با ماوس" },
+    "s5.mouse.p1":        { nl: "De muis is je belangrijkste tool om door de structuur van de dienst te navigeren. Het scherm is opgedeeld tussen je <strong>Playlist</strong> (de planning van de dienst aan de linkerkant) en het <strong>Slide-overzicht</strong> (de dia's van het geselecteerde item in het midden).", en: "The mouse is your primary tool for navigating the service structure. The screen is divided between your <strong>Playlist</strong> (the service schedule on the left) and the <strong>Slide overview</strong> (the slides of the selected item in the center).", fa: "ماوس ابزار اصلی شما برای پیمایش در ساختار مراسم است. صفحه بین <strong>Playlist</strong> شما (برنامه مراسم در سمت چپ) و <strong>نمای اسلاید</strong> (اسلایدهای آیتم انتخاب شده در مرکز) تقسیم شده است." },
+    "s5.mouse.li1":       { nl: "<strong>Wisselen tussen items:</strong> In de linkerbalk (je Playlist) zie je het verloop van de dienst (bijv. <em>Welkom → Lied 1 → Mededelingen → Preek</em>). Klik op een item in deze lijst om alle bijbehorende slides in het centrale scherm te laden.", en: "<strong>Switching between items:</strong> In the left sidebar (your Playlist) you see the service flow (e.g., <em>Welcome → Song 1 → Announcements → Sermon</em>). Click an item in this list to load all its slides in the central screen.", fa: "<strong>جابجایی بین آیتم‌ها:</strong> در نوار کناری راست (Playlist شما) جریان مراسم را می‌بینید (مثلاً <em>Welcome → Song 1 → Announcements → Sermon</em>). روی یک آیتم در این لیست کلیک کنید تا همه اسلایدهای آن در صفحه مرکزی بارگذاری شوند." },
+    "s5.mouse.li2":       { nl: "<strong>Scrollen door slides:</strong> Gebruik het scrollwiel van je muis in het centrale slide-overzicht om door de slides van een specifiek lied of de preek te bladeren. Zo kun je alvast vooruitkijken wat er aan zit te komen.", en: "<strong>Scrolling through slides:</strong> Use your mouse scroll wheel in the central slide overview to browse through the slides of a specific song or sermon. This lets you preview what's coming up.", fa: "<strong>پیمایش در اسلایدها:</strong> از چرخ اسکرول ماوس خود در نمای اسلاید مرکزی استفاده کنید تا اسلایدهای یک سرود یا موعظه خاص را مرور کنید. این به شما امکان می‌دهد پیش‌نمایش کنید چه چیزی در راه است." },
+    "s5.mouse.warning.title": { nl: "⚠️ Belangrijk: Elke klik is LIVE!", en: "⚠️ Important: Every Click is LIVE!", fa: "⚠️ مهم: هر کلیک زنده است!" },
+    "s5.mouse.warning.body": { nl: "Zodra je met de muis op een slide klikt in het centrale overzicht, wordt deze <strong>direct naar de schermen en de livestream gestuurd</strong>. Let dus goed op waar je klikt. Wil je alleen door de tekst bladeren zonder dat de zaal het ziet? Gebruik dan puur het scrollwiel en klik de slides niet aan.", en: "As soon as you click a slide in the central overview, it is <strong>immediately sent to the screens and livestream</strong>. So be careful where you click. If you only want to browse the text without the auditorium seeing it, just use the scroll wheel and don't click the slides.", fa: "به محض اینکه روی یک اسلاید در نمای مرکزی کلیک کنید، <strong>بلافاصله به صفحه‌ها و پخش زنده فرستاده می‌شود</strong>. پس مراقب باشید کجا کلیک می‌کنید. اگر فقط می‌خواهید متن را بدون اینکه سالن ببیند مرور کنید، فقط از چرخ اسکرول استفاده کنید و روی اسلایدها کلیک نکنید." },
+    "s5.keyboard.title":  { nl: "⌨️ Besturing met het Toetsenbord",    en: "⌨️ Keyboard Control",    fa: "⌨️ کنترل با صفحه‌کلید" },
+    "s5.keyboard.p1":     { nl: "Als een lied eenmaal is gestart, kun je de muis loslaten. Het toetsenbord werkt <strong>sneller, nauwkeuriger</strong> en voorkomt dat je per ongeluk op een verkeerde slide klikt. Leer jezelf direct deze basistoetsen aan:", en: "Once a song has started, you can let go of the mouse. The keyboard is <strong>faster, more precise</strong> and prevents accidentally clicking the wrong slide. Teach yourself these basic keys right away:", fa: "وقتی یک سرود شروع شد، می‌توانید ماوس را رها کنید. صفحه‌کلید <strong>سریع‌تر، دقیق‌تر</strong> است و از کلیک تصادفی روی اسلاید اشتباه جلوگیری می‌کند. همین حالا این کلیدهای پایه را به خود یاد دهید:" },
+    "s5.keyboard.nav":    { nl: "Navigatie",                           en: "Navigation",                           fa: "پیمایش" },
+    "s5.shortcut.next.name":    { nl: "Volgende slide / actie",         en: "Next slide / action",         fa: "اسلاید / اقدام بعدی" },
+    "s5.shortcut.next.desc":    { nl: "Je meest gebruikte toets — spring vloeiend naar de volgende dia", en: "Your most-used key — smoothly jump to the next slide", fa: "پرکاربردترین کلید شما — پرش روان به اسلاید بعدی" },
+    "s5.shortcut.nextalt.name": { nl: "Volgende slide (alternatief)",   en: "Next slide (alternative)",   fa: "اسلاید بعدی (جایگزین)" },
+    "s5.shortcut.nextalt.desc": { nl: "Doet hetzelfde als de spatiebalk; handig als je hand op de pijltoetsen rust", en: "Same as the spacebar; useful if your hand is on the arrow keys", fa: "همانند spacebar؛ مفید وقتی دست شما روی کلیدهای جهت‌نما است" },
+    "s5.shortcut.prev.name":    { nl: "Vorige slide",                   en: "Previous slide",                   fa: "اسلاید قبلی" },
+    "s5.shortcut.prev.desc":    { nl: "Spring één slide terug — ideaal als de band onverwacht een zin herhaalt", en: "Jump back one slide — ideal if the band unexpectedly repeats a line", fa: "یک اسلاید به عقب برگرد — ایده‌آل اگر گروه به طور غیرمنتظره یک خط را تکرار کند" },
+    "s5.hotkeys.title":  { nl: "Direct springen naar groepen (Hot Keys)", en: "Jump Directly to Groups (Hot Keys)", fa: "پرش مستقیم به گروه‌ها (کلیدهای داغ)" },
+    "s5.hotkeys.intro":  { nl: "Als de band afwijkt van de vaste volgorde, kun je met letters op je toetsenbord direct naar het juiste gedeelte van het lied springen:", en: "If the band deviates from the fixed order, you can use letters on your keyboard to jump directly to the right section of the song:", fa: "اگر گروه از ترتیب ثابت منحرف شود، می‌توانید با حروف روی صفحه‌کلید خود مستقیماً به بخش صحیح سرود بپرید:" },
+    "s5.hotkey.a.name":  { nl: "Verse 1 / Couplet 1",                  en: "Verse 1",                  fa: "بند ۱" },
+    "s5.hotkey.a.desc":  { nl: "Springt direct naar de eerste dia van Couplet 1", en: "Jumps directly to the first slide of Verse 1", fa: "مستقیماً به اولین اسلاید بند ۱ می‌پرد" },
+    "s5.hotkey.s.name":  { nl: "Verse 2 / Couplet 2",                  en: "Verse 2",                  fa: "بند ۲" },
+    "s5.hotkey.s.desc":  { nl: "Springt direct naar de eerste dia van Couplet 2", en: "Jumps directly to the first slide of Verse 2", fa: "مستقیماً به اولین اسلاید بند ۲ می‌پرد" },
+    "s5.hotkey.c.name":  { nl: "Chorus / Refrein",                     en: "Chorus",                     fa: "گروه‌سرایی" },
+    "s5.hotkey.c.desc":  { nl: "Springt direct naar het Refrein",      en: "Jumps directly to the Chorus",      fa: "مستقیماً به گروه‌سرایی می‌پرد" },
+    "s5.hotkey.b.name":  { nl: "Bridge",                               en: "Bridge",                               fa: "پل" },
+    "s5.hotkey.b.desc":  { nl: "Springt direct naar de Bridge",        en: "Jumps directly to the Bridge",        fa: "مستقیماً به پل می‌پرد" },
+    "s5.hotkey.i.name":  { nl: "Intro / Inleiding",                    en: "Intro",                    fa: "مقدمه" },
+    "s5.hotkey.i.desc":  { nl: "Springt terug naar de start/introductie van het lied", en: "Jumps back to the start/intro of the song", fa: "به شروع/مقدمه سرود برمی‌گردد" },
+    "s5.tips.title":     { nl: "💡 Handige Pro-Tips voor Live Besturing", en: "💡 Handy Pro Tips for Live Control", fa: "💡 نکات حرفه‌ای مفید برای کنترل زنده" },
+    "s5.tip1.title":     { nl: "Schakel op tijd",                      en: "Switch in Time",                      fa: "به موقع تغییر دهید" },
+    "s5.tip1.text":      { nl: "Probeer altijd net een fractie <strong>vóórdat</strong> de gemeente de volgende zin gaat zingen al te switchen (ongeveer op de laatste lettergreep van de huidige slide). Dit geeft de zaal en de kijkers thuis tijd om de nieuwe tekst te lezen.", en: "Always try to switch just a fraction <strong>before</strong> the congregation starts singing the next line (about on the last syllable of the current slide). This gives the audience and viewers at home time to read the new text.", fa: "همیشه سعی کنید فقط یک لحظه <strong>قبل از</strong> اینکه جماعت شروع به خواندن خط بعدی کند تغییر دهید (حدوداً روی آخرین هجای اسلاید فعلی). این به مخاطبان و بینندگان خانه زمان می‌دهد تا متن جدید را بخوانند." },
+    "s5.tip2.title":     { nl: "Houd je hand stand-by",                en: "Keep Your Hand on Standby",                fa: "دست خود را آماده نگه دارید" },
+    "s5.tip2.text":      { nl: "Leg tijdens de zangbegeleiding je hand <strong>ontspannen op de spatiebalk</strong> of de pijltoetsen. Dit voorkomt dat je op het laatste moment naar je toetsenbord moet zoeken en te laat schakelt.", en: "During singing, keep your hand <strong>relaxed on the spacebar</strong> or arrow keys. This prevents scrambling for your keyboard at the last moment and switching too late.", fa: "در طول آواز، دست خود را <strong>آرام روی spacebar</strong> یا کلیدهای جهت‌نما نگه دارید. این کار از جستجوی ورق‌آخر برای صفحه‌کلید و تغییر دیرهنگام جلوگیری می‌کند." },
+    // ── Section 6 ──
+    "s6.title":           { nl: "Geavanceerd: Externe Controle & De Magie", en: "Advanced: External Control & The Magic", fa: "پیشرفته: کنترل خارجی و جادو" },
+    "s6.time":            { nl: "⏱️ 01:20 – 01:30",                    en: "⏱️ 01:20 – 01:30",                    fa: "⏱️ ۰۱:۲۰ – ۰۱:۳۰" },
+    "s6.macros.title":    { nl: "Wat zijn Macros en hoe gebruiken wij ze?", en: "What Are Macros and How Do We Use Them?", fa: "ماکروها چیستند و چگونه از آنها استفاده می‌کنیم؟" },
+    "s6.macros.p1":       { nl: "In ProPresenter bepalen <strong>Macros</strong> hoe de schermen in de zaal en op de livestream eruitzien. Soms zie je in tutorials dat macros aan specifieke slides worden gekoppeld, maar <strong>dat vermijden wij</strong>. Macros blijven bij ons altijd in hun eigen balk (<em>M-balk</em> aan de rechterkant).", en: "In ProPresenter, <strong>Macros</strong> determine how the screens in the auditorium and livestream look. Sometimes tutorials show macros linked to specific slides, but <strong>we avoid that</strong>. We keep macros in their own bar (<em>M-bar</em> on the right side).", fa: "در ProPresenter، <strong>ماکروها</strong> تعیین می‌کنند که صفحه‌های سالن و پخش زنده چگونه به نظر برسند. گاهی آموزش‌ها نشان می‌دهند که ماکروها به اسلایدهای خاصی متصل می‌شوند، اما <strong>ما از آن اجتناب می‌کنیم</strong>. ما ماکروها را در نوار خودشان نگه می‌داریم (<em>نوار M</em> در سمت راست)." },
+    "s6.macros.p2":       { nl: "Het is jouw taak om handmatig door de dienst heen de juiste macro aan te klikken op het juiste moment.", en: "It's your task to manually click the right macro at the right time throughout the service.", fa: "این وظیفه شماست که به صورت دستی در طول مراسم ماکروی مناسب را در زمان مناسب کلیک کنید." },
+    "s6.macrooverview.title": { nl: "Overzicht van de Macros",         en: "Macro Overview",         fa: "نمای کلی ماکروها" },
+    "s6.macrooverview.intro": { nl: "Hieronder vind je de macros die je in de rechterbalk ziet staan en wanneer je ze activeert:", en: "Below are the macros you see in the right sidebar and when to activate them:", fa: "در زیر ماکروهایی را که در نوار کناری سمت راست می‌بینید و زمان فعال‌سازی آنها آمده است:" },
+    "s6.macro1.title":    { nl: "Startup",                              en: "Startup",                              fa: "راه‌اندازی" },
+    "s6.macro1.when":     { nl: "<strong>Wanneer:</strong> Start automatisch zodra ProPresenter opstart.", en: "<strong>When:</strong> Starts automatically when ProPresenter launches.", fa: "<strong>زمان:</strong> به طور خودکار هنگام راه‌اندازی ProPresenter شروع می‌شود." },
+    "s6.macro1.func":     { nl: "<strong>Functie:</strong> Zet de basisinstellingen op de achtergrond direct goed. Hier hoef je live tijdens de dienst niets mee te doen.", en: "<strong>Function:</strong> Sets the basic background settings correctly. You don't need to do anything with this live during the service.", fa: "<strong>عملکرد:</strong> تنظیمات پایه پس‌زمینه را به درستی تنظیم می‌کند. نیازی به انجام کاری با این در طول مراسم ندارید." },
+    "s6.macro2.title":    { nl: "Welkom",                               en: "Welcome",                               fa: "خوش‌آمدگویی" },
+    "s6.macro2.when":     { nl: "<strong>Wanneer:</strong> Moet <strong>minimaal een kwartier (15 minuten) voor aanvang van de dienst</strong> handmatig worden aangezet.", en: "<strong>When:</strong> Must be activated manually <strong>at least 15 minutes before the service starts</strong>.", fa: "<strong>زمان:</strong> باید <strong>حداقل ۱۵ دقیقه قبل از شروع مراسم</strong> به صورت دستی فعال شود." },
+    "s6.macro2.func":     { nl: "<strong>Functie:</strong> Zorgt ervoor dat de beelden en signalen alvast correct naar derden (zoals de livestream/videomixer) worden verzonden voordat we live gaan.", en: "<strong>Function:</strong> Ensures images and signals are already sent correctly to third parties (like the livestream/video mixer) before we go live.", fa: "<strong>عملکرد:</strong> اطمینان می‌دهد که تصاویر و سیگنال‌ها قبل از رفتن به پخش زنده به درستی به اشخاص ثالث (مانند پخش زنده/میکسر ویدیو) ارسال شده‌اند." },
+    "s6.macro3.title":    { nl: "Praise & Worship",                 en: "Praise & Worship",                 fa: "حمد و پرستش" },
+    "s6.macro3.when":     { nl: "<strong>Wanneer:</strong> Activeer deze zodra de zangdienst begint en er liederen worden gezongen.", en: "<strong>When:</strong> Activate this as soon as the singing starts and songs are being sung.", fa: "<strong>زمان:</strong> به محض شروع آواز و خوانده شدن سرودها این را فعال کنید." },
+    "s6.macro3.func":     { nl: "<strong>Functie:</strong> Schakelt de juiste achtergronden en tekstlay-outs in voor de aanbidding.", en: "<strong>Function:</strong> Switches to the right backgrounds and text layouts for worship.", fa: "<strong>عملکرد:</strong> به پس‌زمینه‌ها و چیدمان‌های متنی مناسب برای پرستش تغییر می‌کند." },
+    "s6.macro4.title":    { nl: "Mededelingen",                         en: "Announcements",                         fa: "اعلان‌ها" },
+    "s6.macro4.when":     { nl: "<strong>Wanneer:</strong> Schakel hiernaar over op het moment dat de mededelingen op het scherm worden getoond.", en: "<strong>When:</strong> Switch to this when announcements are shown on screen.", fa: "<strong>زمان:</strong> وقتی اعلان‌ها روی صفحه نشان داده می‌شوند به این تغییر دهید." },
+    "s6.macro4.func":     { nl: "<strong>Functie:</strong> Formatteert de schermen specifiek voor de mededelingenslides.", en: "<strong>Function:</strong> Formats the screens specifically for announcement slides.", fa: "<strong>عملکرد:</strong> صفحه‌ها را به طور خاص برای اسلایدهای اعلان فرمت می‌کند." },
+    "s6.macro5.title":    { nl: "Preek",                                en: "Sermon",                                fa: "موعظه" },
+    "s6.macro5.desc":     { nl: "<strong>Wanneer:</strong> Gebruik deze bij de start van de preek voor het tonen van de presentatie (PowerPoint of slides van de spreker).", en: "<strong>When:</strong> Use this at the start of the sermon to show the presentation (PowerPoint or the speaker's slides).", fa: "<strong>زمان:</strong> در شروع موعظه برای نمایش ارائه (PowerPoint یا اسلایدهای سخنران) استفاده کنید." },
+    "s6.macro6.title":    { nl: "Bijbel",                               en: "Bible",                               fa: "کتاب مقدس" },
+    "s6.macro6.when":     { nl: "<strong>Wanneer:</strong> Is er geen presentatie, maar worden er wel live Bijbelteksten opgezocht en getoond? Gebruik dan deze macro.", en: "<strong>When:</strong> Is there no presentation but live Bible texts are being looked up and displayed? Use this macro.", fa: "<strong>زمان:</strong> آیا ارائه‌ای وجود ندارد اما متن‌های زنده کتاب مقدس جستجو و نمایش داده می‌شوند؟ از این ماکرو استفاده کنید." },
+    "s6.macro6.func":     { nl: "<strong>Functie:</strong> Toont de losse Bijbelteksten in een beter, geoptimaliseerd format op de schermen.", en: "<strong>Function:</strong> Displays individual Bible texts in a better, optimized format on the screens.", fa: "<strong>عملکرد:</strong> متن‌های جداگانه کتاب مقدس را در قالبی بهتر و بهینه‌شده روی صفحه‌ها نمایش می‌دهد." },
+    "s6.macro7.title":    { nl: "Einde-dienst",                         en: "End of Service",                         fa: "پایان مراسم" },
+    "s6.macro7.when":     { nl: "<strong>Wanneer:</strong> Klik hierop direct nadat de dienst is afgelopen.", en: "<strong>When:</strong> Click this right after the service ends.", fa: "<strong>زمان:</strong> بلافاصله پس از پایان مراسم روی این کلیک کنید." },
+    "s6.macro7.func":     { nl: "<strong>Functie:</strong> Sluit de live-lay-outs af en zorgt ervoor dat de mededelingen direct weer in een automatische loop (lus) gaan draaien voor de mensen in de zaal en de livestream.", en: "<strong>Function:</strong> Closes the live layouts and ensures the announcements start running in an automatic loop for the people in the auditorium and the livestream.", fa: "<strong>عملکرد:</strong> چیدمان‌های زنده را می‌بندد و اطمینان می‌دهد که اعلان‌ها دوباره در یک حلقه خودکار برای مردم سالن و پخش زنده شروع به کار کنند." },
+    "s6.looks.title":     { nl: "Looks — Wat je per scherm ziet",       en: "Looks — What You See Per Screen",       fa: "نماها — آنچه در هر صفحه می‌بینید" },
+    "s6.looks.p1":        { nl: "Een <strong>Look</strong> bepaalt dat scherm A (bijv. Zaal) wél een achtergrond krijgt, maar scherm B (Livestream) niet. Zo zien verschillende outputs er anders uit — <strong>vanuit dezelfde slide</strong>.", en: "A <strong>Look</strong> determines that Screen A (e.g., Auditorium) gets a background, but Screen B (Livestream) doesn't. This way different outputs look different — <strong>from the same slide</strong>.", fa: "یک <strong>نما</strong> تعیین می‌کند که صفحه A (مثلاً سالن) پس‌زمینه دریافت کند، اما صفحه B (پخش زنده) دریافت نکند. به این ترتیب خروجی‌های مختلف متفاوت به نظر می‌رسند — <strong>از همان اسلاید</strong>." },
+    "s6.looks.p2":        { nl: "In het Looks-venster (<strong>Screens → Edit Looks</strong>) kies je per scherm welke lagen zichtbaar zijn. Zo kun je bijvoorbeeld de tekst wél naar de zaal sturen, maar naar de livestream een alpha-kanaal (lower-thirds) zonder achtergrond.", en: "In the Looks window (<strong>Screens → Edit Looks</strong>) you choose per screen which layers are visible. This way you can send text to the auditorium but send an alpha channel (lower-thirds) without background to the livestream.", fa: "در پنجره نماها (<strong>Screens → Edit Looks</strong>) برای هر صفحه انتخاب می‌کنید کدام لایه‌ها قابل مشاهده باشند. به این ترتیب می‌توانید متن را به سالن بفرستید اما یک کانال alpha (lower-thirds) بدون پس‌زمینه به پخش زنده بفرستید." },
+    "s6.looks.highlight.title": { nl: "💡 Hoe herken je een Look in actie?", en: "💡 How to Recognize a Look in Action?", fa: "💡 چگونه یک نما را در عمل تشخیص دهیم؟" },
+    "s6.looks.highlight.body": { nl: "Als je een macro activeert (bijv. <em>Praise & Worship</em>), schakelt die op de achtergrond automatisch de juiste Look in — en daarmee de juiste scherm-layout voor dat moment. <strong>Jij hoeft alleen de macro aan te klikken; de Look regelt de rest.</strong>", en: "When you activate a macro (e.g., <em>Praise & Worship</em>), it automatically enables the right Look in the background — and with it the correct screen layout for that moment. <strong>You just need to click the macro; the Look handles the rest.</strong>", fa: "وقتی یک ماکرو را فعال می‌کنید (مثلاً <em>Praise & Worship</em>)، به طور خودکار نمای مناسب را در پس‌زمینه فعال می‌کند — و با آن چیدمان صفحه صحیح برای آن لحظه. <strong>شما فقط باید ماکرو را کلیک کنید؛ نما بقیه را مدیریت می‌کند.</strong>" },
+    "s6.streamdeck.title":      { nl: "🎛️ Externe Controle — Stream Deck & Companion", en: "🎛️ External Control — Stream Deck & Companion", fa: "🎛️ کنترل خارجی — Stream Deck و Companion" },
+    "s6.streamdeck.p1":         { nl: "ProPresenter kan ook <strong>op afstand</strong> worden aangestuurd. Dit is handig als de operator niet achter de computer staat, maar bijvoorbeeld bij de band of bij de camera staat.", en: "ProPresenter can also be controlled <strong>remotely</strong>. This is useful if the operator is not at the computer but, for example, with the band or at the camera.", fa: "ProPresenter همچنین می‌تواند <strong>از راه دور</strong> کنترل شود. این مفید است اگر اپراتور پشت کامپیوتر نیست، بلکه مثلاً با گروه یا دوربین است." },
+    "s6.streamdeck.feature.title": { nl: "Stream Deck met Companion",   en: "Stream Deck with Companion",   fa: "Stream Deck با Companion" },
+    "s6.streamdeck.feature.desc":  { nl: "Fysieke knoppen die je zelf kunt programmeren met <em>Companion</em>-software. Eén knop = één actie: een slide vooruit, een macro starten, een timer resetten. Het werkt via het netwerk — geen extra kabels nodig.", en: "Physical buttons you can program yourself using <em>Companion</em> software. One button = one action: advance a slide, start a macro, reset a timer. It works over the network — no extra cables needed.", fa: "دکمه‌های فیزیکی که می‌توانید خودتان با نرم‌افزار <em>Companion</em> برنامه‌ریزی کنید. یک دکمه = یک اقدام: اسلاید بعدی، شروع یک ماکرو، ریست تایمر. از طریق شبکه کار می‌کند — بدون نیاز به کابل اضافی." },
+    "s6.forget.title":      { nl: "🚫 Wat je hier niet hoeft te onthouden", en: "🚫 What You Don't Need to Remember Here", fa: "🚫 آنچه لازم نیست اینجا به خاطر بسپارید" },
+    "s6.forget.body":       { nl: "Je hoeft niet te weten <em>hoe</em> je een Stream Deck profiel bouwt of een Remote App configureert. Het is voldoende als je weet <strong>dat</strong> het mogelijk is — en dat je het kunt herkennen als je het ziet.", en: "You don't need to know <em>how</em> to build a Stream Deck profile or configure a Remote App. It's enough to know <strong>that</strong> it's possible — and that you can recognize it when you see it.", fa: "نیازی نیست بدانید <em>چگونه</em> یک پروفایل Stream Deck بسازید یا یک Remote App پیکربندی کنید. کافی است بدانید <strong>که</strong> این امکان وجود دارد — و اینکه می‌توانید آن را وقتی می‌بینید تشخیص دهید." },
+    // ── Footer ──
+    "footer.line1":       { nl: "ProPresenter & WorshipTools Workshop · Operator Handboek", en: "ProPresenter & WorshipTools Workshop · Operator Handbook", fa: "کارگاه ProPresenter و WorshipTools · کتابچه راهنمای اپراتور" },
+    "footer.line2":       { nl: "Samengesteld voor vrijwilligers. Met <span class=\"footer-heart\">♥</span> gemaakt voor de kerk.", en: "Compiled for volunteers. Made with <span class=\"footer-heart\">♥</span> for the church.", fa: "تدوین شده برای داوطلبان. ساخته شده با <span class=\"footer-heart\">♥</span> برای کلیسا." }
+};
+</script>
+<script>
+    // Demo state voor het lagen-concept
+    function demoState(mode) {
+        const out = document.getElementById('demoOutput');
+        out.className = 'demo-output';
+
+        if (mode === 'video') {
+            out.classList.add('has-video');
+            out.innerHTML = '<span>🎬 Video-achtergrond draait…</span>';
+        } else if (mode === 'text') {
+            out.classList.add('has-video', 'has-text');
+            out.innerHTML = '<span>🎵 "Heer, U bent mijn leven"<br><small style="font-size: 0.9rem; opacity: 0.8;">Slide tekst verschijnt over de video</small></span>';
+        } else if (mode === 'clearSlide') {
+            out.classList.add('has-video', 'cleared-slide');
+            out.innerHTML = '<span style="opacity: 0;">x</span>';
+        } else if (mode === 'clearAll') {
+            out.classList.add('cleared-all');
+            out.innerHTML = '<span style="opacity: 0;">x</span>';
+        }
+    }
+
+    // Smooth scroll + TOC active state + progress bar
+    const sections = document.querySelectorAll('section[id]');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const progressFill = document.getElementById('progressFill');
+
+    function updateActiveSection() {
+        const scrollPos = window.scrollY + 120;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100));
+
+        if (progressFill) progressFill.style.width = progress + '%';
+
+        let current = 'intro';
+        sections.forEach(section => {
+            if (section.offsetTop <= scrollPos) {
+                current = section.id;
+            }
+        });
+
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveSection);
+    window.addEventListener('load', updateActiveSection);
+
+    // ── i18n: Language Switching Engine ──
+    let currentLang = 'nl';
+    let swapping = false;
+    // Note: localStorage wordt niet gelezen bij page load omdat applyLanguage niet
+    // standaard draait. Alleen schrijven als gebruiker op een taal knop klikt.
+
+    function applyLanguage(lang) {
+        if (typeof i18n === 'undefined' || !i18n) return;
+        swapping = true;
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (!i18n[key] || !i18n[key][lang]) return;
+
+            const text = i18n[key][lang];
+            if (!text) return;
+
+            // Handle data-i18n-attr FIRST: if this element uses data-i18n
+            // only for an attribute (e.g. aria-label), skip inner content
+            const attrKey = el.getAttribute('data-i18n-attr');
+            if (attrKey) {
+                try { el.setAttribute(attrKey, text); } catch(e) {}
+                return; // Don't replace inner content for attr-only elements
+            }
+            
+            // Check if element has child elements — use innerHTML to preserve them
+            const hasChildElements = el.children.length > 0;
+            if (hasChildElements || text.includes('<')) {
+                try { el.innerHTML = text; } catch(e) {}
+            } else {
+                try { el.textContent = text; } catch(e) {}
+            }
+        });
+
+        // Update aria-checked on lang buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-checked', isActive.toString());
+        });
+
+        // Update RTL direction for Farsi
+        document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+        document.documentElement.lang = lang;
+
+        currentLang = lang;
+        try { localStorage.setItem('prophandbook-lang', lang); } catch(e) {}
+
+        swapping = false;
+    }
+
+    // Set up language switcher
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                if (lang !== currentLang) {
+                    applyLanguage(lang);
+                }
+            });
+        });
+
+        // Apply language when user clicks a button (NOT on page load)
+    });
+</script>
+
+</body>
+</html>

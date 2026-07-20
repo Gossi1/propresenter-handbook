@@ -1,0 +1,18 @@
+# Freebuff desktop database
+.freebuff/
+
+# Node.js dependencies (ffmpeg-static etc.)
+node_modules/
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+nul
+
+# Old font files
+*.ttf
+*.otf
+
+# Old backup
+*.zip
