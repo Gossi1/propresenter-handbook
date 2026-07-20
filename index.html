@@ -1365,10 +1365,29 @@
 
         .lang-switcher-wrapper {
             display: flex;
-            justify-content: flex-end;
+            flex-direction: column;
+            align-items: flex-end;
             margin-bottom: 16px;
             position: relative;
             z-index: 5;
+        }
+
+        .lang-translation-note {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-top: 6px;
+            opacity: 0.7;
+            font-style: italic;
+            text-align: right;
+        }
+
+        @media (max-width: 600px) {
+            .lang-switcher-wrapper {
+                align-items: center;
+            }
+            .lang-translation-note {
+                text-align: center;
+            }
         }
 
         @media (max-width: 600px) {
@@ -1594,6 +1613,9 @@
             <button class="lang-btn" data-lang="en" role="radio" aria-checked="false" aria-label="English">🇬🇧 EN</button>
             <button class="lang-btn" data-lang="fa" role="radio" aria-checked="false" aria-label="فارسی">🇮🇷 FA</button>
         </div>
+        <div class="lang-translation-note" data-i18n="header.translation.note">
+            ⚠️ De Farsi-vertaling is mogelijk niet accuraat.
+        </div>
     </div>
 </header>
 
@@ -1731,6 +1753,9 @@
     </p>
 
     <div class="layer-diagram">
+        <div class="screenshot-block" style="margin-bottom: 16px;">
+            <img src="Zone/Layers - Black Background.png" alt="ProPresenter lagen-overzicht op zwarte achtergrond" class="screenshot-img" loading="lazy">
+        </div>
         <!-- 1. Mask Layer -->
         <div class="layer layer-mask">
             <div class="layer-color-box" style="background: repeating-conic-gradient(#666 0% 25%, #ccc 0% 50%) 50% / 12px 12px; border: 1px dashed #fff; width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;"></div>
@@ -2581,6 +2606,7 @@ const i18n = {
     "header.target":      { nl: "<strong>👥 Doelgroep</strong>Beginners",                 en: "<strong>👥 Audience</strong>Beginners",                 fa: "<strong>👥 مخاطب</strong>مبتدی" },
     "header.format":      { nl: "<strong>📖 Vorm</strong>Zelfstudiemateriaal",            en: "<strong>📖 Format</strong>Self-study Material",            fa: "<strong>📖 فرمت</strong>مطالب خودآموز" },
     "header.lang":        { nl: "<strong>🇳🇱 Taal</strong>Nederlands",                    en: "<strong>🇬🇧 Language</strong>English",                    fa: "<strong>🇮🇷 زبان</strong>فارسی" },
+    "header.translation.note": { nl: "⚠️ De Farsi-vertaling is mogelijk niet accuraat.", en: "⚠️ The Farsi translation may not be accurate.", fa: "⚠️ ترجمه فارسی ممکن است دقیق نباشد." },
     // ── Mobile TOC ──
     "mobile.toc.start":   { nl: "📍 Start hier",                        en: "📍 Start here",                        fa: "📍 از اینجا شروع کنید" },
     "mobile.toc.s1":      { nl: "1. Intro & Het Lagen-Concept",         en: "1. Intro & The Layer Concept",         fa: "۱. مقدمه و مفهوم لایه‌ها" },
