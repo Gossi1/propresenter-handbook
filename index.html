@@ -464,6 +464,7 @@
         .section-num.n4 { background: linear-gradient(135deg, #a54cff, #6d96ff); }
         .section-num.n5 { background: linear-gradient(135deg, #ff0c03, #ff6c1a); }
         .section-num.n6 { background: linear-gradient(135deg, #52525b, #6d96ff); }
+        .section-num.n7 { background: linear-gradient(135deg, #ff6c1a, #a54cff); }
 
         .section-title {
             flex: 1;
@@ -563,9 +564,8 @@
             transition: all 0.3s ease;
         }
 
-        .layer:hover {
-            transform: translateX(8px);
-            border-color: var(--accent-blue);
+        .layer {
+            cursor: default;
         }
 
         .layer::before {
@@ -725,9 +725,8 @@
             flex-direction: column;
             transition: all 0.2s ease;
         }
-        .zone-card:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
+        .zone-card {
+            cursor: default;
         }
         .zone-card img.zone-img {
             display: block;
@@ -791,10 +790,8 @@
             transition: all 0.2s ease;
         }
 
-        .shortcut:hover {
-            border-color: var(--accent-blue);
-            background-color: rgba(109, 150, 255, 0.08);
-            transform: translateY(-2px);
+        .shortcut {
+            cursor: default;
         }
 
         .card-aside {
@@ -922,9 +919,8 @@
             transition: all 0.2s;
         }
 
-        .workflow-step:hover {
-            border-color: var(--accent-blue);
-            transform: translateX(4px);
+        .workflow-step {
+            cursor: default;
         }
 
         .workflow-num {
@@ -1016,9 +1012,8 @@
             transition: all 0.2s;
         }
 
-        .output:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-3px);
+        .output {
+            cursor: default;
         }
 
         .output-icon {
@@ -1080,13 +1075,8 @@
             transition: opacity 0.2s;
         }
 
-        .feature:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-        }
-
-        .feature:hover::before {
-            opacity: 1;
+        .feature {
+            cursor: default;
         }
 
         .feature-icon {
@@ -1407,13 +1397,7 @@
             content: "◂";
         }
 
-        [dir="rtl"] .layer:hover {
-            transform: translateX(-8px);
-        }
 
-        [dir="rtl"] .workflow-step:hover {
-            transform: translateX(-4px);
-        }
 
         [dir="rtl"] .toc-list a {
             border-left: none;
@@ -1459,6 +1443,312 @@
             direction: rtl;
         }
 
+        /* ========== DOWNLOAD BUTTON (floating) ========== */
+        .download-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient-blue);
+            color: #fff;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(109, 150, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(109, 150, 255, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 12px rgba(109, 150, 255, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .download-btn {
+                bottom: 18px;
+                right: 18px;
+                padding: 12px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========== DOWNLOAD MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px 32px 32px;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.open .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-elev);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+        }
+
+        .modal-option:hover {
+            border-color: var(--accent-blue);
+            background: rgba(109, 150, 255, 0.08);
+            transform: translateX(4px);
+        }
+
+        .modal-option:active {
+            transform: scale(0.98);
+        }
+
+        .modal-option-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .modal-option-icon.qr-icon {
+            background: linear-gradient(135deg, #a54cff, #d52add);
+        }
+
+        .modal-option-text {
+            flex: 1;
+        }
+
+        .modal-option-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .modal-option-desc {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .modal-option-arrow {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .modal-option:hover .modal-option-arrow {
+            transform: translateX(3px);
+            color: var(--accent-blue);
+        }
+
+        /* QR section within modal */
+        .qr-section {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            animation: fadeSlideIn 0.4s ease;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .qr-image {
+            display: inline-block;
+            background: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .qr-image img {
+            display: block;
+            width: 200px;
+            height: 200px;
+            image-rendering: pixelated;
+        }
+
+        .qr-hint {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .qr-local-note {
+            margin-top: 14px;
+            padding: 10px 14px;
+            background: rgba(255, 165, 0, 0.12);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #fde68a;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .qr-local-note strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .qr-back-btn {
+            display: inline-block;
+            margin-top: 12px;
+            background: none;
+            border: none;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        .qr-back-btn:hover {
+            background: rgba(109, 150, 255, 0.12);
+        }
+
+        @media (max-width: 600px) {
+            .modal {
+                padding: 28px 20px 24px;
+            }
+            .modal-option {
+                padding: 14px 16px;
+            }
+            .qr-image img {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        [dir="rtl"] .modal-option:hover {
+            transform: translateX(-4px);
+        }
+
+        [dir="rtl"] .modal-option-arrow {
+            transform: rotate(180deg);
+        }
+
+        [dir="rtl"] .modal-option:hover .modal-option-arrow {
+            transform: rotate(180deg) translateX(3px);
+        }
+
+        [dir="rtl"] .download-btn {
+            right: auto;
+            left: 28px;
+        }
+
+        @media (max-width: 600px) {
+            [dir="rtl"] .download-btn {
+                right: auto;
+                left: 18px;
+            }
+        }
+
+        /* Hide download button in print */
+        @media print {
+            .download-btn, .modal-overlay {
+                display: none !important;
+            }
+        }
+
         /* ========== PRINT ========== */
         @media print {
             * {
@@ -1494,6 +1784,7 @@
             .section-num.n4 { background: linear-gradient(135deg, #a54cff, #6d96ff) !important; }
             .section-num.n5 { background: linear-gradient(135deg, #ff0c03, #ff6c1a) !important; }
             .section-num.n6 { background: linear-gradient(135deg, #52525b, #6d96ff) !important; }
+            .section-num.n7 { background: linear-gradient(135deg, #ff6c1a, #a54cff) !important; }
             .toc, .mobile-toc, .demo-toggle, .demo-output, .lang-switcher-wrapper {
                 display: none !important;
             }
@@ -1536,8 +1827,7 @@
                 color: #dedee0 !important;
                 break-inside: avoid;
             }
-            .layer:hover { transform: none; }
-            .workflow-step:hover { transform: none; }
+
             .highlight {
                 break-inside: avoid;
             }
@@ -1617,6 +1907,8 @@
             ⚠️ De Farsi-vertaling is mogelijk niet accuraat.
         </div>
     </div>
+
+    <button class="download-btn" onclick="toggleDownloadModal()" aria-label="Downloaden"><span data-i18n="header.download" style="display:flex;align-items:center;gap:10px;">Downloaden</span></button>
 </header>
 
 <!-- ========== MOBILE TOC ========== -->
@@ -1629,6 +1921,7 @@
         <option value="#sectie-4" data-i18n="mobile.toc.s4">4. Een Setlist Bouwen &amp; Bewerken</option>
         <option value="#sectie-5" data-i18n="mobile.toc.s5">5. Live de Dienst Draaien</option>
         <option value="#sectie-6" data-i18n="mobile.toc.s6">6. Geavanceerd: Externe Controle</option>
+        <option value="#sectie-7" data-i18n="mobile.toc.s7">7. Ichtus Workspace</option>
 
     </select>
 </nav>
@@ -1644,6 +1937,7 @@
             <li><a href="#sectie-4"><span class="toc-num">4</span><span data-i18n="toc.section4">Setlist Bouwen</span></a></li>
             <li><a href="#sectie-5"><span class="toc-num">5</span><span data-i18n="toc.section5">Live Besturing</span></a></li>
             <li><a href="#sectie-6"><span class="toc-num">6</span><span data-i18n="toc.section6">Geavanceerd: Externe Controle &amp; Automatisering</span></a></li>
+            <li><a href="#sectie-7"><span class="toc-num">7</span><span data-i18n="toc.section7">Ichtus Workspace</span></a></li>
 
         </ul>
         <div class="toc-progress">
@@ -1690,7 +1984,7 @@
                     <div class="workflow-step">
                         <div class="workflow-num">3</div>
                         <div class="workflow-content">
-                            <h4 data-i18n="intro.workflow3.title">WorshipTools Planning Integratie</h4>
+                            <h4 data-i18n="intro.workflow3.title">WorshipTools</h4>
                             <p data-i18n="intro.workflow3.desc">De "Source of Truth" voor de zondag</p>
                         </div>
                     </div>
@@ -1711,7 +2005,7 @@
                     <div class="workflow-step">
                         <div class="workflow-num">6</div>
                         <div class="workflow-content">
-                            <h4 data-i18n="intro.workflow6.title">Achter de Schermen (De Magie)</h4>
+                            <h4 data-i18n="intro.workflow6.title">Geavanceerd: Externe Controle & Automatisering</h4>
                             <p data-i18n="intro.workflow6.desc">Hoge overvlieger: Looks, Macros &amp; Stream Deck</p>
                         </div>
                     </div>
@@ -2253,15 +2547,28 @@
                         <div class="output-icon">🔄</div>
                         <div class="output-title" data-i18n="s4.step4.check.title">Wekelijkse Controle</div>
                         <div class="output-desc" data-i18n="s4.step4.check.desc">
-                            Loop alle actieve sheets wekelijks langs. Als een standaard evenement of vaste activiteit in die specifieke week een keer <strong>niet doorgaat</strong>, haal je de betreffende slide voor die dienst uit de presentatie.
+                            Loop alle actieve sheets wekelijks langs. Als een standaard evenement of vaste activiteit in die specifieke week een keer <strong>niet doorgaat</strong>, verwijder de slide dan <strong>niet</strong> uit de presentatie, maar <em>disable</em> hem in plaats daarvan (zie tip hiernaast).
                         </div>
                     </div>
                     <div class="output stream">
                         <div class="output-icon">➕</div>
                         <div class="output-title" data-i18n="s4.step4.new.title">Nieuwe Mededelingen</div>
                         <div class="output-desc" data-i18n="s4.step4.new.desc">
-                            Zijn er nieuwe aankondigingen, flyers of dia's aangeleverd? Deze kun je eenvoudig vanuit je bestanden rechtstreeks <strong>in de actieve mededelingen-presentatie slepen</strong> om ze aan de rotatie toe te voegen.
+                            Zijn er nieuwe aankondigingen, flyers of dia's aangeleverd? Plaats ze eerst in de <strong>Mededelingen</strong>-presentatie én in <strong>Loop na de dienst</strong> — ze moeten nog worden aangekondigd. Na die zondag mogen ze ook in de <strong>Loop voor de dienst</strong>-presentatie. Je kunt afbeeldingen en bestanden <strong>rechtstreeks vanuit de bestandsverkenner</strong> in de presentatie slepen.
                         </div>
+                    </div>
+                    <div class="output zaal">
+                        <div class="output-icon">💤</div>
+                        <div class="output-title" data-i18n="s4.step4.disable.title">Slides Uitschakelen (Disable)</div>
+                        <div class="output-desc" data-i18n="s4.step4.disable.desc">
+                            <strong>Verwijder geen standaard slides</strong> die deze week niet nodig zijn. <strong>Disable</strong> ze in plaats daarvan: <strong>rechtermuisknop</strong> op de slide → <strong>Disable</strong>. Een <em>gedisablede</em> slide krijgt een <strong>grijze tint</strong> en wordt overgeslagen tijdens de dienst. Volgende week hoef je alleen <strong>rechtermuisknop → Enable</strong> te doen — geen gesleep met bestanden meer!
+                        </div>
+                    </div>
+                </div>
+
+                <div style="max-width:70%;margin:20px auto;">
+                    <div class="screenshot-block" style="margin:0;">
+                        <img src="Zone/disable.png" alt="Screenshot van een gedisablede slide in ProPresenter — de slide heeft een grijze tint" class="screenshot-img" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -2578,6 +2885,150 @@
             </div>
         </section>
 
+        <!-- ========== SECTIE 7 ========== -->
+        <section id="sectie-7">
+            <div class="section-header">
+                <div class="section-num n7">7</div>
+                <div class="section-title">
+                    <h2 data-i18n="s7.title">Ichtus Workspace</h2>
+                    <div class="section-time" data-i18n="s7.time">⏱️ Extra tools</div>
+                </div>
+            </div>
+
+            <!-- Wat is Ichtus Workspace -->
+            <div class="card">
+                <div class="card-title" data-i18n="s7.intro.title">Ichtus Workspace — Kerkdienst Management</div>
+                <p data-i18n="s7.intro.p1">
+                    Ichtus Workspace is een <strong>web-app</strong> die je opent in je browser. Het helpt je bij het maken van de <strong>agenda</strong> en het opbouwen van de <strong>setlist</strong> in ProPresenter. Je start het door <strong>python supervisor.py</strong> te draaien en gaat naar <strong>http://localhost:8080/Ichtus_SPA/</strong>.
+                </p>
+                <p data-i18n="s7.intro.p2">
+                    In dit hoofdstuk leer je alleen de twee modules die direct met de dienst te maken hebben: de <strong>Agenda Maker</strong> (voor de week-agenda op het scherm) en de <strong>Setlist</strong> (voor het synchroniseren van liederen met ProPresenter).
+                </p>
+            </div>
+
+            <!-- Agenda Maker -->
+            <div class="card">
+                <div class="card-title" data-i18n="s7.agenda.title">📅 Agenda Maker — De Week-Agenda Maken</div>
+                <p data-i18n="s7.agenda.p1">
+                    De Agenda Maker haalt de agenda automatisch op uit <strong>Tockify</strong> (onze online kalender) en toont de aankomende evenementen voor deze week. Je kunt de tekst verslepen, aanpassen en exporteren als <strong>PNG-afbeelding</strong> voor op de schermen.
+                </p>
+
+                <div class="screenshot-block" style="max-width: 880px;">
+                    <img src="Zone/Agenda_app.png" alt="Screenshot van de Agenda Maker in Ichtus Workspace" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="workflow-num">1</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.agenda.step1.title">Upload een Template</h4>
+                            <p data-i18n="s7.agenda.step1.desc">Dit hoef je alleen te doen als er nog <strong>geen template geladen</strong> is — de browser onthoudt de vorige afbeelding. Klik op de uploadknop om een <strong>achtergrond-afbeelding</strong> (bijv. een kerkelijke template) te kiezen. Deze afbeelding wordt de basis voor je agenda.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">2</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.agenda.step2.title">Automatisch Ophalen</h4>
+                            <p data-i18n="s7.agenda.step2.desc">De agenda wordt <strong>automatisch geladen</strong> uit Tockify. Je ziet de evenementen voor deze week in vier kolommen: Datum | Tijd | Evenement. Navigeer met <strong>Vorige/Volgende</strong> naar andere weken.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">3</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.agenda.step3.title">Aanpassen &amp; Positioneren</h4>
+                            <p data-i18n="s7.agenda.step3.desc">Vink evenementen aan en uit als het nodig is door op de checkboxes te klikken. De <strong>positie</strong> staat vast en wordt ingesteld via de X/Y-coördinaten (die worden onthouden door de browser). Je kunt ook de <strong>Sprekers verbergen</strong> of een <strong>eigen label</strong> (bijv. "Eredienst") instellen.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">4</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.agenda.step4.title">Exporteren als PNG</h4>
+                            <p data-i18n="s7.agenda.step4.desc">Klik op <strong>Download PNG</strong> om de agenda als afbeelding te exporteren. Deze plaats je daarna in de <strong>Dienst</strong>-playlist. Je kunt de afbeelding ook in de <strong>mededelingen-loop</strong> zetten.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Setlist -->
+            <div class="card">
+                <div class="card-title" data-i18n="s7.setlist.title">🎵 Setlist — Liederen Synchroniseren met ProPresenter</div>
+                <p data-i18n="s7.setlist.p1">
+                    De Setlist-module koppelt <strong>WorshipTools Planning</strong> aan <strong>ProPresenter</strong>. Het ontvangt de geplande liederen uit WorshipTools en bouwt daar automatisch een <strong>playlist</strong> van in ProPresenter.
+                </p>
+
+                <div class="screenshot-block" style="max-width: 880px;">
+                    <img src="Zone/Setlist_nolijst.png" alt="Screenshot van de Setlist module in Ichtus Workspace" class="screenshot-img" loading="lazy">
+                </div>
+
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="workflow-num">1</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.setlist.step4.title">Verbinding Controleren</h4>
+                            <p data-i18n="s7.setlist.step4.desc">Onderaan het scherm zie je de <strong>verbindingsstatus</strong> met ProPresenter. Controleer of het IP-adres klopt (standaard <strong>100.113.22.22:51253</strong>). Je kunt de verbinding testen met de knop <strong>Test Verbinding</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">2</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.setlist.step1.title">Setlist Ontvangen</h4>
+                            <p data-i18n="s7.setlist.step1.desc">Ga naar <strong>WorshipTools Planning</strong>, open de <strong>dienst</strong> en klik op <strong>Liturgie</strong>. Daar zie je de oranje knop <strong>Extract Setlist</strong> die door de Chrome-extensie is toegevoegd — klik erop om de setlist naar Ichtus Workspace te sturen.</p>
+
+                            <div class="screenshot-block" style="max-width: 780px;">
+                                <img src="Zone/Chrome_extention.png" alt="Screenshot van de Extract Setlist knop in WorshipTools Liturgie" class="screenshot-img" loading="lazy">
+                            </div>
+
+                            <p data-i18n="s7.setlist.step1.desc2">Je ziet de liederen ingedeeld in <strong>Openingsliederen</strong>, <strong>Praise &amp; Worship</strong> en <strong>Eindliederen</strong>.</p>
+
+                            <div class="screenshot-block" style="max-width: 880px;">
+                                <img src="Zone/Setlist_wellijst.png" alt="Screenshot van de ontvangen setlist met liederen ingedeeld in categorieën" class="screenshot-img" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">3</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.setlist.step2.title">Sjabloon Kiezen</h4>
+                            <p data-i18n="s7.setlist.step2.desc">Kies een <strong>dienst-sjabloon</strong>: ZondagDienst, Worship Avond, DoopDienst of Delighted Youth. Het sjabloon bepaalt de volgorde van de onderdelen (Welkom, Mededelingen, Liederen, Preek, Einde).</p>
+
+                            <div class="screenshot-block" style="max-width: 780px;">
+                                <img src="Zone/Templates_applist.png" alt="Screenshot van de beschikbare sjablonen in de Setlist module" class="screenshot-img" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-num">4</div>
+                        <div class="workflow-content">
+                            <h4 data-i18n="s7.setlist.step3.title">Synchroniseren</h4>
+                            <p data-i18n="s7.setlist.step3.desc">Klik op <strong>Sync naar ProPresenter</strong>.</p>
+
+                            <div class="screenshot-block" style="max-width: 880px;">
+                                <img src="Zone/sync.png" alt="Screenshot van de Sync naar ProPresenter knop in de Setlist module" class="screenshot-img" loading="lazy">
+                            </div>
+
+                            <p data-i18n="s7.setlist.step3.desc2">De app zoekt de liederen in de ProPresenter-bibliotheek op en maakt een nieuwe <strong>playlist</strong> aan met de juiste volgorde, headers en kleuren. Je ziet hoeveel liederen zijn <strong>gematched</strong> en welke <strong>niet gevonden</strong> zijn.</p>
+
+                            <div class="screenshot-block" style="max-width: 880px;">
+                                <img src="Zone/sync_details.png" alt="Screenshot van de synchronisatie-resultaten in de Setlist module" class="screenshot-img" loading="lazy">
+                            </div>
+
+                            <p data-i18n="s7.setlist.step3.desc3">Als een lied niet wordt gevonden, is het of <strong>nieuw</strong> (nog niet in de bibliotheek) of <strong>niet goed opgeslagen</strong> (bijv. onder een andere naam).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Openen -->
+            <div class="highlight highlight-info">
+                <div class="highlight-title" data-i18n="s7.open.title">🚀 Ichtus Workspace Openen</div>
+                <div class="highlight-body" data-i18n="s7.open.body">
+                    <strong>Stap 1:</strong> Open een terminal en voer <strong>python supervisor.py</strong> uit (in de map Ichtus_apps).<br>
+                    <strong>Stap 2:</strong> Open Chrome en ga naar <strong>http://localhost:8080/Ichtus_SPA/</strong><br>
+                    <strong>Stap 3:</strong> Klik in de linkerzijbalk op <strong>Agenda</strong> of <strong>Setlist</strong> om te beginnen.
+                </div>
+            </div>
+        </section>
+
         <!-- ========== QUICK REFERENCE ========== -->
 
 
@@ -2607,6 +3058,19 @@ const i18n = {
     "header.format":      { nl: "<strong>📖 Vorm</strong>Zelfstudiemateriaal",            en: "<strong>📖 Format</strong>Self-study Material",            fa: "<strong>📖 فرمت</strong>مطالب خودآموز" },
     "header.lang":        { nl: "<strong>🇳🇱 Taal</strong>Nederlands",                    en: "<strong>🇬🇧 Language</strong>English",                    fa: "<strong>🇮🇷 زبان</strong>فارسی" },
     "header.translation.note": { nl: "⚠️ De Farsi-vertaling is mogelijk niet accuraat.", en: "⚠️ The Farsi translation may not be accurate.", fa: "⚠️ ترجمه فارسی ممکن است دقیق نباشد." },
+
+    // ── Download modal ──
+    "header.download":      { nl: "Downloaden",                           en: "Download",                              fa: "دانلود" },
+    "download.title":       { nl: "Handboek Downloaden",              en: "Download Handbook",                     fa: "دانلود کتابچه" },
+    "download.pdf.title":   { nl: "Download als PDF",                    en: "Download as PDF",                     fa: "دانلود به صورت PDF" },
+    "download.pdf.desc":    { nl: "Bewaar het handboek op je computer om later te lezen of uit te printen.", en: "Save the handbook to your computer to read later or print.", fa: "کتابچه را در رایانه خود ذخیره کنید تا بعداً بخوانید یا چاپ کنید." },
+    "download.qr.title":    { nl: "Open op je telefoon",                 en: "Open on your phone",                  fa: "باز کردن در تلفن شما" },
+    "download.qr.desc":     { nl: "Scan de QR-code met je telefoon om het handboek onderweg te lezen.", en: "Scan the QR code with your phone to read the handbook on the go.", fa: "کد QR را با تلفن خود اسکن کنید تا کتابچه را در حال حرکت بخوانید." },
+    "download.qr.hint":     { nl: "📸 Scan deze code met je telefoon-camera", en: "📸 Scan this code with your phone camera", fa: "📸 این کد را با دوربین تلفن خود اسکن کنید" },
+    "download.qr.loading":  { nl: "QR-code laden…",                      en: "Loading QR code…",                   fa: "در حال بارگذاری کد QR…" },
+    "download.qr.local":    { nl: "🌐 Deze QR-code verwijst naar de <strong>live versie</strong> op GitHub. Open eerst <strong>gossi1.github.io/propresenter-handbook</strong> in je browser en scan dan de QR-code vanaf die pagina.", en: "🌐 This QR code points to the <strong>live version</strong> on GitHub. First open <strong>gossi1.github.io/propresenter-handbook</strong> in your browser, then scan the QR code from that page.", fa: "🌐 این کد QR به <strong>نسخه زنده</strong> در GitHub اشاره می‌کند. ابتدا <strong>gossi1.github.io/propresenter-handbook</strong> را در مرورگر خود باز کنید، سپس کد QR را از آن صفحه اسکن کنید." },
+    "download.close":       { nl: "Sluiten",                             en: "Close",                               fa: "بستن" },
+    "download.back":        { nl: "← Terug naar opties",                en: "← Back to options",                   fa: "← بازگشت به گزینه‌ها" },
     // ── Mobile TOC ──
     "mobile.toc.start":   { nl: "📍 Start hier",                        en: "📍 Start here",                        fa: "📍 از اینجا شروع کنید" },
     "mobile.toc.s1":      { nl: "1. Intro & Het Lagen-Concept",         en: "1. Intro & The Layer Concept",         fa: "۱. مقدمه و مفهوم لایه‌ها" },
@@ -2615,6 +3079,7 @@ const i18n = {
     "mobile.toc.s4":      { nl: "4. Een Setlist Bouwen & Bewerken",     en: "4. Building & Editing a Setlist",     fa: "۴. ساخت و ویرایش یک Setlist" },
     "mobile.toc.s5":      { nl: "5. Live de Dienst Draaien",            en: "5. Running the Service Live",            fa: "۵. اجرای زنده مراسم" },
     "mobile.toc.s6":      { nl: "6. Geavanceerd: Externe Controle",     en: "6. Advanced: External Control",     fa: "۶. پیشرفته: کنترل خارجی" },
+    "mobile.toc.s7":      { nl: "7. Ichtus Workspace",                  en: "7. Ichtus Workspace",                  fa: "۷. فضای کاری Ichtus" },
     // ── Desktop TOC ──
     "toc.intro":          { nl: "Start hier",                            en: "Start here",                            fa: "از اینجا شروع کنید" },
     "toc.section1":       { nl: "Intro & Lagen",                        en: "Intro & Layers",                        fa: "مقدمه و لایه‌ها" },
@@ -2623,6 +3088,7 @@ const i18n = {
     "toc.section4":       { nl: "Setlist Bouwen",                       en: "Building a Setlist",                       fa: "ساخت Setlist" },
     "toc.section5":       { nl: "Live Besturing",                       en: "Live Control",                       fa: "کنترل زنده" },
     "toc.section6":       { nl: "Geavanceerd: Externe Controle & Automatisering", en: "Advanced: External Control & Automation",       fa: "پیشرفته: کنترل خارجی و خودکارسازی" },
+    "toc.section7":       { nl: "Ichtus Workspace",                     en: "Ichtus Workspace",                     fa: "فضای کاری Ichtus" },
     "toc.progress":       { nl: "Voortgang",                            en: "Progress",                            fa: "پیشرفت" },
     // ── Main aria ──
     "main.aria":          { nl: "Handleiding inhoud",                   en: "Manual content",                   fa: "محتوای کتابچه راهنما" },
@@ -2635,13 +3101,13 @@ const i18n = {
     "intro.workflow1.desc":  { nl: "Het mentale model van \"glazen platen\" waar alles op rust", en: "The mental model of \"glass plates\" everything rests on", fa: "مدل ذهنی \"صفحه‌های شیشه‌ای\" که همه چیز بر آن استوار است" },
     "intro.workflow2.title": { nl: "Schermen & De ProPresenter UI", en: "Screens & The ProPresenter UI", fa: "صفحه‌ها و رابط کاربری ProPresenter" },
     "intro.workflow2.desc":  { nl: "Waar het beeld heengaat en hoe je door het programma navigeert", en: "Where the image goes and how to navigate the program", fa: "تصویر به کجا می‌رود و چگونه در برنامه پیمایش کنید" },
-    "intro.workflow3.title": { nl: "WorshipTools Planning Integratie",  en: "WorshipTools Planning Integration",  fa: "یکپارچه‌سازی برنامه‌ریزی WorshipTools" },
+    "intro.workflow3.title": { nl: "WorshipTools",  en: "WorshipTools Planning Integration",  fa: "یکپارچه‌سازی برنامه‌ریزی WorshipTools" },
     "intro.workflow3.desc":  { nl: "De \"Source of Truth\" voor de zondag", en: "The \"Source of Truth\" for Sunday", fa: "\"منبع حقیقت\" برای یکشنبه" },
     "intro.workflow4.title": { nl: "Setlist Bouwen & Bewerken",     en: "Building & Editing a Setlist",     fa: "ساخت و ویرایش Setlist" },
     "intro.workflow4.desc":  { nl: "Liederen importeren, splitsen en stylen", en: "Importing, splitting, and styling songs", fa: "وارد کردن، تقسیم و استایل‌دهی سرودها" },
     "intro.workflow5.title": { nl: "Besturing: Live de dienst draaien", en: "Control: Running the Service Live", fa: "کنترل: اجرای زنده مراسم" },
     "intro.workflow5.desc":  { nl: "Shortcuts en rust bewaren bij fouten", en: "Shortcuts and staying calm through mistakes", fa: "میانبرها و حفظ آرامش در هنگام اشتباهات" },
-    "intro.workflow6.title": { nl: "Achter de Schermen (De Magie)",     en: "Behind the Screens (The Magic)",     fa: "پشت صفحه‌ها (جادو)" },
+    "intro.workflow6.title": { nl: "Geavanceerd: Externe Controle & Automatisering",     en: "Behind the Screens (The Magic)",     fa: "پشت صفحه‌ها (جادو)" },
     "intro.workflow6.desc":  { nl: "Hoge overvlieger: Looks, Macros & Stream Deck", en: "High-level overview: Looks, Macros & Stream Deck", fa: "نمای کلی سطح بالا: نماها، ماکروها و Stream Deck" },
     // ── Section 1 ──
     "s1.title":           { nl: "Intro & Het Lagen-Concept",        en: "Intro & The Layer Concept",        fa: "مقدمه و مفهوم لایه‌ها" },
@@ -2762,9 +3228,11 @@ const i18n = {
     "s4.step4.title":      { nl: "Stap 4: Mededelingen Up-to-Date Houden", en: "Step 4: Keeping Announcements Up to Date", fa: "مرحله ۴: به‌روز نگه داشتن اعلان‌ها" },
     "s4.step4.p1":         { nl: "De mededelingen-presentatie is een dynamisch onderdeel van de dienst. Het is cruciaal dat deze <strong>elke week kritisch wordt nagelopen</strong> om te voorkomen dat er verouderde of foutieve informatie op de schermen verschijnt.", en: "The announcements presentation is a dynamic part of the service. It's crucial that this is <strong>carefully reviewed every week</strong> to prevent outdated or incorrect information from appearing on the screens.", fa: "ارائه اعلان‌ها بخش پویایی از مراسم است. بسیار مهم است که این <strong>هر هفته با دقت بررسی شود</strong> تا از ظاهر شدن اطلاعات قدیمی یا نادرست روی صفحه‌ها جلوگیری شود." },
     "s4.step4.check.title": { nl: "Wekelijkse Controle",               en: "Weekly Check",               fa: "بررسی هفتگی" },
-    "s4.step4.check.desc":  { nl: "Loop alle actieve sheets wekelijks langs. Als een standaard evenement of vaste activiteit in die specifieke week een keer <strong>niet doorgaat</strong>, haal je de betreffende slide voor die dienst uit de presentatie.", en: "Go through all active slides weekly. If a regular event or fixed activity <strong>is canceled</strong> that particular week, remove the relevant slide from the presentation for that service.", fa: "همه برگه‌های فعال را هفتگی مرور کنید. اگر یک رویداد معمولی یا فعالیت ثابت در آن هفته خاص <strong>لغو شده است</strong>، اسلاید مربوطه را برای آن مراسم از ارائه حذف کنید." },
+    "s4.step4.check.desc":  { nl: "Loop alle actieve sheets wekelijks langs. Als een standaard evenement of vaste activiteit in die specifieke week een keer <strong>niet doorgaat</strong>, verwijder de slide dan <strong>niet</strong> uit de presentatie, maar <em>disable</em> hem in plaats daarvan (zie tip hiernaast).", en: "Go through all active slides weekly. If a regular event or fixed activity <strong>is canceled</strong> that particular week, <strong>don't</strong> remove the slide from the presentation — <em>disable</em> it instead (see tip next to this).", fa: "همه برگه‌های فعال را هفتگی مرور کنید. اگر یک رویداد معمولی یا فعالیت ثابت در آن هفته خاص <strong>لغو شده است</strong>، اسلاید را <strong>حذف نکنید</strong> — به جای آن آن را <em>غیرفعال</em> کنید (نکته کناری را ببینید)." },
     "s4.step4.new.title":   { nl: "Nieuwe Mededelingen",               en: "New Announcements",               fa: "اعلان‌های جدید" },
-    "s4.step4.new.desc":    { nl: "Zijn er nieuwe aankondigingen, flyers of dia's aangeleverd? Deze kun je eenvoudig vanuit je bestanden rechtstreeks <strong>in de actieve mededelingen-presentatie slepen</strong> om ze aan de rotatie toe te voegen.", en: "Have new announcements, flyers, or slides been submitted? You can simply drag them from your files directly <strong>into the active announcements presentation</strong> to add them to the rotation.", fa: "اعلان‌ها، بروشورها یا اسلایدهای جدیدی ارائه شده است؟ می‌توانید آنها را به سادگی از فایل‌های خود مستقیماً <strong>به ارائه اعلان‌های فعال بکشید</strong> تا به چرخه اضافه شوند." },
+    "s4.step4.new.desc":    { nl: "Zijn er nieuwe aankondigingen, flyers of dia's aangeleverd? Plaats ze eerst in de <strong>Mededelingen</strong>-presentatie én in <strong>Loop na de dienst</strong> — ze moeten nog worden aangekondigd. Na die zondag mogen ze ook in de <strong>Loop voor de dienst</strong>-presentatie. Je kunt afbeeldingen en bestanden <strong>rechtstreeks vanuit de bestandsverkenner</strong> in de presentatie slepen.", en: "Have new announcements, flyers, or slides been submitted? Place them first in the <strong>Announcements</strong> presentation and in <strong>Loop after service</strong> — they still need to be announced. After that Sunday, they can also go into the <strong>Loop before service</strong> presentation. You can drag images and files <strong>directly from File Explorer</strong> into the presentation.", fa: "اعلان‌ها، بروشورها یا اسلایدهای جدیدی ارائه شده است؟ ابتدا آنها را در ارائه <strong>اعلان‌ها</strong> و در <strong>حلقه بعد از مراسم</strong> قرار دهید — آنها هنوز باید اعلام شوند. بعد از آن یکشنبه، می‌توانند در ارائه <strong>حلقه قبل از مراسم</strong> نیز قرار گیرند. می‌توانید تصاویر و فایل‌ها را <strong>مستقیماً از File Explorer</strong> به ارائه بکشید." },
+    "s4.step4.disable.title": { nl: "Slides Uitschakelen (Disable)",      en: "Disabling Slides",                    fa: "غیرفعال کردن اسلایدها" },
+    "s4.step4.disable.desc":  { nl: "<strong>Verwijder geen standaard slides</strong> die deze week niet nodig zijn. <strong>Disable</strong> ze in plaats daarvan: <strong>rechtermuisknop</strong> op de slide → <strong>Disable</strong>. Een <em>gedisablede</em> slide krijgt een <strong>grijze tint</strong> en wordt overgeslagen tijdens de dienst. Volgende week hoef je alleen <strong>rechtermuisknop → Enable</strong> te doen — geen gesleep met bestanden meer!", en: "<strong>Don't remove standard slides</strong> that aren't needed this week. <strong>Disable</strong> them instead: <strong>right-click</strong> the slide → <strong>Disable</strong>. A <em>disabled</em> slide gets a <strong>gray tint</strong> and is skipped during the service. Next week you just need to <strong>right-click → Enable</strong> — no more dragging files around!", fa: "<strong>اسلایدهای استانداردی</strong> که این هفته مورد نیاز نیستند را <strong>حذف نکنید</strong>. به جای آن آنها را <strong>غیرفعال</strong> کنید: <strong>کلیک راست</strong> روی اسلاید → <strong>غیرفعال</strong>. یک اسلاید <em>غیرفعال</em> شده <strong>رنگ خاکستری</strong> می‌گیرد و در طول مراسم رد می‌شود. هفته بعد فقط کافی است <strong>کلیک راست → فعال</strong> کنید — دیگر نیازی به جابجایی فایل‌ها نیست!" },
     // ── Section 5 ──
     "s5.title":           { nl: "Besturing: Live de Dienst Draaien",    en: "Control: Running the Service Live",    fa: "کنترل: اجرای زنده مراسم" },
     "s5.time":            { nl: "⏱️ 01:05 – 01:20",                    en: "⏱️ 01:05 – 01:20",                    fa: "⏱️ ۰۱:۰۵ – ۰۱:۲۰" },
@@ -2841,6 +3309,38 @@ const i18n = {
     "s6.streamdeck.feature.desc":  { nl: "Fysieke knoppen die je zelf kunt programmeren met <em>Companion</em>-software. Eén knop = één actie: een slide vooruit, een macro starten, een timer resetten. Het werkt via het netwerk — geen extra kabels nodig.", en: "Physical buttons you can program yourself using <em>Companion</em> software. One button = one action: advance a slide, start a macro, reset a timer. It works over the network — no extra cables needed.", fa: "دکمه‌های فیزیکی که می‌توانید خودتان با نرم‌افزار <em>Companion</em> برنامه‌ریزی کنید. یک دکمه = یک اقدام: اسلاید بعدی، شروع یک ماکرو، ریست تایمر. از طریق شبکه کار می‌کند — بدون نیاز به کابل اضافی." },
     "s6.forget.title":      { nl: "🚫 Wat je hier niet hoeft te onthouden", en: "🚫 What You Don't Need to Remember Here", fa: "🚫 آنچه لازم نیست اینجا به خاطر بسپارید" },
     "s6.forget.body":       { nl: "Je hoeft niet te weten <em>hoe</em> je een Stream Deck profiel bouwt of een Remote App configureert. Het is voldoende als je weet <strong>dat</strong> het mogelijk is — en dat je het kunt herkennen als je het ziet.", en: "You don't need to know <em>how</em> to build a Stream Deck profile or configure a Remote App. It's enough to know <strong>that</strong> it's possible — and that you can recognize it when you see it.", fa: "نیازی نیست بدانید <em>چگونه</em> یک پروفایل Stream Deck بسازید یا یک Remote App پیکربندی کنید. کافی است بدانید <strong>که</strong> این امکان وجود دارد — و اینکه می‌توانید آن را وقتی می‌بینید تشخیص دهید." },
+
+    // ── Section 7: Ichtus Workspace ──
+    "s7.title":           { nl: "Ichtus Workspace",                     en: "Ichtus Workspace",                     fa: "فضای کاری Ichtus" },
+    "s7.time":            { nl: "⏱️ Extra tools",                       en: "⏱️ Extra tools",                       fa: "⏱️ ابزارهای اضافی" },
+    "s7.intro.title":     { nl: "Ichtus Workspace — Kerkdienst Management", en: "Ichtus Workspace — Service Management", fa: "فضای کاری Ichtus — مدیریت مراسم کلیسا" },
+    "s7.intro.p1":        { nl: "Ichtus Workspace is een <strong>web-app</strong> die je opent in je browser. Het helpt je bij het maken van de <strong>agenda</strong> en het opbouwen van de <strong>setlist</strong> in ProPresenter. Je start het door <strong>python supervisor.py</strong> te draaien en gaat naar <strong>http://localhost:8080/Ichtus_SPA/</strong>.", en: "Ichtus Workspace is a <strong>web app</strong> you open in your browser. It helps you create the <strong>agenda</strong> and build the <strong>setlist</strong> in ProPresenter. Start it by running <strong>python supervisor.py</strong> and go to <strong>http://localhost:8080/Ichtus_SPA/</strong>.", fa: "Ichtus Workspace یک <strong>برنامه وب</strong> است که در مرورگر خود باز می‌کنید. این برنامه به شما در ایجاد <strong>برنامه</strong> و ساخت <strong>setlist</strong> در ProPresenter کمک می‌کند. با اجرای <strong>python supervisor.py</strong> شروع کنید و به <strong>http://localhost:8080/Ichtus_SPA/</strong> بروید." },
+    "s7.intro.p2":        { nl: "In dit hoofdstuk leer je alleen de twee modules die direct met de dienst te maken hebben: de <strong>Agenda Maker</strong> (voor de week-agenda op het scherm) en de <strong>Setlist</strong> (voor het synchroniseren van liederen met ProPresenter).", en: "In this chapter you'll learn only the two modules that directly relate to the service: the <strong>Agenda Maker</strong> (for the weekly agenda on screen) and the <strong>Setlist</strong> (for syncing songs with ProPresenter).", fa: "در این فصل فقط دو ماژول را یاد می‌گیرید که مستقیماً با مراسم مرتبط هستند: <strong>Agenda Maker</strong> (برای برنامه هفتگی روی صفحه) و <strong>Setlist</strong> (برای همگام‌سازی سرودها با ProPresenter)." },
+    "s7.agenda.title":    { nl: "📅 Agenda Maker — De Week-Agenda Maken", en: "📅 Agenda Maker — Creating the Weekly Agenda", fa: "📅 Agenda Maker — ایجاد برنامه هفتگی" },
+    "s7.agenda.p1":       { nl: "De Agenda Maker haalt de agenda automatisch op uit <strong>Tockify</strong> (onze online kalender) en toont de aankomende evenementen voor deze week. Je kunt de tekst verslepen, aanpassen en exporteren als <strong>PNG-afbeelding</strong> voor op de schermen.", en: "The Agenda Maker automatically fetches the schedule from <strong>Tockify</strong> (our online calendar) and shows upcoming events for this week. You can drag the text, edit it, and export it as a <strong>PNG image</strong> for the screens.", fa: "Agenda Maker به طور خودکار برنامه را از <strong>Tockify</strong> (تقویم آنلاین ما) دریافت می‌کند و رویدادهای پیش‌رو برای این هفته را نشان می‌دهد. می‌توانید متن را بکشید، ویرایش کنید و به عنوان <strong>تصویر PNG</strong> برای صفحه‌ها صادر کنید." },
+    "s7.agenda.step1.title": { nl: "Upload een Template",               en: "Upload a Template",                    fa: "آپلود یک قالب" },
+    "s7.agenda.step1.desc":  { nl: "Dit hoef je alleen te doen als er nog <strong>geen template geladen</strong> is — de browser onthoudt de vorige afbeelding. Klik op de uploadknop om een <strong>achtergrond-afbeelding</strong> (bijv. een kerkelijke template) te kiezen. Deze afbeelding wordt de basis voor je agenda.", en: "You only need to do this if <strong>no template is loaded</strong> yet — the browser remembers the previous image. Click the upload button to choose a <strong>background image</strong> (e.g. a church template). This image becomes the base for your agenda.", fa: "تنها در صورتی که <strong>هیچ قالبی بارگذاری نشده</strong> است باید این کار را انجام دهید — مرورگر تصویر قبلی را به خاطر می‌سپارد. روی دکمه آپلود کلیک کنید تا یک <strong>تصویر پس‌زمینه</strong> (مثلاً یک قالب کلیسایی) انتخاب کنید. این تصویر پایه برنامه شما می‌شود." },
+    "s7.agenda.step2.title": { nl: "Automatisch Ophalen",               en: "Auto Fetch",                           fa: "دریافت خودکار" },
+    "s7.agenda.step2.desc":  { nl: "De agenda wordt <strong>automatisch geladen</strong> uit Tockify. Je ziet de evenementen voor deze week in vier kolommen: Datum | Tijd | Evenement. Navigeer met <strong>Vorige/Volgende</strong> naar andere weken.", en: "The agenda is <strong>automatically loaded</strong> from Tockify. You see this week's events in four columns: Date | Time | Event. Navigate with <strong>Previous/Next</strong> to other weeks.", fa: "برنامه <strong>به طور خودکار</strong> از Tockify بارگذاری می‌شود. رویدادهای این هفته را در چهار ستون می‌بینید: تاریخ | زمان | رویداد. با <strong>قبلی/بعدی</strong> به هفته‌های دیگر بروید." },
+    "s7.agenda.step3.title": { nl: "Aanpassen & Positioneren",         en: "Edit & Position",                      fa: "ویرایش و موقعیت‌یابی" },
+    "s7.agenda.step3.desc":  { nl: "Vink evenementen aan en uit als het nodig is door op de checkboxes te klikken. De <strong>positie</strong> staat vast en wordt ingesteld via de X/Y-coördinaten (die worden onthouden door de browser). Je kunt ook de <strong>Sprekers verbergen</strong> of een <strong>eigen label</strong> (bijv. \"Eredienst\") instellen.", en: "Toggle events <strong>on/off</strong> with checkboxes. The <strong>position</strong> is fixed and set via the X/Y coordinates (which are remembered by the browser). You can also <strong>hide speakers</strong> or set a <strong>custom label</strong> (e.g. \"Service\").", fa: "رویدادها را با چک‌باکس‌ها <strong>روشن/خاموش</strong> کنید. <strong>موقعیت</strong> ثابت است و از طریق مختصات X/Y تنظیم می‌شود (که توسط مرورگر به خاطر سپرده می‌شود). همچنین می‌توانید <strong>گویندگان را مخفی کنید</strong> یا یک <strong>برچسب سفارشی</strong> (مثلاً \"مراسم\") تنظیم کنید." },
+    "s7.agenda.step4.title": { nl: "Exporteren als PNG",                en: "Export as PNG",                        fa: "خروجی به صورت PNG" },
+    "s7.agenda.step4.desc":  { nl: "Klik op <strong>Download PNG</strong> om de agenda als afbeelding te exporteren. Deze plaats je daarna in de <strong>Dienst</strong>-playlist. Je kunt de afbeelding ook in de <strong>mededelingen-loop</strong> zetten.", en: "Click <strong>Download PNG</strong> to export the agenda as an image. Then place it in the <strong>Service</strong> playlist. You can also put the image in the <strong>announcements loop</strong>.", fa: "روی <strong>دانلود PNG</strong> کلیک کنید تا برنامه به عنوان تصویر صادر شود. سپس آن را در <strong>لیست پخش مراسم</strong> قرار دهید. همچنین می‌توانید تصویر را در <strong>حلقه اعلان‌ها</strong> قرار دهید." },
+    "s7.setlist.title":   { nl: "🎵 Setlist — Liederen Synchroniseren met ProPresenter", en: "🎵 Setlist — Syncing Songs with ProPresenter", fa: "🎵 Setlist — همگام‌سازی سرودها با ProPresenter" },
+    "s7.setlist.p1":      { nl: "De Setlist-module koppelt <strong>WorshipTools Planning</strong> aan <strong>ProPresenter</strong>. Het ontvangt de geplande liederen uit WorshipTools en bouwt daar automatisch een <strong>playlist</strong> van in ProPresenter.", en: "The Setlist module connects <strong>WorshipTools Planning</strong> to <strong>ProPresenter</strong>. It receives the planned songs from WorshipTools and automatically builds a <strong>playlist</strong> from them in ProPresenter.", fa: "ماژول Setlist <strong>WorshipTools Planning</strong> را به <strong>ProPresenter</strong> متصل می‌کند. سرودهای برنامه‌ریزی شده را از WorshipTools دریافت می‌کند و به طور خودکار یک <strong>لیست پخش</strong> از آنها در ProPresenter می‌سازد." },
+    "s7.setlist.step1.title": { nl: "Setlist Ontvangen",                en: "Receive Setlist",                      fa: "دریافت Setlist" },
+    "s7.setlist.step1.desc":  { nl: "Ga naar <strong>WorshipTools Planning</strong>, open de <strong>dienst</strong> en klik op <strong>Liturgie</strong>. Daar zie je de oranje knop <strong>Extract Setlist</strong> die door de Chrome-extensie is toegevoegd — klik erop om de setlist naar Ichtus Workspace te sturen.", en: "Go to <strong>WorshipTools Planning</strong>, open the <strong>service</strong> and click <strong>Liturgy</strong>. There you'll see the orange <strong>Extract Setlist</strong> button added by the Chrome extension — click it to send the setlist to Ichtus Workspace.", fa: "به <strong>WorshipTools Planning</strong> بروید، <strong>مراسم</strong> را باز کنید و روی <strong>Liturgie</strong> کلیک کنید. در آنجا دکمه نارنجی <strong>Extract Setlist</strong> را که توسط افزونه Chrome اضافه شده می‌بینید — روی آن کلیک کنید تا setlist به Ichtus Workspace ارسال شود." },
+    "s7.setlist.step1.desc2": { nl: "Je ziet de liederen ingedeeld in <strong>Openingsliederen</strong>, <strong>Praise &amp; Worship</strong> en <strong>Eindliederen</strong>.", en: "You'll see the songs divided into <strong>Opening Songs</strong>, <strong>Praise &amp; Worship</strong>, and <strong>Closing Songs</strong>.", fa: "سرودها را به بخش‌های <strong>سرودهای آغازین</strong>، <strong>Praise &amp; Worship</strong> و <strong>سرودهای پایانی</strong> تقسیم شده می‌بینید." },
+    "s7.setlist.step2.title": { nl: "Sjabloon Kiezen",                  en: "Choose Template",                      fa: "انتخاب قالب" },
+    "s7.setlist.step2.desc":  { nl: "Kies een <strong>dienst-sjabloon</strong>: ZondagDienst, Worship Avond, DoopDienst of Delighted Youth. Het sjabloon bepaalt de volgorde van de onderdelen (Welkom, Mededelingen, Liederen, Preek, Einde).", en: "Choose a <strong>service template</strong>: ZondagDienst, Worship Avond, DoopDienst or Delighted Youth. The template determines the order of the parts (Welcome, Announcements, Songs, Sermon, End).", fa: "یک <strong>قالب مراسم</strong> انتخاب کنید: ZondagDienst، Worship Avond، DoopDienst یا Delighted Youth. قالب ترتیب بخش‌ها (خوش‌آمدگویی، اعلان‌ها، سرودها، موعظه، پایان) را تعیین می‌کند." },
+    "s7.setlist.step3.title": { nl: "Synchroniseren",                   en: "Synchronize",                          fa: "همگام‌سازی" },
+    "s7.setlist.step3.desc":  { nl: "Klik op <strong>Sync naar ProPresenter</strong>.", en: "Click <strong>Sync to ProPresenter</strong>.", fa: "روی <strong>Sync به ProPresenter</strong> کلیک کنید." },
+    "s7.setlist.step3.desc2": { nl: "De app zoekt de liederen in de ProPresenter-bibliotheek op en maakt een nieuwe <strong>playlist</strong> aan met de juiste volgorde, headers en kleuren. Je ziet hoeveel liederen zijn <strong>gematched</strong> en welke <strong>niet gevonden</strong> zijn.", en: "The app looks up the songs in the ProPresenter library and creates a new <strong>playlist</strong> with the correct order, headers, and colors. You'll see how many songs were <strong>matched</strong> and which were <strong>not found</strong>.", fa: "برنامه سرودها را در کتابخانه ProPresenter جستجو می‌کند و یک <strong>لیست پخش</strong> جدید با ترتیب، سربرگ‌ها و رنگ‌های صحیح ایجاد می‌کند. می‌بینید که چند سرود <strong>تطبیق یافته</strong> و کدام‌ها <strong>پیدا نشده‌اند</strong>." },
+    "s7.setlist.step3.desc3": { nl: "Als een lied niet wordt gevonden, is het of <strong>nieuw</strong> (nog niet in de bibliotheek) of <strong>niet goed opgeslagen</strong> (bijv. onder een andere naam).", en: "If a song isn't found, it's either <strong>new</strong> (not yet in the library) or <strong>not saved correctly</strong> (e.g. under a different name).", fa: "اگر سرودی پیدا نشد، یا <strong>جدید</strong> است (هنوز در کتابخانه نیست) یا <strong>به درستی ذخیره نشده</strong> است (مثلاً با نامی متفاوت)." },
+    "s7.setlist.step4.title": { nl: "Verbinding Controleren",           en: "Check Connection",                     fa: "بررسی اتصال" },
+    "s7.setlist.step4.desc":  { nl: "Onderaan het scherm zie je de <strong>verbindingsstatus</strong> met ProPresenter. Controleer of het IP-adres klopt (standaard <strong>100.113.22.22:51253</strong>). Je kunt de verbinding testen met de knop <strong>Test Verbinding</strong>.", en: "At the bottom of the screen you'll see the <strong>connection status</strong> with ProPresenter. Check if the IP address is correct (default <strong>100.113.22.22:51253</strong>). You can test the connection with the <strong>Test Connection</strong> button.", fa: "در پایین صفحه <strong>وضعیت اتصال</strong> به ProPresenter را می‌بینید. بررسی کنید که آدرس IP صحیح است (پیش‌فرض <strong>100.113.22.22:51253</strong>). می‌توانید اتصال را با دکمه <strong>تست اتصال</strong> آزمایش کنید." },
+    "s7.open.title":      { nl: "🚀 Ichtus Workspace Openen",            en: "🚀 Opening Ichtus Workspace",           fa: "🚀 باز کردن Ichtus Workspace" },
+    "s7.open.body":       { nl: "<strong>Stap 1:</strong> Open een terminal en voer <strong>python supervisor.py</strong> uit (in de map Ichtus_apps).<br><strong>Stap 2:</strong> Open Chrome en ga naar <strong>http://localhost:8080/Ichtus_SPA/</strong><br><strong>Stap 3:</strong> Klik in de linkerzijbalk op <strong>Agenda</strong> of <strong>Setlist</strong> om te beginnen.", en: "<strong>Step 1:</strong> Open a terminal and run <strong>python supervisor.py</strong> (in the Ichtus_apps folder).<br><strong>Step 2:</strong> Open Chrome and go to <strong>http://localhost:8080/Ichtus_SPA/</strong><br><strong>Step 3:</strong> Click <strong>Agenda</strong> or <strong>Setlist</strong> in the left sidebar to get started.", fa: "<strong>مرحله ۱:</strong> یک ترمینال باز کنید و <strong>python supervisor.py</strong> را اجرا کنید (در پوشه Ichtus_apps).<br><strong>مرحله ۲:</strong> Chrome را باز کنید و به <strong>http://localhost:8080/Ichtus_SPA/</strong> بروید.<br><strong>مرحله ۳:</strong> روی <strong>Agenda</strong> یا <strong>Setlist</strong> در نوار کناری سمت چپ کلیک کنید تا شروع کنید." },
     // ── Footer ──
     "footer.line1":       { nl: "ProPresenter & WorshipTools Workshop · Operator Handboek", en: "ProPresenter & WorshipTools Workshop · Operator Handbook", fa: "کارگاه ProPresenter و WorshipTools · کتابچه راهنمای اپراتور" },
     "footer.line2":       { nl: "Samengesteld voor vrijwilligers. Met <span class=\"footer-heart\">♥</span> gemaakt voor de kerk.", en: "Compiled for volunteers. Made with <span class=\"footer-heart\">♥</span> for the church.", fa: "تدوین شده برای داوطلبان. ساخته شده با <span class=\"footer-heart\">♥</span> برای کلیسا." }
@@ -2961,7 +3461,115 @@ const i18n = {
 
         // Apply language when user clicks a button (NOT on page load)
     });
+
+    // ── Download Modal ──
+    let modalQRShown = false;
+
+    function toggleDownloadModal() {
+        const overlay = document.getElementById('downloadModal');
+        const isOpen = overlay.classList.contains('open');
+        if (isOpen) {
+            closeDownloadModal();
+        } else {
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            modalQRShown = false;
+            document.getElementById('qrSection').style.display = 'none';
+            document.getElementById('modalOptions').style.display = 'flex';
+        }
+    }
+
+    function closeDownloadModal(e) {
+        if (e && e.target !== e.currentTarget) return;
+        const overlay = document.getElementById('downloadModal');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function downloadPDF() {
+        closeDownloadModal();
+        setTimeout(function() { window.print(); }, 300);
+    }
+
+    function showQRCode() {
+        modalQRShown = true;
+        document.getElementById('modalOptions').style.display = 'none';
+        const qrSection = document.getElementById('qrSection');
+        qrSection.style.display = 'block';
+
+        // Als de pagina lokaal wordt bekeken (file://), gebruik dan de GitHub Pages URL
+        const isLocalFile = window.location.protocol === 'file:';
+        const liveUrl = 'https://gossi1.github.io/propresenter-handbook/';
+        const qrUrl = isLocalFile ? liveUrl : window.location.href;
+
+        const qrImage = document.getElementById('qrImage');
+        const encodedUrl = encodeURIComponent(qrUrl);
+        qrImage.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodedUrl + '" alt="QR Code" width="200" height="200" loading="lazy">';
+
+        // Toon bericht als de pagina lokaal wordt bekeken
+        const localNote = document.getElementById('qrLocalNote');
+        if (localNote) {
+            localNote.style.display = isLocalFile ? 'block' : 'none';
+        }
+    }
+
+    function backToOptions() {
+        modalQRShown = false;
+        document.getElementById('modalOptions').style.display = 'flex';
+        document.getElementById('qrSection').style.display = 'none';
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const overlay = document.getElementById('downloadModal');
+            if (overlay.classList.contains('open')) {
+                if (modalQRShown) {
+                    backToOptions();
+                } else {
+                    closeDownloadModal();
+                }
+            }
+        }
+    });
 </script>
+
+<!-- ── Download Modal ── -->
+<div class="modal-overlay" id="downloadModal" onclick="closeDownloadModal(event)" role="dialog" aria-modal="true" aria-label="Downloaden">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeDownloadModal()" aria-label="Sluiten">✕</button>
+        <div class="modal-title" data-i18n="download.title">Handboek Downloaden</div>
+
+        <div class="modal-options" id="modalOptions">
+            <div class="modal-option" onclick="downloadPDF()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')downloadPDF()">
+                <div class="modal-option-icon">📄</div>
+                <div class="modal-option-text">
+                    <div class="modal-option-title" data-i18n="download.pdf.title">Download als PDF</div>
+                    <div class="modal-option-desc" data-i18n="download.pdf.desc">Bewaar het handboek op je computer om later te lezen of uit te printen.</div>
+                </div>
+                <span class="modal-option-arrow">›</span>
+            </div>
+
+            <div class="modal-option" onclick="showQRCode()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showQRCode()">
+                <div class="modal-option-icon qr-icon">📱</div>
+                <div class="modal-option-text">
+                    <div class="modal-option-title" data-i18n="download.qr.title">Open op je telefoon</div>
+                    <div class="modal-option-desc" data-i18n="download.qr.desc">Scan de QR-code met je telefoon om het handboek onderweg te lezen.</div>
+                </div>
+                <span class="modal-option-arrow">›</span>
+            </div>
+        </div>
+
+        <div class="qr-section" id="qrSection" style="display: none;">
+            <div class="qr-image" id="qrImage">
+                <div style="width:200px;height:200px;display:flex;align-items:center;justify-content:center;color:#999;font-size:0.85rem;" data-i18n="download.qr.loading">QR-code laden…</div>
+            </div>
+            <p class="qr-hint" data-i18n="download.qr.hint">📸 Scan deze code met je telefoon-camera</p>
+            <p class="qr-local-note" id="qrLocalNote" style="display:none;" data-i18n="download.qr.local">🌐 Deze QR-code verwijst naar de live versie op GitHub Pages. Open eerst <strong>gossi1.github.io/propresenter-handbook</strong> in je browser en scan dan de QR-code vanaf die pagina.</p>
+            <button class="qr-back-btn" onclick="backToOptions()" data-i18n="download.back">← Terug naar opties</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
